@@ -1,0 +1,74 @@
+@import "@styles/typography.css";
+@import "@styles/global.scss";
+@import "@styles/mixins.scss";
+
+.banner-effect {
+  background-image: url("/banner-effect.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: cover;
+  // @include aboveWidth(md) {
+  //   height: 644px;
+  // }
+  // @include aboveWidth(lg) {
+  //   height: 844px;
+  // }
+}
+
+.prize-list {
+  background-image: url("/bg-prize1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.showroom {
+  background-image: url("/bg-showroom.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  @include aboveWidth(lg) {
+    min-height: 713px;
+  }  
+}
+
+.price-item {
+  background: linear-gradient(
+        180deg,
+        #448787 0%,
+        #67a9ad 21%,
+        #8ef6fc 62%,
+        #25878b 81%,
+        #468899 100%
+      ),
+    0% 0% no-repeat padding-box;
+}
+
+.faq-title {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+.navMenus {
+  display: flex;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    padding: 20px 0;
+    &.active {
+      border-bottom: 2px solid var(--color-primary-whelps);
+    }
+  }
+
+  li {
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
