@@ -4,7 +4,7 @@ import Homepage from "@components/partials/HomePage"
 import React from "react"
 
 // Render
-const WhelpsHomePage = () => (
+const WalletWinners = () => (
   <Layout
     title="WalletWinners"
     contentClassName="homePageContent px-0 max-w-full bg-dark-whelps"
@@ -12,4 +12,4 @@ const WhelpsHomePage = () => (
     <Homepage />
   </Layout>
 )
-export default WhelpsHomePage
+export default WalletWinners

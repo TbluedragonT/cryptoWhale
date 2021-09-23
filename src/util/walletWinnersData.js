@@ -63,17 +63,17 @@ export const roadmapData = [
   {
     value: "10",
     description: `New Weekly Spinoff of BB with New Prizelists`,
-    image: "/roadmap-01.png"
+    image: "/roadmap-01.svg"
   },
   {
     value: "20",
     description: `Virtual Showroom of Prizes for the Upcoming Weeks`,
-    image: "/roadmap-02.png"
+    image: "/roadmap-02.svg"
   },
   {
     value: "30",
     description: `Exclusive VIP Membership NFT Tickets`,
-    image: "/roadmap-03.png"
+    image: "/roadmap-03.svg"
   },
   {
     value: "50",
@@ -93,7 +93,7 @@ export const roadmapData = [
   {
     value: "90",
     description: `Metaverse WalletWinners House`,
-    image: "/roadmap-07.png"
+    image: "/cassino.png"
   },
   {
     value: "100",
@@ -106,27 +106,27 @@ export const priceHeaderData = ["10%", "25%", "50%", "75%", "100%"]
 
 export const priceData = [
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-01.svg",
     data: [200, 200, 200, 200, 200],
   },
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-02.svg",
     data: [180, 180, 180, 180, 180],
   },
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-03.svg",
     data: [160, 160, 160, 160, 160],
   },
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-04.svg",
     data: [140, 140, 140, 140, 140],
   },
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-05.svg",
     data: [120, 120, 120, 120, 120],
   },
   {
-    image: "/price-image-07.svg",
+    image: "/price-image-06.svg",
     data: [100, 100, 100, 100, 100],
   },
   {

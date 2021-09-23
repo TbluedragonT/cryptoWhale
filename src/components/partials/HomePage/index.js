@@ -36,7 +36,7 @@ const PriceTable = ({
         {
           header.map((dt, idx) => (
             < div
-              className={`col-start-${idx + 1} text-2xl text-primary text-center`}
+              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 4 ? "border-r border-primary" : ""}`}
               key={idx}
             >
               {dt}
@@ -46,24 +46,40 @@ const PriceTable = ({
       </div>
       {
         data.map((dt, idx) => (
-          <div
-            className="grid grid-cols-5 items-center price-item my-8"
-            key={idx}
-          >
-            <div>
-              <img src={dt.image} className="absolute h-20 place-items-stretch transform -translate-x-3/4 -translate-y-5" />
+          <>
+            <div
+              className="grid grid-cols-5 items-center h-8"
+              key={idx}
+            >
+              {
+                dt.data.map((item, index) => (
+                  <div
+                    className={`col-start-${index + 1} h-8 ${index < 4 ? "border-r border-primary" : ""}`}
+                    key={7 + idx * 5 + index}
+                  >
+                  </div>
+                ))
+              }
             </div>
-            {
-              dt.data.map((item, index) => (
-                < div
-                  className={`col-start-${index + 1} text-xl text-secondary py-2 text-center`}
-                  key={7 + idx * 5 + index}
-                >
-                  {item}
-                </div>
-              ))
-            }
-          </div>
+            <div
+              className="grid grid-cols-5 items-center price-item"
+              key={idx}
+            >
+              <div>
+                <img src={dt.image} className="absolute h-20 place-items-stretch transform -translate-x-6/7 -translate-y-5" />
+              </div>
+              {
+                dt.data.map((item, index) => (
+                  < div
+                    className={`col-start-${index + 1} text-sm md:text-xl text-secondary py-2 text-center ${index < 4 ? "border-r border-primary" : ""}`}
+                    key={7 + idx * 10 + index}
+                  >
+                    {item}
+                  </div>
+                ))
+              }
+            </div>
+          </>
         ))
       }
     </>
@@ -73,16 +89,16 @@ const PriceTable = ({
 const RoadMapItem = (props) => {
   return (
     <div className="grid grid-cols-12 items-center">
-      <div className="text-2xl tracking-wider text-primary col-span-1">
+      <div className="text-xl lg:text-2xl tracking-wider text-primary col-span-2 md:col-span-1">
         {props.value}%
       </div>
-      <div className="col-start-2 col-span-9 text-lg tracking-wide text-primary-light">
+      <div className="col-start-3 md:col-start-2 col-span-9 text-lg tracking-wide text-primary-light">
         {props.description}
       </div>
-      <div className="col-start-11 col-span-2">
-        <div className="rounded-md border-primary border h-32">
+      <div className="hidden md:block col-start-11 col-span-2">
+        <div className="rounded-md border-primary border h-32 m-8 relative">
           {props.image !== "none" &&
-            <img src={props.image} className="absolute h-28 object-cover -left-2 -top-1/2" />
+            <img src={props.image} className="absolute h-28 object-cover -left-8 top-2" />
           }
         </div>
       </div>
@@ -127,14 +143,14 @@ const TeamItem = (props) => {
             <img src={props.image} alt="Team Image" className="my-auto" />
           </div>
         </a>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center mt-6">
           <div className="w-2 h-2 bg-yellow-200"></div>
-          <div className="text-primary text-4xl">
+          <div className="text-primary text-xl lg:text-4xl px-3">
             {props.name}
           </div>
           <div className="w-2 h-2 bg-yellow-200"></div>
         </div>
-        <div className="text-primary-light text-xl">
+        <div className="text-primary-light text-xl mt-2">
           {props.role}
         </div>
       </div>
@@ -162,51 +178,74 @@ export default function Homepage() {
 
   return (
     <div className="">
-      <div className="flex flex-row">
-        <div className="bg-primary w-2/3 py-0 relative">
-          <div className="mix-blend-overlay banner-effect">
+      <div className="flex flex-col lg:flex-row">
+        <nav>
+          <div className="hidden sm:flex lg:hidden justify-center">
+            <ul className="navMenus w-full flex justify-around">
+              {Menus.map(dt => (
+                <li className="py-2 px-3 text-primary-light" key={dt.name} >
+                  {dt.type == 'internal' ?
+                    <Link
+                      activeClassName="active"
+                      to={dt.path}
+                      partiallyActive={!!dt.partiallyActive}
+                      target={dt.target}
+                    >
+                      {dt.name}
+                    </Link>
+                    :
+                    <a href={dt.path} target={dt.target}>
+                      {dt.name}
+                    </a>
+                  }
+                </li>
+              ))}
+            </ul>
           </div>
-          <img src="/cassino.png" className="absolute left-0 top-0"></img>
+        </nav>
+
+        <div className="bg-primary lg:w-3/5 py-0 relative">
+          <img src="/banner.png" className="w-full object-cover"></img>
         </div>
-        <div className="flex flex-col w-1/3 justify-between">
+        <div className="flex flex-col lg:w-2/5 justify-between px-8 pt-8">
           <nav>
-            <div className="flex justify-center space-x-4">
-              <div>
-                <ul className="navMenus">
-                  {Menus.map(dt => (
-                    <li className="py-2 px-3" key={dt.name} >
-                      {dt.type == 'internal' ?
-                        <Link
-                          activeClassName="active"
-                          to={dt.path}
-                          partiallyActive={!!dt.partiallyActive}
-                          target={dt.target}
-                        >
-                          {dt.name}
-                        </Link>
-                        :
-                        <a href={dt.path} target={dt.target}>
-                          {dt.name}
-                        </a>
-                      }
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="hidden lg:flex justify-center">
+              <ul className="navMenus w-full flex justify-around">
+                {Menus.map(dt => (
+                  <li className="py-2 px-3 text-primary-light" key={dt.name} >
+                    {dt.type == 'internal' ?
+                      <Link
+                        activeClassName="active"
+                        to={dt.path}
+                        partiallyActive={!!dt.partiallyActive}
+                        target={dt.target}
+                      >
+                        {dt.name}
+                      </Link>
+                      :
+                      <a href={dt.path} target={dt.target}>
+                        {dt.name}
+                      </a>
+                    }
+                  </li>
+                ))}
+              </ul>
             </div>
           </nav>
           <div className="flex flex-col h-full justify-center">
-            <div className="flex flex-row font-bajt text-4xl text-primary italic bold">
-              <img src="/logo.png" className="w-20 h-20"></img>
-              <div>
-                Wallet<br />
-                Winners
+            <div className="flex flex-row justify-center lg:justify-start">
+              <div className="flex flex-row font-bajt text-4xl text-primary italic bold items-center">
+                <img src="/logo.png" className="w-16 h-16"></img>
+                <div className="p-6">
+                  Wallet<br />
+                  Winners
+                </div>
               </div>
             </div>
-            <p className="text-primary-light text-lg font-thin">
+            <p className="text-primary-light text-lg font-thin leading-8">
               Wallet Winners is a “PlayToWin” NFT Entarteiment House that brings Art and Gambling to Coexistence. Win and Earn* vide variety of Prizes; Money,Crypto, NFT Art and Real life Benefits* ( such as Tickets to Exclusive Events, Travel Packages etc.)
             </p>
-            <div className="flex flex-row bg-secondary py-2">
+            <div className="flex flex-row bg-secondary py-2 justify-center lg:justify-start">
               {
                 icons.map((dt, idx) => (
                   <li className="list-none pr-5 pt-5" key={idx}>
@@ -226,7 +265,7 @@ export default function Homepage() {
             </div>
 
           </div>
-          <div className="flex text-primary-light justify-center">
+          <div className="hidden lg:flex text-primary-light justify-center">
             <span>V.1</span>
           </div>
         </div>
@@ -236,20 +275,22 @@ export default function Homepage() {
         <div className="flex flex-row">
           <div className="flex flex-col max-w-md">
             <div className="uppercase text-primary text-right">about</div>
-            <div className="border-l-2 border-primary">
-              <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic">blockchain<br /> bonansa</div>
-              <p className="text-primary-light">Our First Game is called Blockchain Bonanza;. Programmatically generated NFT that will take 10.000 spins on XXX Date and bring Valuable Prizes.</p>
+            <div className="md:border-l-2 border-primary py-8 pl-6">
+              <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic py-4">blockchain<br /> bonansa</div>
+              <p className="text-primary-light py-4 leading-8">
+                Our First Game is called Blockchain Bonanza;. Programmatically generated NFT that will take 10.000 spins on XXX Date and bring Valuable Prizes.
+              </p>
             </div>
           </div>
-          <div>
+          <div className="hidden sm:block">
             <img src="/bitcoin.png" />
           </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-center pt-10 md:pt-24 prize-list" id="prizelist">
-        <div className="w-1/2">
-          <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase text-right">
+      <div className="flex items-center justify-center sm:p-2 md:px-5 lg:px-10 prize-list" id="prizelist">
+        <div className="pl-28 pr-2 sm:pl-36 sm:pr-10 w-full lg:w-1/2 lg:px-0 py-10">
+          <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase text-right p-8">
             price list
           </div>
           <PriceTable
@@ -259,7 +300,7 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className="flex justify-center" id="roadmap">
+      <div className="flex justify-center pt-20 px-2" id="roadmap">
         <div>
           <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase">
             Roadmap
@@ -280,7 +321,7 @@ export default function Homepage() {
           <div className="text-2xl tracking-wider text-center text-primary font-bajt italic font-extrabold md:text-4xl uppercase">
             Team
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-12 md:grid-cols-3 md:gap-4 lg:gap-12 place-items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 md:grid-cols-3 md:gap-4 lg:gap-16 place-items-stretch">
             {
               teamData.map((dt, idx) => (
                 <TeamItem
@@ -294,10 +335,10 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className="flex pt-10 md:pt-24 justify-center">
-        <div className="flex flex-col justify-center items-center w-1/2">
+      <div className="flex pt-10 md:pt-24 justify-center px-3 md:px-0">
+        <div className="flex flex-col justify-center items-center md:w-1/2">
           <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic">showroom</div>
-          <p className="text-primary-light">
+          <p className="text-primary-light py-10 leading-8">
             sed nec, sit eiusmod dolor lacus. ipsum a vulputate id aute gravida. nec nibh a nullam felis pellentesque duis est nullam orci aliquam ligula aliquam cupidatat pretium et duis lacus. proident, sed nec, sit eiusmod dolor lacus. ipsum a vulputate id aute gravida. nec nibh a nullam felis pellentesque duis est nullam orci aliquam ligula aliquam cupidatat pretium et duis lacus. proident,
           </p>
         </div>
@@ -307,9 +348,9 @@ export default function Homepage() {
       </div>
 
       <div className="py-8 md:py-20 bg-secondary" id="faq">
-        <div className="flex flex-row container mx-auto text-left">
-          <div className="text-4xl tracking-wider font-bajt text-primary faq-title">
-            FAQ
+        <div className="lg:flex lg:flex-row container mx-auto text-left">
+          <div className="text-4xl tracking-normal font-bajt text-primary py-4 lg:faq-title lg:py-0">
+            F A Q
           </div>
           <div className="flex flex-col max-w-5xl mx-auto">
             <div className="faq-container">

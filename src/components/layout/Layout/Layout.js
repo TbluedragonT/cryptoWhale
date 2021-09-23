@@ -40,7 +40,7 @@ export default function Layout({
             <>
               <div ref={ref}>
                 <div className="container py-0 mx-auto md:py-0">
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex items-center justify-between h-12">
                     <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                       {/* Mobile menu button*/}
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md menuToggleIcon focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -63,7 +63,7 @@ export default function Layout({
                   <div>
                     <ul className="flex-col navMenus">
                       {Menus.map(dt => (
-                        <li className="px-3 py-2 font-roboto-bold" key={dt.name}>
+                        <li className="font-ocr px-3 py-2 text-primary" key={dt.name}>
                           <Link
                             activeClassName="active"
                             to={dt.path}
@@ -86,18 +86,18 @@ export default function Layout({
           className="relative flex flex-col contentWrapper bg-secondary"
         >
           <main
-            className={`font-ocr container mx-auto flex-grow flex flex-col ${contentClassName} ${visibleClass ? '' : 'pb-0'} `}
+            className={`pt-12 sm:pt-0 font-ocr container mx-auto flex-grow flex flex-col ${contentClassName} ${visibleClass ? '' : 'pb-0'} `}
           >
             {children}
           </main>
         </div>
 
         <div className="min-w-full footerWrapper">
-          <div className="flex flex-col items-center w-full footer md:flex-row justify-center border-t border-secondary">
-            <div className="flex flex-row w-1/2 justify-between bg-primary">
-              <div className="flex flex-row font-bajt text-4xl text-secondary italic bold">
+          <div className="flex flex-col md:flex-row items-center w-full footer justify-center border-t border-secondary">
+            <div className="flex flex-row w-full md:w-1/2 justify-between bg-primary px-2 lg:px-10">
+              <div className="flex flex-row font-bajt text-4xl text-secondary italic bold items-center">
                 <img src="/logo.png" className="w-10 h-10"></img>
-                <div className="uppercase text-lg font-extrabold">
+                <div className="uppercase text-lg font-extrabold ml-2">
                   WalletWinners
                 </div>
               </div>
@@ -119,12 +119,12 @@ export default function Layout({
                 </ul>
               </div>
             </div>
-            <nav className="w-1/2">
+            <nav className="w-full md:w-1/2 py-2 md:py-0">
               <div className="flex justify-center space-x-4 font-ocr">
                 <div>
                   <ul className="navMenus">
                     {Menus.map(dt => (
-                      <li className="py-2 px-3" key={dt.name} >
+                      <li className="py-2 px-3 text-primary" key={dt.name} >
                         {dt.type == 'internal' ?
                           <Link
                             activeClassName="active"
