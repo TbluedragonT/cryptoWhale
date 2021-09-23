@@ -1,0 +1,64 @@
+@import "@styles/typography.css";
+@import "@styles/global.scss";
+
+.banner-effect {
+  background-image: url("/banner-effect.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 844px;
+}
+
+.prize-list {
+  background-image: url("/bg-prize.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.showroom {
+  background-image: url("/bg-showroom.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 713px;
+}
+
+.price-item {
+  background: linear-gradient(
+      180deg,
+      var(--color-secondary) 0%,
+      var(--color-primary) 62%,
+      #8ef6fc33 81%,
+      #6e416b 100%
+    )
+    0% 0% no-repeat padding-box;
+}
+
+.faq-title {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+.navMenus {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 0;
+    &.active {
+      border-bottom: 2px solid var(--color-primary-whelps);
+    }
+  }
+
+  li {
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
