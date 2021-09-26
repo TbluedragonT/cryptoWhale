@@ -95,7 +95,7 @@ const RoadMapItem = (props) => {
       <div className="text-xl lg:text-2xl tracking-wider text-primary col-span-2 md:col-span-1 py-2 md:py-0">
         {props.value}%
       </div>
-      <div className="col-start-1 md:col-start-2 col-span-12 md:col-span-9 text-lg tracking-wide text-primary-light">
+      <div className="col-start-1 md:col-start-2 col-span-12 md:col-span-9 text-lg tracking-wide text-primary-light pl-4">
         {props.description}
       </div>
       <div className="hidden md:block col-start-11 col-span-2">
