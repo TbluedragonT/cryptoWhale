@@ -7,7 +7,7 @@ export const Menus = [
     type: 'internal'
   },
   {
-    name: "Prizelist",
+    name: "Prizes",
     path: "/#prizelist",
     partiallyActive: true,
     target: "",

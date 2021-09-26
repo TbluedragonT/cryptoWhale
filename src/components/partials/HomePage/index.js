@@ -13,9 +13,9 @@ import { Menus } from '@components/layout/Layout/menu'
 import "./homepage.scss"
 
 const icons = [
-  { icon: '/icon/twitter.svg', link: "https://twitter.com/" },
+  { icon: '/icon/twitter.svg', link: "https://twitter.com/wallet_winners" },
   { icon: '/icon/telegram.svg', link: "https://telegram.org" },
-  { icon: '/icon/discord.svg', link: "https://discord.gg/" },
+  { icon: '/icon/discord.svg', link: "https://discord.gg/BR2mXYpQJr" },
 ]
 
 const responsive = {
@@ -243,7 +243,18 @@ export default function Homepage() {
               </div>
             </div>
             <p className="text-primary-light text-lg font-thin leading-8">
-              Wallet Winners is a “PlayToWin” NFT Entarteiment House that brings Art and Gambling to Coexistence. Win and Earn* vide variety of Prizes; Money,Crypto, NFT Art and Real life Benefits* ( such as Tickets to Exclusive Events, Travel Packages etc.)
+              Wallet Winners is a "Play2Win" NFT Entertainment House that joins Art and Gambling together in an exciting new fashion! Play for a wide variety of Prizes including: Crypto, NFT Collectibles and (in the near future), 
+              Real-World Experiences (such as Tickets to Exclusive Events, Travel Packages and more).
+            </p>
+            <p>&nbsp;</p>
+            <p className="text-primary-light text-lg font-thin leading-8"><strong>TRUST, SAFETY AND PRIZES</strong></p>
+            <p className="text-primary-light text-lg font-thin leading-8">
+              The team at Wallet Winners understands that trusting a new project can be risky. That is why we have contracted MasterBrews to not only handle our tech needs, but to also guarantee all prizes! All NFTs offered 
+              in our Prize List are already owned and held by the MasterBrews team on our behalf. Crypto wins will be distributed and controlled through the Smart Contract itself. No rug pulls here!
+            </p>
+            <p>&nbsp;</p>
+            <p className="text-primary-light text-lg font-thin leading-8">
+              If you have any doubts or questions, please feel free to contact us or the MasterBrews team directly through Discord.
             </p>
             <div className="flex flex-row bg-secondary py-2 justify-center lg:justify-start">
               {
@@ -274,11 +285,11 @@ export default function Homepage() {
       <div className="flex justify-center pt-10 md:pt-24" id="about">
         <div className="flex flex-row">
           <div className="flex flex-col max-w-md">
-            <div className="uppercase text-primary text-right">about</div>
             <div className="md:border-l-2 border-primary py-8 pl-6">
               <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic py-4">blockchain<br /> bonansa</div>
               <p className="text-primary-light py-4 leading-8">
-                Our First Game is called Blockchain Bonanza;. Programmatically generated NFT that will take 10.000 spins on XXX Date and bring Valuable Prizes.
+                Introducing our first game: Blockchain Bonanza! Based on Ethereum Mainnet and utilizing Smart Contract technology, 10 000 "Spins" (NFTs) will be offered for "Mint" at a cost of 0.08 ETH. Minting windows 
+                will be revealed in the near future. Once the sale period is over, you'll be able to use your spins and win fabulous prizes! It's that simple. 
               </p>
             </div>
           </div>
@@ -291,7 +302,7 @@ export default function Homepage() {
       <div className="flex items-center justify-center sm:p-2 md:px-5 lg:px-10 prize-list" id="prizelist">
         <div className="pl-28 pr-2 sm:pl-36 sm:pr-10 w-full lg:w-1/2 lg:px-0 py-10">
           <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase text-right p-8">
-            price list
+            PRIZE LIST
           </div>
           <PriceTable
             header={priceHeaderData}
@@ -337,9 +348,10 @@ export default function Homepage() {
 
       <div className="flex pt-10 md:pt-24 justify-center px-3 md:px-0">
         <div className="flex flex-col justify-center items-center md:w-1/2">
-          <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic">showroom</div>
+          <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic">Virtual NFT Showroom</div>
           <p className="text-primary-light py-10 leading-8">
-            sed nec, sit eiusmod dolor lacus. ipsum a vulputate id aute gravida. nec nibh a nullam felis pellentesque duis est nullam orci aliquam ligula aliquam cupidatat pretium et duis lacus. proident, sed nec, sit eiusmod dolor lacus. ipsum a vulputate id aute gravida. nec nibh a nullam felis pellentesque duis est nullam orci aliquam ligula aliquam cupidatat pretium et duis lacus. proident,
+            Imagine being able to walk through a beautiful, fully-rendered NFT art gallery or to explore our actual Entertainment House metaverse. Coming soon, that dream will be reality. Look for more updates and details dropping
+             in the near future!
           </p>
         </div>
       </div>
