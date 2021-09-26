@@ -4,19 +4,19 @@ export const teamData = [
     name: "GuyOnFoot",
     image: "/team-01.gif",
     role: "Designer",
-    twitterLink: "https://twitter.com/VeryApeJake",
+    twitterLink: "https://www.guyonfoot.art/",
   },
   {
     name: "Keelito",
     image: "/team-02.gif",
     role: "Strategy",
-    twitterLink: "https://twitter.com/VeryApeJake",
+    twitterLink: "https://twitter.com/KeelitoNFT",
   },
   {
     name: "Gregor",
     image: "/team-03.gif",
     role: "Operations",
-    twitterLink: "https://twitter.com/VeryApeJake",
+    twitterLink: "#",
   },
 ]
 
@@ -57,27 +57,27 @@ export const faqData = [
 export const roadmapData = [
   {
     value: "10",
-    description: `New Weekly Spinoff of BB with New Prizelists`,
+    description: `New BB Spinoff Weekly w/ Fresh Prizes`,
     image: "/roadmap-01.svg"
   },
   {
     value: "20",
-    description: `Virtual Showroom of Prizes for the Upcoming Weeks`,
+    description: `Virtual NFT Showroom of Upcoming Prizes`,
     image: "/roadmap-02.svg"
   },
   {
     value: "30",
-    description: `Exclusive VIP Membership NFT Tickets`,
+    description: `Exclusive VIP Membership Tickets (NFTs)`,
     image: "/roadmap-03.svg"
   },
   {
     value: "50",
-    description: `Higher Chance Ratio(use better words but u get the meaning) on winning games.`,
+    description: `Decreased "House Edge" Across All Games`,
     image: "none"
   },
   {
     value: "70",
-    description: `Exclusive Merchandise and Utility`,
+    description: `Exclusive WW Merchandise`,
     image: "none"
   },
   {
@@ -87,12 +87,12 @@ export const roadmapData = [
   },
   {
     value: "90",
-    description: `Metaverse WalletWinners House`,
+    description: `WalletWinners Entertainment House (Metaverse)`,
     image: "/cassino.png"
   },
   {
     value: "100",
-    description: `New Upcoming Games: Spinning Wheel, Roulette, Lottery.`,
+    description: `New Games: Roulette, Lotteries and more.`,
     image: "none"
   },
 ]
@@ -102,7 +102,7 @@ export const priceHeaderData = ["qty", "10%", "25%", "50%", "75%", "100%"]
 export const priceData = [
   {
     image: "/price-image-02.svg",
-    data: ['1X','MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx'],
+    data: ['1X','MAYC #7477', 'MAYC #7477', 'MAYC #7477', 'MAYC #7477', 'MAYC #7477'],
   },
   {
     image: "/price-image-01.svg",
@@ -118,14 +118,14 @@ export const priceData = [
   },
   {
     image: "/price-image-05.svg",
-    data: ['100X',120, 120, 120, 120, 120],
-  },
-  {
-    image: "/price-image-06.svg",
-    data: ['100X',100, 100, 100, 100, 100],
+    data: ['500X', '0.2 BNB', '0.5 BNB', '1 BNB', '1.5 BNB', '2 BNB'],
   },
   {
     image: "/price-image-07.svg",
-    data: ['100X',80, 80, 80, 80, 80],
+    data: ['1000X', '150 DOGE', '375 DOGE', '750 DOGE', '1125 DOGE', '1500 DOGE'],
+  },
+  {
+    image: "/price-image-06.svg",
+    data: ['2500X','5 ADA', '12.5 ADA', '25 ADA', '37.5 ADA', '50 ADA'],
   },
 ]
