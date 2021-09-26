@@ -97,7 +97,7 @@ export const roadmapData = [
   },
 ]
 
-export const priceHeaderData = ["qty", "10%", "25%", "50%", "75%", "100%"]
+export const priceHeaderData = ["Qty", "10%", "25%", "50%", "75%", "100%"]
 
 export const priceData = [
   {
@@ -113,17 +113,17 @@ export const priceData = [
   {
     image: "/price-image-03.svg",
     icon: "/price-icon-03.svg",
-    data: ['2X','0.10 BTC', '0.25 BTC', '0.50 BTC', '0.75 BTC', '1 BTC'],
+    data: ['2X','0.10 BTC', '0.25 BTC', '0.50 BTC', '0.75 BTC', '1.00 BTC'],
   },
   {
     image: "/price-image-04.svg",
     icon: "/price-icon-04.svg",
-    data: ['25X','0.10 ETH', '0.25 ETH', '0.50 ETH', '0.75 ETH', '1 ETH'],
+    data: ['25X','0.10 ETH', '0.25 ETH', '0.50 ETH', '0.75 ETH', '1.00 ETH'],
   },
   {
     image: "/price-image-05.svg",
     icon: "/price-icon-05.svg",
-    data: ['500X', '0.2 BNB', '0.5 BNB', '1 BNB', '1.5 BNB', '2 BNB'],
+    data: ['500X', '0.20 BNB', '0.50 BNB', '1.00 BNB', '1.50 BNB', '2.00 BNB'],
   },
   {
     image: "/price-image-07.svg",
@@ -133,6 +133,6 @@ export const priceData = [
   {
     image: "/price-image-06.svg",
     icon: "/price-icon-06.svg",
-    data: ['2500X','5 ADA', '12.5 ADA', '25 ADA', '37.5 ADA', '50 ADA'],
+    data: ['2500X','5.00 ADA', '12.50 ADA', '25.00 ADA', '37.50 ADA', '50.00 ADA'],
   },
 ]
