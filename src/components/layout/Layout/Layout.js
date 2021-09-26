@@ -97,8 +97,11 @@ export default function Layout({
             <div className="flex flex-row w-full md:w-1/2 justify-between bg-primary px-2 lg:px-10">
               <div className="flex flex-row font-bajt text-4xl text-secondary italic bold items-center">
                 <img src="/logo.png" className="w-10 h-10"></img>
-                <div className="uppercase text-lg font-extrabold ml-2">
+                <div className="hidden md:block uppercase text-lg font-extrabold ml-2">
                   WalletWinners
+                </div>
+                <div className="block md:hidden uppercase text-lg font-extrabold ml-2">
+                  Wallet<br/>Winners
                 </div>
               </div>
               <div className="flex justify-center mt-4 mb-4 align-middle">
@@ -147,7 +150,7 @@ export default function Layout({
             </nav>
           </div>
           <div className="flex items-center justify-center pb-5 text-white border-t border-secondary">
-            <div className="text-lg font-light leading-8 text-white font-roboto-light">
+            <div className="hidden md:block text-lg font-light leading-8 text-white font-ocr">
               Powered by
             </div>
             <a href="https://masterbrews.com/" target="_blank" rel="noreferrer">

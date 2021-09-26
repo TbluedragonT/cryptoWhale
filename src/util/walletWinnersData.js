@@ -102,30 +102,37 @@ export const priceHeaderData = ["qty", "10%", "25%", "50%", "75%", "100%"]
 export const priceData = [
   {
     image: "/price-image-02.svg",
+    icon: "/price-icon-02.svg",
     data: ['1X','MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx', 'MAYC #xxxx'],
   },
   {
     image: "/price-image-01.svg",
+    icon: "/price-icon-01.svg",
     data: ['','10 packs', '25 packs', '50 packs', '75 packs', '100 packs'],
   },
   {
     image: "/price-image-03.svg",
+    icon: "/price-icon-03.svg",
     data: ['2X','0.10 BTC', '0.25 BTC', '0.50 BTC', '0.75 BTC', '1 BTC'],
   },
   {
     image: "/price-image-04.svg",
+    icon: "/price-icon-04.svg",
     data: ['25X','0.10 ETH', '0.25 ETH', '0.50 ETH', '0.75 ETH', '1 ETH'],
   },
   {
     image: "/price-image-05.svg",
+    icon: "/price-icon-05.svg",
     data: ['100X',120, 120, 120, 120, 120],
   },
   {
     image: "/price-image-06.svg",
+    icon: "/price-icon-06.svg",
     data: ['100X',100, 100, 100, 100, 100],
   },
   {
     image: "/price-image-07.svg",
+    icon: "/price-icon-07.svg",
     data: ['100X',80, 80, 80, 80, 80],
   },
 ]
