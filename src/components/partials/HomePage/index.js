@@ -31,11 +31,11 @@ const PriceTable = ({
 }) => {
   return (
     <>
-      <div className="grid grid-cols-5 items-center">
+      <div className="grid grid-cols-6 items-center">
         {
           header.map((dt, idx) => (
             < div
-              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 4 ? "border-r border-primary" : ""}`}
+              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 5 ? "border-r border-primary" : ""}`}
               key={idx}
             >
               {dt}
@@ -47,31 +47,34 @@ const PriceTable = ({
         data.map((dt, idx) => (
           <>
             <div
-              className="grid grid-cols-5 items-center h-8"
+              className="grid grid-cols-6 items-center h-8"
               key={idx}
             >
               {
                 dt.data.map((item, index) => (
                   <div
-                    className={`col-start-${index + 1} h-8 ${index < 4 ? "border-r border-primary" : ""}`}
-                    key={7 + idx * 5 + index}
+                    className={`col-start-${index + 1} h-8 ${index < 5 ? "border-r border-primary" : ""}`}
+                    key={7 + idx * 6 + index}
                   >
                   </div>
                 ))
               }
             </div>
             <div
-              className="grid grid-cols-5 items-center price-item"
+              className="grid grid-cols-6 items-center price-item"
               key={idx}
             >
-              <div>
+              <div className="hidden md:block">
                 <img src={dt.image} className="absolute h-20 place-items-stretch transform -translate-x-6/7 -translate-y-5" />
               </div>
+              {/* <div className="block md:hidden">
+                <img src={dt.icon} className="absolute h-8 place-items-stretch left-0" />
+              </div> */}
               {
                 dt.data.map((item, index) => (
                   < div
-                    className={`col-start-${index + 1} text-sm md:text-xl text-secondary py-2 text-center ${index < 4 ? "border-r border-primary" : ""}`}
-                    key={7 + idx * 10 + index}
+                    className={`col-start-${index + 1} text-xs md:text-xl text-secondary py-2 text-center ${index < 5 ? "border-r border-primary" : ""}`}
+                    key={7 + idx * 12 + index}
                   >
                     {item}
                   </div>
@@ -87,11 +90,11 @@ const PriceTable = ({
 
 const RoadMapItem = (props) => {
   return (
-    <div className="grid grid-cols-12 items-center">
-      <div className="text-xl lg:text-2xl tracking-wider text-primary col-span-2 md:col-span-1">
+    <div className="grid grid-cols-12 items-center py-2">
+      <div className="text-xl lg:text-2xl tracking-wider text-primary col-span-2 md:col-span-1 py-2 md:py-0">
         {props.value}%
       </div>
-      <div className="col-start-3 md:col-start-2 col-span-9 text-lg tracking-wide text-primary-light">
+      <div className="col-start-1 md:col-start-2 col-span-12 md:col-span-9 text-lg tracking-wide text-primary-light">
         {props.description}
       </div>
       <div className="hidden md:block col-start-11 col-span-2">
@@ -233,7 +236,7 @@ export default function Homepage() {
           </nav>
           <div className="flex flex-col h-full justify-center">
             <div className="flex flex-row justify-center lg:justify-start">
-              <div className="flex flex-row font-bajt text-4xl text-primary italic bold items-center">
+              <div className="flex flex-row font-bajt text-2xl md:text-4xl text-primary italic bold items-center">
                 <img src="/logo.png" className="w-16 h-16"></img>
                 <div className="p-6">
                   Wallet<br />
@@ -285,7 +288,7 @@ export default function Homepage() {
         <div className="flex flex-row">
           <div className="flex flex-col max-w-md">
             <div className="md:border-l-2 border-primary py-8 pl-6">
-              <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic py-4">blockchain<br /> bonansa</div>
+              <div className="uppercase text-primary text-2xl md:text-4xl font-bajt font-extrabold italic py-4">blockchain<br /> bonansa</div>
               <p className="text-primary-light py-4 leading-8">
                 Introducing our first game: Blockchain Bonanza! Based on Ethereum Mainnet and utilizing Smart Contract technology, 10 000 "Spins" (NFTs) will be offered for "Mint" at a cost of 0.08 ETH. Minting windows 
                 will be revealed in the near future. Once the sale period is over, you'll be able to use your spins and win fabulous prizes! It's that simple. 
@@ -299,8 +302,8 @@ export default function Homepage() {
       </div>
 
       <div className="flex items-center justify-center sm:p-2 md:px-5 lg:px-10 prize-list" id="prizelist">
-        <div className="pl-28 pr-2 sm:pl-36 sm:pr-10 w-full lg:w-1/2 lg:px-0 py-10">
-          <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase text-right p-8">
+        <div className="pl-2 md:pl-28 pr-2 sm:pl-36 sm:pr-10 w-full lg:w-1/2 lg:px-0 py-10">
+          <div className="text-2xl tracking-wider text-primary font-bajt italic font-extrabold md:text-4xl uppercase text-center md:text-right p-8">
             PRIZE LIST
           </div>
           <PriceTable
@@ -347,7 +350,7 @@ export default function Homepage() {
 
       <div className="flex pt-10 md:pt-24 justify-center px-3 md:px-0">
         <div className="flex flex-col justify-center items-center md:w-1/2">
-          <div className="uppercase text-primary text-4xl font-bajt font-extrabold italic">Virtual NFT Showroom</div>
+          <div className="uppercase text-primary text-2xl md:text-4xl font-bajt font-extrabold italic">Virtual NFT Showroom</div>
           <p className="text-primary-light py-10 leading-8">
             Imagine being able to walk through a beautiful, fully-rendered NFT art gallery or to explore our actual Entertainment House metaverse. Coming soon, that dream will be reality. Look for more updates and details dropping
              in the near future!
@@ -360,7 +363,7 @@ export default function Homepage() {
 
       <div className="py-8 md:py-20 bg-secondary" id="faq">
         <div className="lg:flex lg:flex-row container mx-auto text-left">
-          <div className="text-4xl tracking-normal font-bajt text-primary py-4 lg:faq-title lg:py-0">
+          <div className="text-2xl md:text-4xl tracking-normal font-bajt text-primary py-4 lg:faq-title lg:py-0">
             F A Q
           </div>
           <div className="flex flex-col max-w-5xl mx-auto">
