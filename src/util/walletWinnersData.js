@@ -134,14 +134,5 @@ export const priceData = [
     image: "/price-image-06.svg",
     icon: "/price-icon-06.svg",
     data: ['2500X','5 ADA', '12.5 ADA', '25 ADA', '37.5 ADA', '50 ADA'],
-    data: ['100X',120, 120, 120, 120, 120],
-  },
-  {
-    image: "/price-image-06.svg",
-    data: ['100X',100, 100, 100, 100, 100],
-  },
-  {
-    image: "/price-image-07.svg",
-    data: ['100X',80, 80, 80, 80, 80],
   },
 ]
