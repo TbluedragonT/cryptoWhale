@@ -40,7 +40,7 @@ export const faqData = [
   {
     faqTitle: "How Much of Collected Revenue Are You Giving Away?",
     faqDescription:
-      "50% of revenue from spins minted will be given away, meaning on sell-out we will distribute an incredible 400 ETH in total prizes!",
+      "Over $1 Million USD in NFT prizes and crypto will be given away!",
   },
   {
     faqTitle: "What are the prizes?",
@@ -50,7 +50,7 @@ export const faqData = [
   {
     faqTitle: "What about Gas Fees?",
     faqDescription:
-      "Unfortunately, gas is a cost of life on Ethereum Mainnet but we will do our best to minimize it for our community.",
+      "Our Smart Contracts are built as efficiently as possible to minimize gas fees for all users. We do not mint NFT prizes, they already exist and are simply transferred, saving users plenty in transaction fees!",
   },
 ]
 
@@ -66,22 +66,17 @@ export const roadmapData = [
     image: "/roadmap-02.svg"
   },
   {
-    value: "30",
+    value: "35",
     description: `Exclusive VIP Membership Tickets (NFTs)`,
     image: "/roadmap-03.svg"
   },
   {
     value: "50",
-    description: `Decreased "House Edge" Across All Games`,
-    image: "none"
-  },
-  {
-    value: "70",
     description: `Exclusive WW Merchandise`,
     image: "none"
   },
   {
-    value: "80",
+    value: "70",
     description: `VIP Discord Group`,
     image: "none"
   },
@@ -97,42 +92,42 @@ export const roadmapData = [
   },
 ]
 
-export const priceHeaderData = ["Qty", "10%", "25%", "50%", "75%", "100%"]
+export const priceHeaderData = ["Prize", "25%", "50%", "75%", "100%"]
 
 export const priceData = [
   {
     image: "/price-image-02.svg",
     icon: "/price-icon-02.svg",
-    data: ['1X','MAYC #7477', 'MAYC #7477', 'MAYC #7477', 'MAYC #7477', 'MAYC #7477'],
+    data: ['MAYC #7477', '1X', '1X', '1X', '1X'],
   },
   {
     image: "/price-image-01.svg",
     icon: "/price-icon-01.svg",
-    data: ['','10 packs', '25 packs', '50 packs', '75 packs', '100 packs'],
+    data: ['Packs','25X', '50X', '75X', '100X'],
   },
   {
     image: "/price-image-03.svg",
     icon: "/price-icon-03.svg",
-    data: ['2X','0.10 BTC', '0.25 BTC', '0.50 BTC', '0.75 BTC', '1.00 BTC'],
+    data: ['1 BTC', '-', '1X', '1X', '2X'],
   },
   {
     image: "/price-image-04.svg",
     icon: "/price-icon-04.svg",
-    data: ['25X','0.10 ETH', '0.25 ETH', '0.50 ETH', '0.75 ETH', '1.00 ETH'],
+    data: ['1 ETH', '6X', '12X', '18X', '25X'],
   },
   {
     image: "/price-image-05.svg",
     icon: "/price-icon-05.svg",
-    data: ['500X', '0.20 BNB', '0.50 BNB', '1.00 BNB', '1.50 BNB', '2.00 BNB'],
+    data: ['2 BNB','125X', '250X', '375X', '500X'],
   },
   {
     image: "/price-image-07.svg",
     icon: "/price-icon-07.svg",
-    data: ['1000X', '150 DOGE', '375 DOGE', '750 DOGE', '1125 DOGE', '1500 DOGE'],
+    data: ['1500 DOGE', '250X', '500X', '750X', '1000X'],
   },
   {
     image: "/price-image-06.svg",
     icon: "/price-icon-06.svg",
-    data: ['2500X','5.00 ADA', '12.50 ADA', '25.00 ADA', '37.50 ADA', '50.00 ADA'],
+    data: ['50 ADA','625X', '1250X', '1875X', '2500X'],
   },
 ]
