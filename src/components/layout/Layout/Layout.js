@@ -8,9 +8,8 @@ import { Menus } from "./menu"
 import { useMeasure } from "react-use"
 
 const icons = [
-  { icon: '/icon/twitter.svg', link: "https://twitter.com/" },
-  { icon: '/icon/telegram.svg', link: "https://telegram.org" },
-  { icon: '/icon/discord.svg', link: "https://discord.gg/" },
+  { icon: '/icon/twitter.svg', link: "https://twitter.com/wallet_winners" },
+  { icon: '/icon/discord.svg', link: "https://discord.gg/BR2mXYpQJr" },
 ]
 
 export default function Layout({
