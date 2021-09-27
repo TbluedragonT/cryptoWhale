@@ -31,18 +31,29 @@
   min-height: 400px;
   @include aboveWidth(lg) {
     min-height: 713px;
-  }  
+  }
 }
 
 .price-item {
   background: linear-gradient(
-        180deg,
-        #448787 0%,
-        #67a9ad 21%,
-        #8ef6fc 62%,
-        #25878b 81%,
-        #468899 100%
-      ),
+      180deg,
+      #448787 0%,
+      #67a9ad 21%,
+      #8ef6fc 62%,
+      #25878b 81%,
+      #468899 100%
+    ),
+    0% 0% no-repeat padding-box;
+}
+
+.full-item {
+  background: linear-gradient(
+      180deg,
+      #faf790 0%,
+      #f4bd2d 46%,
+      #fdf98e 81%,
+      #f1c646 100%
+    ),
     0% 0% no-repeat padding-box;
 }
 
