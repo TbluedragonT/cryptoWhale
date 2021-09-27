@@ -31,11 +31,11 @@ const PriceTable = ({
 }) => {
   return (
     <>
-      <div className="grid grid-cols-6 items-center">
+      <div className="grid grid-cols-5 items-center">
         {
           header.map((dt, idx) => (
             < div
-              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 5 ? "border-r border-primary" : ""}`}
+              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 4 ? "border-r border-primary" : ""}`}
               key={idx}
             >
               {dt}
@@ -47,36 +47,37 @@ const PriceTable = ({
         data.map((dt, idx) => (
           <>
             <div
-              className="grid grid-cols-6 items-center h-8"
+              className="grid grid-cols-5 items-center h-8"
               key={idx}
             >
               {
                 dt.data.map((item, index) => (
                   <div
-                    className={`col-start-${index + 1} h-8 ${index < 5 ? "border-r border-primary" : ""}`}
-                    key={7 + idx * 6 + index}
+                    className={`col-start-${index + 1} h-8 ${index < 4 ? "border-r border-primary" : ""}`}
+                    key={7 + idx * 5 + index}
                   >
                   </div>
                 ))
               }
             </div>
             <div
-              className="grid grid-cols-6 items-center price-item"
+              className="grid grid-cols-5 items-center price-item"
               key={idx}
             >
               <div className="hidden md:block">
                 <img src={dt.image} className="absolute h-20 place-items-stretch transform -translate-x-6/7 -translate-y-5" />
               </div>
-              {/* <div className="block md:hidden">
-                <img src={dt.icon} className="absolute h-8 place-items-stretch left-0" />
-              </div> */}
               {
                 dt.data.map((item, index) => (
                   < div
-                    className={`col-start-${index + 1} text-xs md:text-xl text-secondary py-2 text-center ${index < 5 ? "border-r border-primary" : ""}`}
-                    key={7 + idx * 12 + index}
+                    className={`h-full flex flex-col justify-center col-start-${index + 1} text-xs md:text-xl text-secondary py-2 text-center 
+                      ${index < 4 ? "border-r border-primary" : ""}
+                      ${index === 4 ? "full-item" : ""}`}
+                    key={7 + idx * 10 + index}
                   >
-                    {item}
+                    <div>
+                      {item}
+                    </div>
                   </div>
                 ))
               }
@@ -245,13 +246,13 @@ export default function Homepage() {
               </div>
             </div>
             <p className="text-primary-light text-lg font-thin leading-8">
-              Wallet Winners is a "Play2Win" NFT Entertainment House that joins Art and Gambling together in an exciting new fashion! Play for a wide variety of Prizes including: Crypto, NFT Collectibles and (in the near future), 
+              Wallet Winners is a "Play2Win" NFT Entertainment House that joins Art and Gambling together in an exciting new fashion! Play for a wide variety of Prizes including: Crypto, NFT Collectibles and (in the near future),
               Real-World Experiences (such as Tickets to Exclusive Events, Travel Packages and more).
             </p>
             <p>&nbsp;</p>
-            <p className="text-primary-light text-lg font-thin leading-8"><strong>TRUST, SAFETY AND PRIZES</strong></p>
+            <p className="text-blue-600 text-lg font-thin leading-8"><strong>TRUST, SAFETY AND PRIZES</strong></p>
             <p className="text-primary-light text-lg font-thin leading-8">
-              The team at Wallet Winners understands that trusting a new project can be risky. That is why we have contracted MasterBrews to not only handle our tech needs, but to also guarantee all prizes! All NFTs offered 
+              The team at Wallet Winners understands that trusting a new project can be risky. That is why we have contracted MasterBrews to not only handle our tech needs, but to also guarantee all prizes! All NFTs offered
               in our Prize List are already owned and held by the MasterBrews team on our behalf. Crypto wins will be distributed and controlled through the Smart Contract itself. No rug pulls here!
             </p>
             <p>&nbsp;</p>
@@ -285,18 +286,25 @@ export default function Homepage() {
       </div>
 
       <div className="flex justify-center pt-10 md:pt-24" id="about">
-        <div className="flex flex-row">
+        <div className="flex flex-col sm:flex-row">
+          <div className="flex sm:hidden flex-row justify-center">
+            <video width="300" autoPlay loop>
+              <source src="/slot-machine.mp4" type="video/mp4" />
+            </video>
+          </div>
           <div className="flex flex-col max-w-md">
             <div className="md:border-l-2 border-primary py-8 pl-6">
               <div className="uppercase text-primary text-2xl md:text-4xl font-bajt font-extrabold italic py-4">blockchain<br /> bonansa</div>
               <p className="text-primary-light py-4 leading-8">
-                Introducing our first game: Blockchain Bonanza! Based on Ethereum Mainnet and utilizing Smart Contract technology, 10 000 "Spins" (NFTs) will be offered for "Mint" at a cost of 0.08 ETH. Minting windows 
-                will be revealed in the near future. Once the sale period is over, you'll be able to use your spins and win fabulous prizes! It's that simple. 
+                Introducing our first game: Blockchain Bonanza! Based on Ethereum Mainnet and utilizing Smart Contract technology, 10 000 "Spins" (NFTs) will be offered for "Mint" at a cost of 0.08 ETH. Minting windows
+                will be revealed in the near future. Once the sale period is over, you'll be able to use your spins and win fabulous prizes! It's that simple.
               </p>
             </div>
           </div>
           <div className="hidden sm:block">
-            <img src="/bitcoin.png" />
+            <video width="300" autoPlay loop>
+              <source src="/slot-machine.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>
@@ -353,7 +361,7 @@ export default function Homepage() {
           <div className="uppercase text-primary text-2xl md:text-4xl font-bajt font-extrabold italic">Virtual NFT Showroom</div>
           <p className="text-primary-light py-10 leading-8">
             Imagine being able to walk through a beautiful, fully-rendered NFT art gallery or to explore our actual Entertainment House metaverse. Coming soon, that dream will be reality. Look for more updates and details dropping
-             in the near future!
+            in the near future!
           </p>
         </div>
       </div>
