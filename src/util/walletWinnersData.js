@@ -52,6 +52,16 @@ export const faqData = [
     faqDescription:
       "Our Smart Contracts are built as efficiently as possible to minimize gas fees for all users. We do not mint NFT prizes, they already exist and are simply transferred, saving users plenty in transaction fees!",
   },
+  {
+    faqTitle: "Can I Sell My Spin (NFT) on OpenSea?",
+    faqDescription:
+      "Absolutely! You are free to sell or transfer your ticket anytime you like. There is no chance for anyone to purchase a \"used\" Spin, so you may transact safely!",
+  },
+  {
+    faqTitle: "Do Spins Expire?",
+    faqDescription:
+      "Nope! There is a maximum number minted per Weekly Spinoff, and they can be used at any point in the future. The website will automatically detect which Week and Prizes your Spin corresponds to when used.",
+  },
 ]
 
 export const roadmapData = [
@@ -96,16 +106,6 @@ export const priceHeaderData = ["Prize", "25%", "50%", "75%", "100%"]
 
 export const priceData = [
   {
-    image: "/price-image-02.svg",
-    icon: "/price-icon-02.svg",
-    data: ['MAYC #7477', '1X', '1X', '1X', '1X'],
-  },
-  {
-    image: "/price-image-01.svg",
-    icon: "/price-icon-01.svg",
-    data: ['Packs','25X', '50X', '75X', '100X'],
-  },
-  {
     image: "/price-image-03.svg",
     icon: "/price-icon-03.svg",
     data: ['1 BTC', '-', '1X', '1X', '2X'],
@@ -129,5 +129,15 @@ export const priceData = [
     image: "/price-image-06.svg",
     icon: "/price-icon-06.svg",
     data: ['50 ADA','625X', '1250X', '1875X', '2500X'],
+  },
+  {
+    image: "/price-image-02.svg",
+    icon: "/price-icon-02.svg",
+    data: ['MAYC #7477', '1X', '1X', '1X', '1X'],
+  },
+  {
+    image: "/price-image-01.svg",
+    icon: "/price-icon-01.svg",
+    data: ['Packs','25X', '50X', '75X', '100X'],
   },
 ]
