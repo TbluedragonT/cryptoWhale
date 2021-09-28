@@ -58,27 +58,27 @@ export const roadmapData = [
   {
     value: "10",
     description: `New BB Spinoff Weekly w/ Fresh Prizes`,
-    image: "/roadmap-01.svg"
+    image: "/roadmap-01.png"
   },
   {
     value: "20",
     description: `Virtual NFT Showroom of Upcoming Prizes`,
-    image: "/roadmap-02.svg"
+    image: "/roadmap-02.png"
   },
   {
     value: "35",
     description: `Exclusive VIP Membership Tickets (NFTs)`,
-    image: "/roadmap-03.svg"
+    image: "/roadmap-03.png"
   },
   {
     value: "50",
     description: `Exclusive WW Merchandise`,
-    image: "none"
+    image: "/roadmap-04.png"
   },
   {
     value: "70",
     description: `VIP Discord Group`,
-    image: "none"
+    image: "/roadmap-05.png"
   },
   {
     value: "90",
@@ -88,7 +88,7 @@ export const roadmapData = [
   {
     value: "100",
     description: `New Games: Roulette, Lotteries and more.`,
-    image: "none"
+    image: "/roadmap-06.png"
   },
 ]
 
