@@ -35,7 +35,7 @@ const PriceTable = ({
         {
           header.map((dt, idx) => (
             < div
-              className={`col-start-${idx + 1} text-sm md:text-2xl text-primary text-center ${idx < 4 ? "border-r border-primary" : ""}`}
+              className={`col-start-${idx + 1} text-sm md:text-2xl text-center ${idx < 4 ? "border-r border-primary text-primary" : "text-yellow-300"}`}
               key={idx}
             >
               {dt}
@@ -250,7 +250,7 @@ export default function Homepage() {
               Real-World Experiences (such as Tickets to Exclusive Events, Travel Packages and more).
             </p>
             <p>&nbsp;</p>
-            <p className="text-blue-600 text-lg font-thin leading-8"><strong>TRUST, SAFETY AND PRIZES</strong></p>
+            <p className="text-primary text-lg font-thin leading-8"><strong>TRUST, SAFETY AND PRIZES</strong></p>
             <p className="text-primary-light text-lg font-thin leading-8">
               The team at Wallet Winners understands that trusting a new project can be risky. That is why we have contracted MasterBrews to not only handle our tech needs, but to also guarantee all prizes! All NFTs offered
               in our Prize List are already owned and held by the MasterBrews team on our behalf. Crypto wins will be distributed and controlled through the Smart Contract itself. No rug pulls here!
@@ -288,9 +288,7 @@ export default function Homepage() {
       <div className="flex justify-center pt-10 md:pt-24" id="about">
         <div className="flex flex-col sm:flex-row">
           <div className="flex sm:hidden flex-row justify-center">
-            <video width="300" autoPlay loop>
-              <source src="/slot-machine.mp4" type="video/mp4" />
-            </video>
+            <img src="/slot-machine.gif" />
           </div>
           <div className="flex flex-col max-w-md">
             <div className="md:border-l-2 border-primary py-8 pl-6">
@@ -302,9 +300,7 @@ export default function Homepage() {
             </div>
           </div>
           <div className="hidden sm:block">
-            <video width="300" autoPlay loop>
-              <source src="/slot-machine.mp4" type="video/mp4" />
-            </video>
+            <img src="/slot-machine.gif" />
           </div>
         </div>
       </div>
