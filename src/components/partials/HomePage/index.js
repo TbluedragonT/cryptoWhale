@@ -95,13 +95,13 @@ const RoadMapItem = (props) => {
       <div className="text-xl lg:text-2xl tracking-wider text-primary col-span-2 md:col-span-1 py-2 md:py-0">
         {props.value}%
       </div>
-      <div className="col-start-1 md:col-start-2 col-span-12 md:col-span-9 text-lg tracking-wide text-primary-light pl-4">
+      <div className="col-start-1 md:col-start-2 col-span-12 md:col-span-8 text-lg tracking-wide text-primary-light pl-4">
         {props.description}
       </div>
-      <div className="hidden md:block col-start-11 col-span-2">
-        <div className="rounded-md border-primary border h-32 m-8 relative">
+      <div className="hidden md:block col-start-10 col-span-3">
+        <div className="rounded-md border-primary border h-48 m-10 relative">
           {props.image !== "none" &&
-            <img src={props.image} className="absolute h-28 object-cover -left-8 top-2" />
+            <img src={props.image} className="absolute -left-8 top-8 roadmap-icon" />
           }
         </div>
       </div>
