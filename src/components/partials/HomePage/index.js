@@ -99,9 +99,9 @@ const RoadMapItem = (props) => {
         {props.description}
       </div>
       <div className="hidden md:block col-start-10 col-span-3">
-        <div className="rounded-md border-primary border h-48 m-10 relative">
+        <div className="flex justify-center items-center rounded-md border-primary border h-48 m-10">
           {props.image !== "none" &&
-            <img src={props.image} className="absolute -left-8 top-8 roadmap-icon" />
+            <img src={props.image} className="roadmap-icon" />
           }
         </div>
       </div>
