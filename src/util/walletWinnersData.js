@@ -13,7 +13,7 @@ export const teamData = [
     twitterLink: "https://twitter.com/KeelitoNFT",
   },
   {
-    name: "Gregor",
+    name: "Markieff",
     image: "/team-03.gif",
     role: "Operations",
     twitterLink: "#",
