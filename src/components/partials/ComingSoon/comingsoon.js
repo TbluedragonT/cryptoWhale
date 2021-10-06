@@ -3,8 +3,8 @@ import * as React from "react"
 import "./comingsoon.scss"
 
 const icons = [
-  { icon: '/icon/icon-discord.svg', link: "https://t.co/8GZjapijQP" },
-  { icon: '/icon/icon-twitter.svg', link: "https://twitter.com/EdgerunnersNFT" },
+  { icon: '/icon/icon-discord.svg', link: "https://discord.gg/cryptowhaleclub" },
+  { icon: '/icon/icon-twitter.svg', link: "https://twitter.com/CryptoWhaleClub" },
 ]
 
 // markup
