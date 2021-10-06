@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `WalletWinners`,
-        short_name: `WalletWinners`,
+        name: `CryptoWhaleClub`,
+        short_name: `CryptoWhaleClub`,
         start_url: `/`,
         background_color: `#000000`,
         theme_color: `#000000`,
@@ -27,8 +27,7 @@ module.exports = {
         icon: `src/images/icon.png`,
         cache_busting_mode: `name`,
       },
-    },
-    {
+    },    {
       resolve: "gatsby-plugin-module-resolver",
       options: {
         root: "./src", // <- will be used as a root dir

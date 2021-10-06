@@ -1,1 +1,1 @@
-# walletwinners
+# CryptoWhaleClub

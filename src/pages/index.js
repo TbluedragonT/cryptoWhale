@@ -1,15 +1,15 @@
 // Core React
 import Layout from "@components/layout/Layout/Layout"
-import Homepage from "@components/partials/HomePage"
+import PageComingSoon from "@components/partials/ComingSoon/comingsoon"
 import React from "react"
 
 // Render
-const WalletWinners = () => (
-  <Layout
-    title="WalletWinners"
-    contentClassName="homePageContent px-0 max-w-full bg-dark-whelps"
-  >
-    <Homepage />
-  </Layout>
+const CryptoWhaleClub = () => (
+  <PageComingSoon />
+  // <Layout
+  //   title="Crypto Whale Club"
+  //   contentClassName="brandsContent"
+  // >
+  // </Layout>
 )
-export default WalletWinners
+export default CryptoWhaleClub
