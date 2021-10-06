@@ -24,7 +24,7 @@
     "@tailwindcss/line-clamp": "^0.2.1",
     "axios": "^0.21.1",
     "bnc-notify": "^1.7.0",
-    "bnc-onboard": "^1.30.0",
+    "bnc-onboard": "1.30.0",
     "country-list": "^2.2.0",
     "electron": "^13.1.6",
     "gatsby": "^3.9.1",
