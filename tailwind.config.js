@@ -1,5 +1,6 @@
 module.exports = {
-  // purge: ["./src/**/*.{js,jsx,ts,tsx}"],  // TODO: enable in production
+  mode: 'jit',
+  purge: ["./src/**/*.{js,jsx,ts,tsx}"],  // TODO: enable in production
   darkMode: false, // or 'media' or 'class'
   theme: {
     boxShadow: {

@@ -69,12 +69,12 @@ export default function HomePage({}) {
         </div>
       </div>
 
-      <div className="bg-primary relative w-full grid grid-cols-5" id="roadmap">
+      <div className="bg-primary relative w-full grid grid-cols-5 py-12" id="roadmap">
         <div className="col-start-2 col-end-6">
           <div className="capitalize text-secondary text-6xl font-recoleta-bold py-8">
             roadmap
           </div>
-          <div className=" overflow-x-auto">
+          <div className=" overflow-x-auto py-4">
             <div className="flex flex-row">
               {milestons.map((dt, idx) => (
                 <div className="flex flex-col">
@@ -124,10 +124,10 @@ export default function HomePage({}) {
           <div className="flex flex-row space-x-8 overflow-x-auto py-4">
             {members.map((dt, idx) => (
               <div
-                className="h-96 flex flex-col bg-primary-light rounded-2xl items-center px-24"
+                className="h-[320px] min-h-[320px] w-[320px] min-w-[320px] flex flex-col bg-primary-light rounded-2xl items-center"
                 key={idx}
               >
-                <img src={dt.img} className="py-8" />
+                <img src={dt.img} className="my-8 w-32 h-32 object-contain" />
                 <p className="text-secondary text-3xl font-recoleta-bold py-2">
                   {dt.name}
                 </p>
