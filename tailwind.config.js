@@ -18,88 +18,30 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        // "hero": "url('/hero.png')",
+      },
       colors: {
         primary: {
-          light: "#FFFFFF",
-          DEFAULT: "#8EF6FC",
-          dark: "#8ADCE1",
-          darker: "#3caa6e",
-          darkest: "#217a49",
+          lightest: "#0087DE",
+          light: "#1F3869",
+          DEFAULT: "#001C54",
         },
         secondary: {
-          DEFAULT: "#000000",
+          DEFAULT: "#FFFFFF",
         },
-        yellow: {
-          DEFAULT: "#FEDA55",
-          whelps: "#FEDA55"
-        }
       },
       ringWidth: {
         '16': '16px',
       },
-      translate: {
-        '1/8': '12.5%',
-        '-6/7': '-85.7142857%',
-        '6/7': '85.7142857%',
-        '14/15': '93.33333333%',
-        '-14/15': '-93.33333333%',
+      width: {
+        "1/16": "6.25%",
+        "2/16": "12.5%",
+        "3/16": "18.75%",
+        "4/16": "25%",
       },
-      gridTemplateColumns: {
-        '16': 'repeat(16, minmax(0, 1fr))',
-      },
-      gridColumn: {
-        'span-7': 'span 7 / span 7',
-        'span-8': 'span 8 / span 8',
-        'span-9': 'span 9 / span 9',
-        'span-10': 'span 10 / span 10',
-        'span-11': 'span 11 / span 11',
-        'span-12': 'span 12 / span 12',
-        'span-13': 'span 13 / span 13',
-        'span-14': 'span 14 / span 14',
-        'span-15': 'span 15 / span 15',
-        'span-16': 'span 16 / span 16',
-      },
-      gridColumnStart: {
-        '7': '7',
-        '8': '8',
-        '9': '9',
-        '10': '10',
-        '11': '11',
-        '12': '12',
-        '13': '13',
-        '14': '14',
-        '15': '15',
-        '16': '16',
-      },
-      gridTemplateRows: {
-        '16': 'repeat(16, minmax(0, 1fr))',
-      },
-      gridRow: {
-        'span-7': 'span 7 / span 7',
-        'span-8': 'span 8 / span 8',
-        'span-9': 'span 9 / span 9',
-        'span-10': 'span 10 / span 10',
-        'span-11': 'span 11 / span 11',
-        'span-12': 'span 12 / span 12',
-        'span-13': 'span 13 / span 13',
-        'span-14': 'span 14 / span 14',
-        'span-15': 'span 15 / span 15',
-        'span-16': 'span 16 / span 16',
-      },
-      gridRowStart: {
-        '7': '7',
-        '8': '8',
-        '9': '9',
-        '10': '10',
-        '11': '11',
-        '12': '12',
-        '13': '13',
-        '14': '14',
-        '15': '15',
-        '16': '16',
-      },
-      rotate: {
-        '-8': '-8deg',
+      inset: {
+        "1/5": "20%",
       },
     },
   },
