@@ -185,7 +185,7 @@ export default function Layout({
               </div>
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between pt-16">
-              <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">@2021 Cyprto Whale Club</div>
+              <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">@2021 Crypto Whale Club</div>
               <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
                   Terms of Service
