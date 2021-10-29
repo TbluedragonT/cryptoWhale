@@ -1,14 +1,6 @@
 @import "mixins.scss";
 @import "@styles/typography.css";
 
-:root {
-  --color-primary: #8ef6fc;
-  --color-primary-dark: #8adce1;
-  --color-primary-darker: #3caa6e;
-  --color-primary-darkest: #217a49;
-  --color-secondary: #000000;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

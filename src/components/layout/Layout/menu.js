@@ -1,31 +1,31 @@
 export const menus = [
   {
     name: "Lore",
-    path: "/",
+    path: "/#lore",
     target: "",
     type: "internal",
   },
   {
     name: "Roadmap",
-    path: "/",
+    path: "/#roadmap",
     target: "",
     type: "internal",
   },
   {
     name: "Utility",
-    path: "/",
+    path: "/#utility",
     target: "",
     type: "internal",
   },
   {
     name: "Team",
-    path: "/",
+    path: "/#team",
     target: "",
     type: "internal",
   },
   {
     name: "FAQs",
-    path: "/",
+    path: "/#faq",
     target: "",
     type: "internal",
   },
@@ -35,11 +35,11 @@ export const footerLinks = [
   {
     heading: "crypto whale club",
     links: [
-      { label: "Lore", link: "/lore", type: 'internal' },
-      { label: "Roadmap", link: "/roadmap", type: 'internal' },
-      { label: "Utility", link: "/utility", type: 'internal' },
-      { label: "Team", link: "/team", type: 'internal' },
-      { label: "FAQs", link: "/faq", type: 'internal' },
+      { label: "Lore", link: "/#lore", type: 'internal' },
+      { label: "Roadmap", link: "/#roadmap", type: 'internal' },
+      { label: "Utility", link: "/#utility", type: 'internal' },
+      { label: "Team", link: "/#team", type: 'internal' },
+      { label: "FAQs", link: "/#faq", type: 'internal' },
     ],
   },
   {
