@@ -42,7 +42,7 @@ export default function HomePage({}) {
         <div className="lg:w-3/5 flex flex-col lg:pr-10 px-8">
           <div className="lg:hidden flex flex-col md:flex-row justify-center">
             <img src="/join-logo.svg" className="md:w-1/3 p-5" />
-            <img src="/pirate-whale.png" className="md:w-1/3 p-5" />
+            <img src="/pirate-whale.gif" className="md:w-1/3 m-5 rounded-xl" />
           </div>
           <img src="/join-logo.svg" className="hidden lg:block w-1/3 py-5" />
           <p className="text-xl md:text-3xl text-black py-5">
@@ -58,7 +58,7 @@ export default function HomePage({}) {
           </div>
         </div>
         <div className="hidden lg:block w-2/5 px-10">
-          <img src="/pirate-whale.png" />
+          <img src="/pirate-whale.gif" className="rounded-xl"/>
         </div>
       </div>
 
