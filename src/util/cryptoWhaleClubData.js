@@ -84,16 +84,6 @@ export const members = [
     name: "Various | MB",
     role: "Smart Contract",
   },
-  {
-    img: "/member-05.png",
-    name: "Tilting-Shock",
-    role: "Development",
-  },
-  {
-    img: "/member-06.png",
-    name: "Nighthawk",
-    role: "Community",
-  },
 ]
 
 export const faqs = [

@@ -175,7 +175,7 @@ export default function HomePage({}) {
                 className="h-[240px] min-h-[240px] w-[240px] min-w-[240px] md:h-[320px] md:min-h-[320px] md:w-[320px] md:min-w-[320px] flex flex-col bg-primary-light rounded-2xl items-center justify-center"
                 key={idx}
               >
-                <img src={dt.img} className="my-4 md:my-8 w-20 h-20 md:w-32 md:h-32 object-contain" />
+                <img src={dt.img} className="my-4 md:my-8 w-20 h-20 md:w-32 md:h-32 object-contain rounded-full" />
                 <p className="text-secondary text-xl md:text-3xl font-recoleta-bold py-2">
                   {dt.name}
                 </p>
