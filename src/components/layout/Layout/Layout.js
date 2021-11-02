@@ -7,6 +7,8 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
 import { useMeasure } from "react-use"
 
+const discordLink = "https://discord.gg/yCQ5NjguTB"
+
 export default function Layout({
   title = "WhelpS",
   children,
@@ -67,14 +69,16 @@ export default function Layout({
                                 </li>
                               ))}
                               <li className="py-2 pl-3">
-                                <button
+                                <a
                                   id="join_discord"
                                   className="flex justify-center gap-2 items-center bg-primary-lightest hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-2 xl:py-4 px-8 tracking-wide w-full rounded-full"
+                                  href={discordLink}
+                                  target="_blank"
                                 >
                                   <span className="text-secondary tracking-wider">
                                     Join our Discord
                                   </span>
-                                </button>
+                                </a>
                               </li>
                             </ul>
                           </div>
@@ -181,7 +185,7 @@ export default function Layout({
                 <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
                   <p className="text-secondary">Powered by</p>
                   <Link to={"http://masterbrews.cards/"}>
-                    <img src="/brew-logo.png" className="cursor-pointer"/>
+                    <img src="/brew-logo.png" className="cursor-pointer" />
                   </Link>
                 </div>
               </div>

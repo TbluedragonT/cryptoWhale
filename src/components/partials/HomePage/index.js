@@ -5,6 +5,8 @@ import React, { useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
 
+const discordLink = "https://discord.gg/yCQ5NjguTB"
+
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
 
@@ -56,9 +58,13 @@ export default function HomePage({}) {
             collection will drop in early to mid November.
           </p>
           <div className="flex flex-row justify-center lg:justify-start">
-            <div className="rounded-full text-secondary text-lg md:text-2xl font-recoleta-bold bg-primary-lightest hover:bg-primary my-5 px-8 py-4 text-center cursor-pointer tracking-wider">
+            <a
+              className="rounded-full text-secondary text-lg md:text-2xl font-recoleta-bold bg-primary-lightest hover:bg-primary my-5 px-8 py-4 text-center cursor-pointer tracking-wider"
+              href={discordLink}
+              target="_blank"
+            >
               Join our Discord
-            </div>
+            </a>
           </div>
         </div>
         <div className="hidden lg:block w-2/5 px-10">
