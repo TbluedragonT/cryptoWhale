@@ -2,6 +2,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
 import React, { useState } from "react"
+import Roadmap from "@components/roadmap"
 
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -21,7 +22,9 @@ const FaqItem = ({ question, answer }) => {
             className="mx-2"
           />
         </div>
-        {!collapsed && <div className="text-black text-base md:text-xl">{answer}</div>}
+        {!collapsed && (
+          <div className="text-black text-base md:text-xl">{answer}</div>
+        )}
       </div>
     </div>
   )
@@ -58,7 +61,7 @@ export default function HomePage({}) {
           </div>
         </div>
         <div className="hidden lg:block w-2/5 px-10">
-          <img src="/pirate-whale.gif" className="rounded-xl"/>
+          <img src="/pirate-whale.gif" className="rounded-xl" />
         </div>
       </div>
 
@@ -113,25 +116,8 @@ export default function HomePage({}) {
           <div className="capitalize text-secondary text-6xl font-recoleta-bold py-8">
             roadmap
           </div>
-          <div className=" overflow-x-auto py-4">
-            <div className="flex flex-row">
-              {milestons.map((dt, idx) => (
-                <div className="flex flex-col" key={idx}>
-                  <div className="flex flex-row items-center">
-                    <div className="bg-secondary text-primary w-16 h-16 md:w-20 md:h-20 p-2 rounded-lg flex flex-row justify-center items-center">
-                      <span className="text-2xl md:text-4xl">{dt.value}</span>
-                      <span className="text-lg md:text-2xl">%</span>
-                    </div>
-                    <div
-                      className={`${
-                        dt.final ? "bg-transparent" : "bg-secondary"
-                      } h-3 w-24 md:w-48`}
-                    ></div>
-                  </div>
-                  <p className="text-sm md:text-base text-secondary pr-8">{dt.text}</p>
-                </div>
-              ))}
-            </div>
+          <div className="py-4 flex flex-row justify-center xl:justify-start">
+            <Roadmap milestons={milestons}/>
           </div>
         </div>
       </div>
@@ -154,7 +140,9 @@ export default function HomePage({}) {
                 <div className="text-primary text-2xl md:text-4xl capitalize py-6">
                   {dt.title}
                 </div>
-                <div className="text-black text-lg md:text-2xl">{dt.content}</div>
+                <div className="text-black text-lg md:text-2xl">
+                  {dt.content}
+                </div>
               </div>
             </div>
           </div>
@@ -169,14 +157,17 @@ export default function HomePage({}) {
           <div className="capitalize text-secondary text-6xl font-recoleta-bold py-8">
             team
           </div>
-          <div className="flex flex-row space-x-8 overflow-x-auto py-4">
+          <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 py-4 justify-center items-center">
             {members.map((dt, idx) => (
               <div
-                className="h-[240px] min-h-[240px] w-[240px] min-w-[240px] md:h-[320px] md:min-h-[320px] md:w-[320px] md:min-w-[320px] flex flex-col bg-primary-light rounded-2xl items-center justify-center"
+                className="h-[280px] min-h-[280px] w-[280px] min-w-[280px] flex flex-col bg-primary-light rounded-2xl items-center justify-center"
                 key={idx}
               >
-                <img src={dt.img} className="my-4 md:my-8 w-20 h-20 md:w-32 md:h-32 object-contain rounded-full" />
-                <p className="text-secondary text-xl md:text-3xl font-recoleta-bold py-2">
+                <img
+                  src={dt.img}
+                  className="my-4 md:my-8 w-20 h-20 md:w-32 md:h-32 object-contain rounded-full"
+                />
+                <p className="text-secondary text-2xl md:text-3xl font-recoleta-bold py-2">
                   {dt.name}
                 </p>
                 <p className="text-secondary text-base md:text-xl">{dt.role}</p>

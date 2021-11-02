@@ -1,4 +1,3 @@
-
 export const milestons = [
   {
     value: 0,
@@ -82,6 +81,26 @@ export const members = [
   {
     img: "/member-04.png",
     name: "Various | MB",
+    role: "Smart Contract",
+  },
+  {
+    img: "/member-05.png",
+    name: "Various | MB",
+    role: "Smart Contract",
+  },
+  {
+    img: "/member-06.png",
+    name: "Tilting-Shock",
+    role: "Smart Contract",
+  },
+  {
+    img: "/member-07.png",
+    name: "ThePenguinVA",
+    role: "Smart Contract",
+  },
+  {
+    img: "/member-08.png",
+    name: "Slade45",
     role: "Smart Contract",
   },
 ]
