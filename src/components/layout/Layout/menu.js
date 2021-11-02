@@ -45,8 +45,8 @@ export const footerLinks = [
   {
     heading: "social links",
     links: [
-      { label: "Discord", link: "https://blog.masterbrews.cards", type: 'external' },
-      { label: "Twitter", link: "https://blog.masterbrews.cards", type: 'external' },
+      { label: "Discord", link: "https://discord.gg/yCQ5NjguTB", type: 'external' },
+      { label: "Twitter", link: "https://twitter.com/cryptowhaleclub", type: 'external' },
     ],
   },
 ]

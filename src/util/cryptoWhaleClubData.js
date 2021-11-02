@@ -66,42 +66,52 @@ export const members = [
   {
     img: "/member-01.png",
     name: "Nighthawk",
-    role: "Community",
+    role: "Project Lead",
+    description:
+      "Working in the tech space for 20 years, founder of several companies, some that even did ok. Dreamer of dreams, builder of teams. Bizdev and ops work by trade.",
   },
   {
     img: "/member-02.png",
     name: "MediciVault",
-    role: "Strategy",
+    role: "Visionary",
+    description: "Patron of the Digital Renaissance, DAO and DeFi fan",
   },
   {
     img: "/member-03.png",
     name: "Automancer",
-    role: "Generative",
+    role: "Art Programmer",
+    description:
+      "Automancer has been working in web technologies for almost two decades. He’s helped start several tech companies and worked to educate kids, teens, and adults on various technology topics. He’s also worked in media production from text book publishing to video editing",
   },
   {
     img: "/member-04.png",
-    name: "Various | MB",
-    role: "Smart Contract",
+    name: "lsdsoundsystem",
+    role: "Project Artist",
+    description: "Does art stuff",
   },
   {
     img: "/member-05.png",
-    name: "Various | MB",
-    role: "Smart Contract",
+    name: "Varius | MB",
+    role: "Tech Provider",
+    description: "Co-Founder of MasterBrews",
   },
   {
     img: "/member-06.png",
     name: "Tilting-Shock",
-    role: "Smart Contract",
+    role: "Tech Provider",
+    description: "Co-Founder of MasterBrews",
   },
   {
     img: "/member-07.png",
     name: "ThePenguinVA",
-    role: "Smart Contract",
+    role: "Moderator",
+    description: "Team MasterBrews",
   },
   {
     img: "/member-08.png",
     name: "Slade45",
-    role: "Smart Contract",
+    role: "Moderator",
+    description: "Crypto OG, NFT collector and all around solid guy",
   },
 ]
 

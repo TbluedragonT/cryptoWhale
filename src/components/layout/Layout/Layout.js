@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
-import "@styles/global.scss";
+import "@styles/global.scss"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
@@ -180,20 +180,24 @@ export default function Layout({
                 ))}
                 <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
                   <p className="text-secondary">Powered by</p>
-                  <img src="/brew-logo.png" />
+                  <Link to={"http://masterbrews.cards/"}>
+                    <img src="/brew-logo.png" className="cursor-pointer"/>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="flex flex-col lg:flex-row lg:justify-between pt-16">
-              <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">@2021 Crypto Whale Club</div>
-              <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
+              <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">
+                @2021 Crypto Whale Club
+              </div>
+              {/* <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
                   Terms of Service
                 </a>
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
                   Privacy Policy
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
 import React, { useState } from "react"
 import Roadmap from "@components/roadmap"
+import TeamCard from "@components/teamcard"
 
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -14,7 +15,7 @@ const FaqItem = ({ question, answer }) => {
         setCollapsed(!collapsed)
       }}
     >
-      <div className="flex flex-col lg:w-3/5 p-2 cursor-pointer">
+      <div className="flex flex-col lg:w-3/5 p-2 py-4 cursor-pointer">
         <div className="text-black text-lg md:text-2xl capitalize font-recoleta-bold py-2">
           {question}
           <FontAwesomeIcon
@@ -117,7 +118,7 @@ export default function HomePage({}) {
             roadmap
           </div>
           <div className="py-4 flex flex-row justify-center xl:justify-start">
-            <Roadmap milestons={milestons}/>
+            <Roadmap milestons={milestons} />
           </div>
         </div>
       </div>
@@ -157,21 +158,15 @@ export default function HomePage({}) {
           <div className="capitalize text-secondary text-6xl font-recoleta-bold py-8">
             team
           </div>
-          <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 py-4 justify-center items-center">
+          <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-4 justify-center items-center">
             {members.map((dt, idx) => (
-              <div
-                className="h-[280px] min-h-[280px] w-[280px] min-w-[280px] flex flex-col bg-primary-light rounded-2xl items-center justify-center"
+              <TeamCard
+                image={dt.img}
+                name={dt.name}
+                role={dt.role}
+                description={dt.description}
                 key={idx}
-              >
-                <img
-                  src={dt.img}
-                  className="my-4 md:my-8 w-20 h-20 md:w-32 md:h-32 object-contain rounded-full"
-                />
-                <p className="text-secondary text-2xl md:text-3xl font-recoleta-bold py-2">
-                  {dt.name}
-                </p>
-                <p className="text-secondary text-base md:text-xl">{dt.role}</p>
-              </div>
+              />
             ))}
           </div>
         </div>
