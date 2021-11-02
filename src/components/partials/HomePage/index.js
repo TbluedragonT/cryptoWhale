@@ -17,7 +17,7 @@ const FaqItem = ({ question, answer }) => {
         setCollapsed(!collapsed)
       }}
     >
-      <div className="flex flex-col lg:w-3/5 p-2 py-4 cursor-pointer">
+      <div className="flex flex-col p-2 py-4 cursor-pointer">
         <div className="text-black text-lg md:text-2xl capitalize font-recoleta-bold py-2">
           {question}
           <FontAwesomeIcon
@@ -179,15 +179,17 @@ export default function HomePage({}) {
       </div>
 
       <div
-        className="lg:w-3/5 flex flex-col mx-auto py-20 px-4 lg:px-0"
+        className="flex flex-col lg:grid lg:grid-cols-5 mx-auto py-20 px-4 lg:px-0"
         id="faq"
       >
-        <div className="capitalize text-primary text-6xl font-recoleta-bold py-8">
-          FAQ's
+        <div className="lg:col-start-2 col-end-6 py-12">
+          <div className="capitalize text-primary text-6xl font-recoleta-bold py-8">
+            FAQ's
+          </div>
+          {faqs.map((dt, idx) => (
+            <FaqItem {...dt} key={idx} />
+          ))}
         </div>
-        {faqs.map((dt, idx) => (
-          <FaqItem {...dt} key={idx} />
-        ))}
       </div>
     </div>
   )
