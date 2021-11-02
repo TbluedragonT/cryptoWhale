@@ -122,14 +122,16 @@ export default function Layout({
                       ))}
                       <li className="py-2 px-3 w-full">
                         <div className="flex flex-row justify-center">
-                          <button
+                          <a
                             id="join_discord"
                             className="flex justify-center gap-2 items-center bg-primary-lightest hover:bg-primary font-recoleta-bold text-lg py-2 px-8 tracking-wide rounded-full"
+                            href={discordLink}
+                            target="_blank"
                           >
                             <span className="text-secondary tracking-wider">
                               Join our Discord
                             </span>
-                          </button>
+                          </a>
                         </div>
                       </li>
                     </ul>
