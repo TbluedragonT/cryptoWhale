@@ -30,13 +30,13 @@ export const milestons = [
     final: false,
   },
   {
-    value: 80,
-    text: "Team AMA followed by whale launch",
+    value: 85,
+    text: "Burn mechanics and staking initiated (Ahab and Moby quest begins)",
     final: false,
   },
   {
-    value: 90,
-    text: "Team AMA followed by whale launch",
+    value: 100,
+    text: "Companions created for every whale holder",
     final: true,
   },
 ]
