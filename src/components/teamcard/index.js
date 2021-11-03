@@ -28,7 +28,7 @@ export default function TeamCard({ image, name, role, description }) {
         <p className="text-secondary text-base md:text-xl">{role}</p>
       </div>
       <div
-        className="h-[280px] min-h-[280px] w-[280px] min-w-[280px] flex flex-col bg-primary-light text-secondary rounded-2xl items-center justify-center cursor-pointer p-2 px-4"
+        className="h-[280px] min-h-[280px] w-[280px] min-w-[280px] flex flex-col bg-secondary text-black text-2xl rounded-2xl items-center justify-center cursor-pointer p-2 px-4"
         onClick={handleClick}
       >
         {description}

@@ -1,3 +1,6 @@
+export const discordLink = "https://discord.gg/yCQ5NjguTB"
+export const twitterLink = "https://twitter.com/cryptowhaleclub"
+
 export const menus = [
   {
     name: "Lore",
@@ -35,18 +38,18 @@ export const footerLinks = [
   {
     heading: "crypto whale club",
     links: [
-      { label: "Lore", link: "/#lore", type: 'internal' },
-      { label: "Roadmap", link: "/#roadmap", type: 'internal' },
-      { label: "Utility", link: "/#utility", type: 'internal' },
-      { label: "Team", link: "/#team", type: 'internal' },
-      { label: "FAQs", link: "/#faq", type: 'internal' },
+      { label: "Lore", link: "/#lore", type: "internal" },
+      { label: "Roadmap", link: "/#roadmap", type: "internal" },
+      { label: "Utility", link: "/#utility", type: "internal" },
+      { label: "Team", link: "/#team", type: "internal" },
+      { label: "FAQs", link: "/#faq", type: "internal" },
     ],
   },
   {
     heading: "social links",
     links: [
-      { label: "Discord", link: "https://discord.gg/yCQ5NjguTB", type: 'external' },
-      { label: "Twitter", link: "https://twitter.com/cryptowhaleclub", type: 'external' },
+      { label: "Discord", link: discordLink, type: "external" },
+      { label: "Twitter", link: twitterLink, type: "external" },
     ],
   },
 ]
