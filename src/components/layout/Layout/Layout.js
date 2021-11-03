@@ -19,20 +19,18 @@ export default function Layout({
 }) {
   const calc = () => {
     const now = new Date()
-    var offset = date
+    const offset = Math.floor(date
       .subtract(
         new Date(2021, 10, 18),
-        new Date()
+        new Date(now.getFullYear(), now.getMonth(), now.getDate())
       )
-      .toDays()
-    offset = Math.round((offset + Number.EPSILON) * 1000) / 1000
-    console.log(offset)
+      .toDays())
     setLeftDays(offset)
   }
   const [leftDays, setLeftDays] = useState(0)
   useEffect(() => {
     calc()
-    const timerId = setInterval(calc, 86400) // per 86.4s(= 0.001 day)
+    const timerId = setInterval(calc, 60000)
     return () => {
       clearInterval(timerId)
     }
@@ -141,7 +139,7 @@ export default function Layout({
                           <div className="font-recoleta-bold text-xl xl:text-2xl text-secondary text-center flex flex-row">
                             {leftDays > 0 && (
                               <div className="pr-4">
-                                <span className="text-yellow-500 text-3xl px-2">
+                                <span className="text-yellow-500 text-4xl px-2">
                                   {leftDays}
                                 </span>
                                 days left
@@ -164,7 +162,7 @@ export default function Layout({
                     <ul className="flex-col">
                       {leftDays > 0 && (
                         <li className="py-2 pl-3 font-recoleta-bold text-xl xl:text-2xl text-secondary text-center">
-                          <span className="text-yellow-500 text-3xl px-2">
+                          <span className="text-yellow-500 text-4xl px-2">
                             {leftDays}
                           </span>
                           days left
