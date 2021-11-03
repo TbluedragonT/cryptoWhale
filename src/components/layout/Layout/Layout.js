@@ -1,13 +1,12 @@
 import { Link } from "gatsby"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import "@styles/global.scss"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
-import { useMeasure } from "react-use"
-
-const discordLink = "https://discord.gg/yCQ5NjguTB"
+import { discordLink, twitterLink } from "./menu"
+import date from "date-and-time"
 
 export default function Layout({
   title = "WhelpS",
@@ -18,7 +17,24 @@ export default function Layout({
   visibleClass = true,
   visibleFooter = true,
 }) {
-  const [ref /*{ height, bottom }*/] = useMeasure()
+  const calc = () => {
+    const now = new Date()
+    const offset = Math.floor(date
+      .subtract(
+        new Date(2021, 10, 18),
+        new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      )
+      .toDays())
+    setLeftDays(offset)
+  }
+  const [leftDays, setLeftDays] = useState(0)
+  useEffect(() => {
+    calc()
+    const timerId = setInterval(calc, 60000)
+    return () => {
+      clearInterval(timerId)
+    }
+  }, [])
 
   return (
     <React.Fragment>
@@ -43,9 +59,17 @@ export default function Layout({
                         <div className="flex space-x-4">
                           <div>
                             <ul className="flex items-center">
+                              {leftDays > 0 && (
+                                <li className="py-2 px-3 text-xl xl:text-2xl text-secondary">
+                                  <span className="text-yellow-300 text-5xl font-recoleta-bold px-2">
+                                    {leftDays}
+                                  </span>
+                                  days left
+                                </li>
+                              )}
                               {menus.map(dt => (
                                 <li
-                                  className="cursor-pointer font-recoleta-bold text-xl xl:text-2xl text-secondary py-2 px-3"
+                                  className="cursor-pointer font-recoleta-bold text-xl xl:text-2xl text-secondary hover:bg-primary rounded-lg py-2 px-3"
                                   key={dt.name}
                                 >
                                   {dt.type == "internal" ? (
@@ -71,13 +95,33 @@ export default function Layout({
                               <li className="py-2 pl-3">
                                 <a
                                   id="join_discord"
-                                  className="flex justify-center gap-2 items-center bg-primary-lightest hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-2 xl:py-4 px-8 tracking-wide w-full rounded-full"
+                                  className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
                                   href={discordLink}
                                   target="_blank"
                                 >
-                                  <span className="text-secondary tracking-wider">
+                                  <img
+                                    src="/icon/icon-discord.svg"
+                                    className="w-10 h-10"
+                                  />
+                                  {/* <span className="text-secondary tracking-wider">
                                     Join our Discord
-                                  </span>
+                                  </span> */}
+                                </a>
+                              </li>
+                              <li className="py-2 pl-3">
+                                <a
+                                  id="join_twitter"
+                                  className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
+                                  href={twitterLink}
+                                  target="_blank"
+                                >
+                                  <img
+                                    src="/icon/icon-twitter.svg"
+                                    className="w-10 h-10"
+                                  />
+                                  {/* <span className="text-secondary tracking-wider">
+                                    Join our Twitter
+                                  </span> */}
                                 </a>
                               </li>
                             </ul>
@@ -92,10 +136,20 @@ export default function Layout({
                         {open ? (
                           <XIcon className="block h-6 w-6" aria-hidden="true" />
                         ) : (
-                          <MenuIcon
-                            className="block h-6 w-6"
-                            aria-hidden="true"
-                          />
+                          <div className="font-recoleta-bold text-xl xl:text-2xl text-secondary text-center flex flex-row">
+                            {leftDays > 0 && (
+                              <div className="pr-4">
+                                <span className="text-yellow-500 text-4xl px-2">
+                                  {leftDays}
+                                </span>
+                                days left
+                              </div>
+                            )}
+                            <MenuIcon
+                              className="block h-6 w-6"
+                              aria-hidden="true"
+                            />
+                          </div>
                         )}
                       </Disclosure.Button>
                     </div>
@@ -106,6 +160,14 @@ export default function Layout({
                 <div className="px-2 pt-2 pb-3 space-y-1">
                   <div>
                     <ul className="flex-col">
+                      {leftDays > 0 && (
+                        <li className="py-2 pl-3 font-recoleta-bold text-xl xl:text-2xl text-secondary text-center">
+                          <span className="text-yellow-500 text-4xl px-2">
+                            {leftDays}
+                          </span>
+                          days left
+                        </li>
+                      )}
                       {menus.map(dt => (
                         <li
                           className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
@@ -121,16 +183,34 @@ export default function Layout({
                         </li>
                       ))}
                       <li className="py-2 px-3 w-full">
-                        <div className="flex flex-row justify-center">
+                        <div className="flex flex-row justify-center gap-3">
                           <a
                             id="join_discord"
-                            className="flex justify-center gap-2 items-center bg-primary-lightest hover:bg-primary font-recoleta-bold text-lg py-2 px-8 tracking-wide rounded-full"
+                            className="flex justify-center items-center font-recoleta-bold py-3 px-3 my-2"
                             href={discordLink}
                             target="_blank"
                           >
-                            <span className="text-secondary tracking-wider">
-                              Join our Discord
-                            </span>
+                            <img
+                              src="/icon/icon-discord.svg"
+                              className="w-10 h-10"
+                            />
+                            {/* <span className="text-secondary tracking-wider">
+                                    Join our Discord
+                                  </span> */}
+                          </a>
+                          <a
+                            id="join_twitter"
+                            className="flex justify-center items-center hover:bg-primary py-3 px-3 my-2"
+                            href={discordLink}
+                            target="_blank"
+                          >
+                            <img
+                              src="/icon/icon-twitter.svg"
+                              className="w-10 h-10"
+                            />
+                            {/* <span className="text-secondary tracking-wider">
+                                    Join our Discord
+                                  </span> */}
                           </a>
                         </div>
                       </li>
@@ -177,7 +257,9 @@ export default function Layout({
                           {sb.type == "internal" ? (
                             <Link to={sb.link}>{sb.label}</Link>
                           ) : (
-                            <a href={sb.link}>{sb.label}</a>
+                            <a href={sb.link} target="_blank">
+                              {sb.label}
+                            </a>
                           )}
                         </li>
                       ))}

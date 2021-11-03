@@ -1,11 +1,10 @@
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons"
+import { faAngleDown, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
 import React, { useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
-
-const discordLink = "https://discord.gg/yCQ5NjguTB"
+import { discordLink, twitterLink } from "@components/layout/Layout/menu"
 
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -21,7 +20,7 @@ const FaqItem = ({ question, answer }) => {
         <div className="text-black text-lg md:text-2xl capitalize font-recoleta-bold py-2">
           {question}
           <FontAwesomeIcon
-            icon={collapsed ? faAngleDown : faAngleUp}
+            icon={collapsed ? faAngleRight : faAngleDown}
             className="mx-2"
           />
         </div>
@@ -54,16 +53,23 @@ export default function HomePage({}) {
           <p className="text-xl md:text-3xl text-black py-5">
             Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
             whales living on the Ethereum blockchain, each representing one of
-            20 crypto coins or tokens. Mint Price will be 0.06 ETH and the
-            collection will drop in early to mid November.
+            20 crypto coins or tokens. Mint Price is 0.06 ETH with pre-sale
+            November 16th and public mint November 18th.
           </p>
-          <div className="flex flex-row justify-center lg:justify-start">
+          <div className="flex flex-row justify-around">
             <a
-              className="rounded-full text-secondary text-lg md:text-2xl font-recoleta-bold bg-primary-lightest hover:bg-primary my-5 px-8 py-4 text-center cursor-pointer tracking-wider"
+              className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
               href={discordLink}
               target="_blank"
             >
-              Join our Discord
+              <img src="/icon/icon-discord.svg" className="w-10 h-10" />
+            </a>
+            <a
+              className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
+              href={twitterLink}
+              target="_blank"
+            >
+              <img src="/icon/icon-twitter.svg" className="w-10 h-10" />
             </a>
           </div>
         </div>
@@ -72,15 +78,26 @@ export default function HomePage({}) {
         </div>
       </div>
 
-      <div className="bg-primary">
-        <p className="px-4 lg:px-0 lg:w-1/2 py-14 md:text-center text-secondary text-xl md:text-3xl mx-auto">
-          Crypto Whales are forged from 100+ different attributes/traits with a
-          maximum of 10,000 whales minted. They are programmatically generated
-          and will be stored as ERC-721 tokens on the Ethereum blockchain. There
-          are 20 different types of whales, each representing a different coin
-          or token. Whales will be the logo color of their respective coin /
-          token.
-        </p>
+      <div
+        className="bg-primary relative w-full py-12 px-4 lg:px-0"
+        id="about"
+      >
+        <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-20 items-center">
+          <div className="flex flex-row py-4 lg:w-2/5">
+            <img
+              src="/gold-ship.png"
+              className="md:w-2/3 lg:w-full object-contain rounded-xl mx-auto"
+            />
+          </div>
+          <p className="p-4 lg:w-2/5 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
+            Crypto Whales are forged from 130+ different attributes/traits with
+            a maximum of 10,000 whales minted. They are programmatically
+            generated and will be stored as ERC-721 tokens on the Ethereum
+            blockchain. There are 20 different types of whales, each
+            representing a different coin or token. Whales will be the logo
+            color of their respective coin / token.
+          </p>
+        </div>
       </div>
 
       <div
@@ -125,6 +142,23 @@ export default function HomePage({}) {
           </div>
           <div className="py-4 flex flex-row justify-center xl:justify-start">
             <Roadmap milestons={milestons} />
+          </div>
+          <div className="py-2">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
+              Post Sellout -
+            </span>
+            <span className="text-secondary text-lg md:text-2xl">
+              We hire a dedicated community manager to continue marketing and
+              pushing growth of the project.
+            </span>
+          </div>
+          <div className="py-2">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
+              Carbon Offset for the project:
+            </span>
+            <span className="text-secondary text-lg md:text-2xl">
+              Will be done regardless of how much of the collection sells.
+            </span>
           </div>
         </div>
       </div>
