@@ -1,10 +1,11 @@
 import { faAngleDown, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
 import { discordLink, twitterLink } from "@components/layout/Layout/menu"
+import date from "date-and-time"
 
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -33,6 +34,28 @@ const FaqItem = ({ question, answer }) => {
 }
 
 export default function HomePage({}) {
+  const calc = () => {
+    const now = new Date()
+    const offset = Math.floor(
+      date
+        .subtract(
+          new Date(2021, 10, 18),
+          new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        )
+        .toDays()
+    )
+    setLeftDays(offset)
+  }
+
+  const [leftDays, setLeftDays] = useState(0)
+  useEffect(() => {
+    calc()
+    const timerId = setInterval(calc, 60000)
+    return () => {
+      clearInterval(timerId)
+    }
+  }, [])
+
   return (
     <div>
       <div className="relative">
@@ -41,6 +64,14 @@ export default function HomePage({}) {
           src="/hero-logo.svg"
           className="w-3/16 absolute top-2/16 left-1/16"
         />
+        {leftDays > 0 && (
+          <div className="absolute top-1/4 right-1/16 xl:right-3/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary">
+            <span className="text-yellow-300 text-5xl xl:text-7xl font-recoleta-bold px-2">
+              {leftDays}
+            </span>
+            days till presale
+          </div>
+        )}
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
@@ -78,10 +109,7 @@ export default function HomePage({}) {
         </div>
       </div>
 
-      <div
-        className="bg-primary relative w-full py-12 px-4 lg:px-0"
-        id="about"
-      >
+      <div className="bg-primary relative w-full py-12 px-4 lg:px-0" id="about">
         <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-20 items-center">
           <div className="flex flex-row py-4 lg:w-2/5">
             <img

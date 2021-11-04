@@ -6,7 +6,6 @@ import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
 import { discordLink, twitterLink } from "./menu"
-import date from "date-and-time"
 
 export default function Layout({
   title = "WhelpS",
@@ -17,25 +16,6 @@ export default function Layout({
   visibleClass = true,
   visibleFooter = true,
 }) {
-  const calc = () => {
-    const now = new Date()
-    const offset = Math.floor(date
-      .subtract(
-        new Date(2021, 10, 18),
-        new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      )
-      .toDays())
-    setLeftDays(offset)
-  }
-  const [leftDays, setLeftDays] = useState(0)
-  useEffect(() => {
-    calc()
-    const timerId = setInterval(calc, 60000)
-    return () => {
-      clearInterval(timerId)
-    }
-  }, [])
-
   return (
     <React.Fragment>
       <Helmet>
@@ -59,14 +39,6 @@ export default function Layout({
                         <div className="flex space-x-4">
                           <div>
                             <ul className="flex items-center">
-                              {leftDays > 0 && (
-                                <li className="py-2 px-3 text-xl xl:text-2xl text-secondary">
-                                  <span className="text-yellow-300 text-5xl font-recoleta-bold px-2">
-                                    {leftDays}
-                                  </span>
-                                  days left
-                                </li>
-                              )}
                               {menus.map(dt => (
                                 <li
                                   className="cursor-pointer font-recoleta-bold text-xl xl:text-2xl text-secondary hover:bg-primary rounded-lg py-2 px-3"
@@ -136,20 +108,10 @@ export default function Layout({
                         {open ? (
                           <XIcon className="block h-6 w-6" aria-hidden="true" />
                         ) : (
-                          <div className="font-recoleta-bold text-xl xl:text-2xl text-secondary text-center flex flex-row">
-                            {leftDays > 0 && (
-                              <div className="pr-4">
-                                <span className="text-yellow-500 text-4xl px-2">
-                                  {leftDays}
-                                </span>
-                                days left
-                              </div>
-                            )}
-                            <MenuIcon
-                              className="block h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </div>
+                          <MenuIcon
+                            className="block h-6 w-6"
+                            aria-hidden="true"
+                          />
                         )}
                       </Disclosure.Button>
                     </div>
@@ -160,14 +122,6 @@ export default function Layout({
                 <div className="px-2 pt-2 pb-3 space-y-1">
                   <div>
                     <ul className="flex-col">
-                      {leftDays > 0 && (
-                        <li className="py-2 pl-3 font-recoleta-bold text-xl xl:text-2xl text-secondary text-center">
-                          <span className="text-yellow-500 text-4xl px-2">
-                            {leftDays}
-                          </span>
-                          days left
-                        </li>
-                      )}
                       {menus.map(dt => (
                         <li
                           className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
