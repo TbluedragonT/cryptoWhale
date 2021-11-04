@@ -220,17 +220,17 @@ export default function Layout({
                     </ul>
                   </div>
                 ))}
-                <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
-                  <p className="text-secondary">Powered by</p>
-                  <Link to={"http://masterbrews.cards/"}>
-                    <img src="/brew-logo.png" className="cursor-pointer" />
-                  </Link>
-                </div>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row justify-center lg:justify-end pt-16">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end pt-16">
               <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">
                 @2021 Crypto Whale Club
+              </div>
+              <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
+                <p className="text-secondary">Powered by</p>
+                <Link to={"http://masterbrews.cards/"}>
+                  <img src="/brew-logo.png" className="cursor-pointer" />
+                </Link>
               </div>
               {/* <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
