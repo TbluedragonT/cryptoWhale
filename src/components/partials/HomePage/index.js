@@ -60,12 +60,12 @@ export default function HomePage({}) {
     <div>
       <div className="relative">
         <img src="/hero.png" />
-        <img
+        {/* <img
           src="/hero-logo.svg"
           className="w-3/16 absolute top-2/16 left-1/16"
-        />
+        /> */}
         {leftDays > 0 && (
-          <div className="absolute top-1/3 right-1/16 xl:right-3/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary transform -translate-y-3 sm:translate-y-2">
+          <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary">
             <span className="text-yellow-300 text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftDays}
             </span>
