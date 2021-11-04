@@ -26,7 +26,7 @@ const FaqItem = ({ question, answer }) => {
           />
         </div>
         {!collapsed && (
-          <div className="text-black text-base md:text-xl">{answer}</div>
+          <div className="text-black text-base md:text-xl md:w-3/4 2xl:w-2/3">{answer}</div>
         )}
       </div>
     </div>
@@ -39,7 +39,7 @@ export default function HomePage({}) {
     const offset = Math.floor(
       date
         .subtract(
-          new Date(2021, 10, 18),
+          new Date(2021, 10, 16),
           new Date(now.getFullYear(), now.getMonth(), now.getDate())
         )
         .toDays()
