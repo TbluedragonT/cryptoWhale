@@ -11,13 +11,13 @@ const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
 
   return (
-    <div
-      className="flex flex-row"
-      onClick={() => {
-        setCollapsed(!collapsed)
-      }}
-    >
-      <div className="flex flex-col p-2 py-4 cursor-pointer">
+    <div className="flex flex-row">
+      <div
+        className="flex flex-col p-2 py-4 cursor-pointer"
+        onClick={() => {
+          setCollapsed(!collapsed)
+        }}
+      >
         <div className="text-black text-lg md:text-2xl capitalize font-recoleta-bold py-2">
           {question}
           <FontAwesomeIcon
@@ -87,7 +87,7 @@ export default function HomePage({}) {
             20 crypto coins or tokens. Mint Price is 0.06 ETH with pre-sale
             November 16th and public mint November 18th.
           </p>
-          <div className="flex flex-row justify-around">
+          <div className="flex flex-row justify-center md:justify-start gap-4">
             <a
               className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
               href={discordLink}
@@ -110,14 +110,14 @@ export default function HomePage({}) {
       </div>
 
       <div className="bg-primary relative w-full py-12 px-4 lg:px-0" id="about">
-        <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-20 items-center">
-          <div className="flex flex-row py-4 lg:w-2/5">
+        <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-10 items-center">
+          <div className="flex flex-row py-8 lg:w-2/5">
             <img
               src="/gold-ship.png"
-              className="md:w-2/3 lg:w-full object-contain rounded-xl mx-auto"
+              className="w-3/5 lg:w-full object-contain rounded-xl mx-auto"
             />
           </div>
-          <p className="p-4 lg:w-2/5 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
+          <p className="p-4 lg:w-1/2 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
             Crypto Whales are forged from 130+ different attributes/traits with
             a maximum of 10,000 whales minted. They are programmatically
             generated and will be stored as ERC-721 tokens on the Ethereum
@@ -205,8 +205,8 @@ export default function HomePage({}) {
                 src={dt.img}
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
               />
-              <div className="flex flex-col lg:w-3/5 p-6">
-                <div className="text-primary text-2xl md:text-4xl capitalize py-6">
+              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative py-20">
+                <div className="absolute top-0 text-primary text-2xl md:text-4xl capitalize py-6">
                   {dt.title}
                 </div>
                 <div className="text-black text-lg md:text-2xl">
