@@ -1,4 +1,4 @@
-export const discordLink = "https://discord.gg/yCQ5NjguTB"
+export const discordLink = "https://discord.gg/cryptowhaleclub"
 export const twitterLink = "https://twitter.com/cryptowhaleclub"
 
 export const menus = [
