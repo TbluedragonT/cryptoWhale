@@ -24,7 +24,7 @@ export default function Layout({
       <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
         <Disclosure
           as="nav"
-          className={`top-0 absolute z-50 w-full px-0 ${headerClass} ${
+          className={`top-0 fixed z-50 w-full px-0 bg-primary ${headerClass} ${
             visibleClass ? "block" : "hidden"
           } `}
           style={headerStyle}
@@ -32,9 +32,12 @@ export default function Layout({
           {({ open }) => (
             <>
               <div>
-                <div className="container mx-auto lg:pt-8">
-                  <div className="relative flex items-center">
-                    <div className="flex flex-row justify-end min-w-full">
+                <div className="container mx-auto lg:pt-2">
+                  <div className="relative flex justify-between items-center">
+                    <Link to={"/"}>
+                      <img src="/hero-logo.svg" className="h-12 lg:h-24 py-2" />
+                    </Link>
+                    <div className="flex flex-row justify-end">
                       <div className="hidden lg:block">
                         <div className="flex space-x-4">
                           <div>
