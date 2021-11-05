@@ -6,7 +6,6 @@ import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
 import { discordLink, twitterLink } from "./menu"
-import date from "date-and-time"
 
 export default function Layout({
   title = "WhelpS",
@@ -17,25 +16,12 @@ export default function Layout({
   visibleClass = true,
   visibleFooter = true,
 }) {
-  const calc = () => {
-    const now = new Date()
-    const offset = date
-      .subtract(
-        new Date(2021, 10, 18),
-        new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      )
-      .toDays()
-    console.log(offset)
-    setLeftDays(offset)
-  }
-  const [leftDays, setLeftDays] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
-    calc()
-    const timerId = setInterval(calc, 60000)
-    return () => {
-      clearInterval(timerId)
-    }
-  }, [])
+    window.addEventListener("scroll", _ => {
+      setScrolled(window.scrollY > 60)
+    })
+  })
 
   return (
     <React.Fragment>
@@ -45,27 +31,33 @@ export default function Layout({
       <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
         <Disclosure
           as="nav"
-          className={`top-0 absolute z-50 w-full px-0 ${headerClass} ${
-            visibleClass ? "block" : "hidden"
-          } `}
+          className={`top-0 fixed z-50 w-full px-0 ${
+            scrolled ? "bg-primary" : "bg-none"
+          } ${headerClass} ${visibleClass ? "block" : "hidden"} `}
           style={headerStyle}
         >
           {({ open }) => (
             <>
               <div>
-                <div className="container mx-auto lg:pt-8">
-                  <div className="relative flex items-center">
-                    <div className="flex flex-row justify-end min-w-full">
-                      <div className="hidden lg:block">
+                <div className="container mx-auto lg:pt-2">
+                  <div
+                    className={`relative flex ${
+                      scrolled ? "justify-between" : "justify-end"
+                    } items-center`}
+                  >
+                    {scrolled && (
+                      <Link to={"/"}>
+                        <img
+                          src="/hero-logo.svg"
+                          className="h-12 lg:h-24 py-2"
+                        />
+                      </Link>
+                    )}{" "}
+                    <div className="flex flex-row justify-end">
+                      <div className={`hidden lg:block`}>
                         <div className="flex space-x-4">
                           <div>
                             <ul className="flex items-center">
-                              <li className="py-2 px-3 text-xl xl:text-2xl text-secondary">
-                                <span className="text-yellow-300 text-5xl font-recoleta-bold px-2">
-                                  {leftDays}
-                                </span>
-                                days left
-                              </li>
                               {menus.map(dt => (
                                 <li
                                   className="cursor-pointer font-recoleta-bold text-xl xl:text-2xl text-secondary hover:bg-primary rounded-lg py-2 px-3"
@@ -135,18 +127,10 @@ export default function Layout({
                         {open ? (
                           <XIcon className="block h-6 w-6" aria-hidden="true" />
                         ) : (
-                          <div className="font-recoleta-bold text-xl xl:text-2xl text-secondary text-center flex flex-row">
-                            <div className="pr-4">
-                              <span className="text-yellow-500 text-4xl px-2">
-                                {leftDays}
-                              </span>
-                              days left
-                            </div>
-                            <MenuIcon
-                              className="block h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </div>
+                          <MenuIcon
+                            className="block h-6 w-6"
+                            aria-hidden="true"
+                          />
                         )}
                       </Disclosure.Button>
                     </div>
@@ -157,12 +141,6 @@ export default function Layout({
                 <div className="px-2 pt-2 pb-3 space-y-1">
                   <div>
                     <ul className="flex-col">
-                      <li className="py-2 pl-3 font-recoleta-bold text-xl xl:text-2xl text-secondary text-center">
-                        <span className="text-yellow-500 text-4xl px-2">
-                          {leftDays}
-                        </span>
-                        days left
-                      </li>
                       {menus.map(dt => (
                         <li
                           className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
@@ -261,17 +239,17 @@ export default function Layout({
                     </ul>
                   </div>
                 ))}
-                <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
-                  <p className="text-secondary">Powered by</p>
-                  <Link to={"http://masterbrews.cards/"}>
-                    <img src="/brew-logo.png" className="cursor-pointer" />
-                  </Link>
-                </div>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row lg:justify-between pt-16">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end pt-16">
               <div className="text-secondary text-lg mx-auto lg:mx-0 py-2 lg:py-0">
                 @2021 Crypto Whale Club
+              </div>
+              <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
+                <p className="text-secondary">Powered by</p>
+                <a href={"http://masterbrews.cards/"} target="_blank">
+                  <img src="/brew-logo.png" className="cursor-pointer" />
+                </a>
               </div>
               {/* <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">

@@ -1,22 +1,22 @@
 import { faAngleDown, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
 import { discordLink, twitterLink } from "@components/layout/Layout/menu"
+import date from "date-and-time"
 
 const FaqItem = ({ question, answer }) => {
   const [collapsed, setCollapsed] = useState(true)
-
   return (
-    <div
-      className="flex flex-row"
-      onClick={() => {
-        setCollapsed(!collapsed)
-      }}
-    >
-      <div className="flex flex-col p-2 py-4 cursor-pointer">
+    <div className="flex flex-row">
+      <div
+        className="flex flex-col p-2 py-4 cursor-pointer"
+        onClick={() => {
+          setCollapsed(!collapsed)
+        }}
+      >
         <div className="text-black text-lg md:text-2xl capitalize font-recoleta-bold py-2">
           {question}
           <FontAwesomeIcon
@@ -25,7 +25,9 @@ const FaqItem = ({ question, answer }) => {
           />
         </div>
         {!collapsed && (
-          <div className="text-black text-base md:text-xl">{answer}</div>
+          <div className="text-black text-base md:text-xl md:w-3/4 2xl:w-2/3">
+            {answer}
+          </div>
         )}
       </div>
     </div>
@@ -33,14 +35,55 @@ const FaqItem = ({ question, answer }) => {
 }
 
 export default function HomePage({}) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener("scroll", _ => {
+      setScrolled(window.scrollY > 60)
+      console.log(window.scrollY)
+    })
+  })
+
+  const calc = () => {
+    const now = new Date()
+    const offset = Math.floor(
+      date
+        .subtract(
+          new Date(2021, 10, 16),
+          new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        )
+        .toDays()
+    )
+    setLeftDays(offset)
+  }
+
+  const [leftDays, setLeftDays] = useState(0)
+  useEffect(() => {
+    calc()
+    const timerId = setInterval(calc, 60000)
+    return () => {
+      clearInterval(timerId)
+    }
+  }, [])
+
   return (
     <div>
       <div className="relative">
         <img src="/hero.png" />
-        <img
-          src="/hero-logo.svg"
-          className="w-3/16 absolute top-2/16 left-1/16"
-        />
+        {!scrolled && (
+          <img
+            src="/hero-logo.svg"
+            className="w-3/16 absolute top-2/16 left-1/16"
+          />
+        )}
+        {leftDays > 0 && (
+          <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary">
+            <span className="text-yellow-300 text-5xl xl:text-7xl font-recoleta-bold px-2">
+              {leftDays}
+            </span>
+            days till presale
+          </div>
+        )}
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
@@ -56,7 +99,7 @@ export default function HomePage({}) {
             20 crypto coins or tokens. Mint Price is 0.06 ETH with pre-sale
             November 16th and public mint November 18th.
           </p>
-          <div className="flex flex-row justify-around">
+          <div className="flex flex-row justify-center md:justify-start gap-4">
             <a
               className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
               href={discordLink}
@@ -78,18 +121,15 @@ export default function HomePage({}) {
         </div>
       </div>
 
-      <div
-        className="bg-primary relative w-full py-12 px-4 lg:px-0"
-        id="about"
-      >
-        <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-20 items-center">
-          <div className="flex flex-row py-4 lg:w-2/5">
+      <div className="bg-primary relative w-full py-12 px-4 lg:px-0" id="about">
+        <div className="bg-primary lg:w-3/5 flex flex-col lg:flex-row justify-around mx-auto py-10 items-center">
+          <div className="flex flex-row py-8 lg:w-2/5">
             <img
               src="/gold-ship.png"
-              className="md:w-2/3 lg:w-full object-contain rounded-xl mx-auto"
+              className="w-3/5 lg:w-full object-contain rounded-xl mx-auto"
             />
           </div>
-          <p className="p-4 lg:w-2/5 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
+          <p className="p-4 lg:w-1/2 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
             Crypto Whales are forged from 130+ different attributes/traits with
             a maximum of 10,000 whales minted. They are programmatically
             generated and will be stored as ERC-721 tokens on the Ethereum
@@ -177,8 +217,8 @@ export default function HomePage({}) {
                 src={dt.img}
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
               />
-              <div className="flex flex-col lg:w-3/5 p-6">
-                <div className="text-primary text-2xl md:text-4xl capitalize py-6">
+              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative py-20">
+                <div className="absolute top-0 text-primary text-2xl md:text-4xl capitalize py-6">
                   {dt.title}
                 </div>
                 <div className="text-black text-lg md:text-2xl">
