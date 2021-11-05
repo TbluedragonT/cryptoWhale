@@ -19,7 +19,7 @@ export default function Layout({
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     window.addEventListener("scroll", _ => {
-      setScrolled(window.scrollY > 1)
+      setScrolled(window.scrollY > 60)
     })
   })
 
@@ -31,19 +31,28 @@ export default function Layout({
       <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
         <Disclosure
           as="nav"
-          className={`top-0 fixed z-50 w-full px-0 bg-primary ${headerClass} ${
-            scrolled ? "" : "hidden"
-          }`}
+          className={`top-0 fixed z-50 w-full px-0 ${
+            scrolled ? "bg-primary" : "bg-none"
+          } ${headerClass} ${visibleClass ? "block" : "hidden"} `}
           style={headerStyle}
         >
           {({ open }) => (
             <>
               <div>
                 <div className="container mx-auto lg:pt-2">
-                  <div className="relative flex justify-between items-center">
-                    <Link to={"/"}>
-                      <img src="/hero-logo.svg" className="h-12 lg:h-24 py-2" />
-                    </Link>
+                  <div
+                    className={`relative flex ${
+                      scrolled ? "justify-between" : "justify-end"
+                    } items-center`}
+                  >
+                    {scrolled && (
+                      <Link to={"/"}>
+                        <img
+                          src="/hero-logo.svg"
+                          className="h-12 lg:h-24 py-2"
+                        />
+                      </Link>
+                    )}{" "}
                     <div className="flex flex-row justify-end">
                       <div className={`hidden lg:block`}>
                         <div className="flex space-x-4">
