@@ -16,6 +16,13 @@ export default function Layout({
   visibleClass = true,
   visibleFooter = true,
 }) {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    window.addEventListener("scroll", _ => {
+      setScrolled(window.scrollY > 1)
+    })
+  })
+
   return (
     <React.Fragment>
       <Helmet>
@@ -25,8 +32,8 @@ export default function Layout({
         <Disclosure
           as="nav"
           className={`top-0 fixed z-50 w-full px-0 bg-primary ${headerClass} ${
-            visibleClass ? "block" : "hidden"
-          } `}
+            scrolled ? "" : "hidden"
+          }`}
           style={headerStyle}
         >
           {({ open }) => (
@@ -38,7 +45,7 @@ export default function Layout({
                       <img src="/hero-logo.svg" className="h-12 lg:h-24 py-2" />
                     </Link>
                     <div className="flex flex-row justify-end">
-                      <div className="hidden lg:block">
+                      <div className={`hidden lg:block`}>
                         <div className="flex space-x-4">
                           <div>
                             <ul className="flex items-center">
@@ -231,9 +238,9 @@ export default function Layout({
               </div>
               <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
                 <p className="text-secondary">Powered by</p>
-                <Link to={"http://masterbrews.cards/"}>
+                <a href={"http://masterbrews.cards/"} target="_blank">
                   <img src="/brew-logo.png" className="cursor-pointer" />
-                </Link>
+                </a>
               </div>
               {/* <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
                 <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
