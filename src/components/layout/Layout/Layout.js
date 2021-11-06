@@ -8,7 +8,7 @@ import { menus, footerLinks } from "./menu"
 import { discordLink, twitterLink } from "./menu"
 
 export default function Layout({
-  title = "WhelpS",
+  title = "CWC",
   children,
   contentClassName = "",
   headerClass = "",

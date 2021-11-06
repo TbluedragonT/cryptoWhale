@@ -54,7 +54,15 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: `${site.siteMetadata.url.slice(0,-1)}${ogImage}`,
+          content: `${site.siteMetadata.url.slice(0, -1)}${ogImage}`,
+        },
+        {
+          property: `og:image:width`,
+          content: `1200`,
+        },
+        {
+          property: `og:image:height`,
+          content: `630`,
         },
         {
           property: `og:url`,
@@ -62,7 +70,19 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
+        },
+        {
+          name: "twitter:domain",
+          content: "genesis.cryptowhaleclub.io",
+        },
+        {
+          name: "twitter:url",
+          content: site.siteMetadata.url,
+        },
+        {
+          name: "twitter:image",
+          content: `${site.siteMetadata.url.slice(0, -1)}${ogImage}`,
         },
         {
           name: `twitter:title`,
