@@ -40,7 +40,6 @@ export default function HomePage({}) {
   useEffect(() => {
     window.addEventListener("scroll", _ => {
       setScrolled(window.scrollY > 60)
-      console.log(window.scrollY)
     })
   })
 
