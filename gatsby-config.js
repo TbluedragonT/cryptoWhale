@@ -9,6 +9,7 @@ const path = require(`path`)
 module.exports = {
   siteMetadata: {
     url: "https://genesis.cryptowhaleclub.io/",
+    domain: "genesis.cryptowhaleclub.io",
     title: `Crypto Whale Club`,
     description: `Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
     whales living on the Ethereum blockchain`,
