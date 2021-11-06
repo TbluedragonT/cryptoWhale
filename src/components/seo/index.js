@@ -57,6 +57,14 @@ function SEO({ description, lang, meta, title }) {
           content: `${site.siteMetadata.url}${ogImage}`,
         },
         {
+          property: `og:image:width`,
+          content: `1200`,
+        },
+        {
+          property: `og:image:height`,
+          content: `630`,
+        },
+        {
           property: `og:url`,
           content: site.siteMetadata.url,
         },
