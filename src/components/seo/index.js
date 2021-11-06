@@ -19,6 +19,7 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
+            domain
             url
           }
         }
@@ -74,7 +75,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: "twitter:domain",
-          content: "genesis.cryptowhaleclub.io",
+          content: site.siteMetadata.domain,
         },
         {
           name: "twitter:url",
