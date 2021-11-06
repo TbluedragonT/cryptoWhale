@@ -7,6 +7,13 @@
 const path = require(`path`)
 
 module.exports = {
+  siteMetadata: {
+    url: "https://genesis.cryptowhaleclub.io/",
+    domain: "genesis.cryptowhaleclub.io",
+    title: `Crypto Whale Club`,
+    description: `Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
+    whales living on the Ethereum blockchain`,
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -27,7 +34,8 @@ module.exports = {
         icon: `src/images/icon.png`,
         cache_busting_mode: `name`,
       },
-    },    {
+    },
+    {
       resolve: "gatsby-plugin-module-resolver",
       options: {
         root: "./src", // <- will be used as a root dir
@@ -38,8 +46,8 @@ module.exports = {
           "@images": "./images",
           "@styles": "./styles",
           "@util": "./util",
-          "@hooks": './hooks',
-          "@config": './config',
+          "@hooks": "./hooks",
+          "@config": "./config",
           static: {
             root: "./public", // <- will used as this alias' root dir
             alias: "./static", // <- will become ./public/static
