@@ -141,8 +141,7 @@ export const faqs = [
   },
   {
     question: "When will the collection be available to mint?",
-    answer: `Pre-sale will be Nov. 16th and the public sale will be Nov. 18th. 
-      Exact times announced closer to launch`,
+    answer: `Pre-sale will be Nov. 30th and the public sale will be Dec. 2nd. Exact times announced closer to launch.`,
   },
   {
     question: "What will the price be to mint a whale?",
