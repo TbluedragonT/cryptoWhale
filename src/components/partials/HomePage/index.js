@@ -48,7 +48,7 @@ export default function HomePage({}) {
     const offset = Math.floor(
       date
         .subtract(
-          new Date(2021, 10, 16),
+          new Date(2021, 10, 30),
           new Date(now.getFullYear(), now.getMonth(), now.getDate())
         )
         .toDays()
@@ -96,7 +96,7 @@ export default function HomePage({}) {
             Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
             whales living on the Ethereum blockchain, each representing one of
             20 crypto coins or tokens. Mint Price is 0.06 ETH with pre-sale
-            November 16th and public mint November 18th.
+            November 30th and public mint December 2nd.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
             <a
