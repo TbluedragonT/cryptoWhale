@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
+import { Link as ScrollLink } from "react-scroll"
 import "@styles/global.scss"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
@@ -64,14 +65,15 @@ export default function Layout({
                                   key={dt.name}
                                 >
                                   {dt.type == "internal" ? (
-                                    <Link
-                                      activeClassName="active"
+                                    <ScrollLink
                                       to={dt.path}
-                                      partiallyActive={!!dt.partiallyActive}
-                                      target={dt.target}
+                                      spy={true}
+                                      smooth={true}
+                                      offset={-70}
+                                      duration={500}
                                     >
                                       {dt.name}
-                                    </Link>
+                                    </ScrollLink>
                                   ) : (
                                     <a
                                       className="no-underline px-5"
@@ -146,13 +148,16 @@ export default function Layout({
                           className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
                           key={dt.name}
                         >
-                          <Link
-                            activeClassName="active"
+                          <ScrollLink
                             to={dt.path}
-                            target={dt.target}
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            onClick={() => { open = false; console.log(open) }}
                           >
                             {dt.name}
-                          </Link>
+                          </ScrollLink>
                         </li>
                       ))}
                       <li className="py-2 px-3 w-full">
@@ -228,7 +233,16 @@ export default function Layout({
                           key={sb.label}
                         >
                           {sb.type == "internal" ? (
-                            <Link to={sb.link}>{sb.label}</Link>
+                            <ScrollLink 
+                              to={sb.link}
+                              spy={true}
+                              smooth={true}
+                              offset={-70}
+                              duration={500}
+                              className="cursor-pointer"
+                            >
+                              {sb.label}
+                            </ScrollLink>
                           ) : (
                             <a href={sb.link} target="_blank">
                               {sb.label}
