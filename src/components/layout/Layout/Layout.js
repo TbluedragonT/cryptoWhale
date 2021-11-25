@@ -154,7 +154,6 @@ export default function Layout({
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            onClick={() => { open = false; console.log(open) }}
                           >
                             {dt.name}
                           </ScrollLink>
