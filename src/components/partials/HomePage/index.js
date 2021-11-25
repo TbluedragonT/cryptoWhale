@@ -7,7 +7,7 @@ import TeamCard from "@components/teamcard"
 import { discordLink, twitterLink } from "@components/layout/Layout/menu"
 import date from "date-and-time"
 
-const FaqItem = ({ question, answer }) => {
+const FaqItem = ({ question, answer, subItems }) => {
   const [collapsed, setCollapsed] = useState(true)
   return (
     <div className="flex flex-row">
@@ -25,9 +25,23 @@ const FaqItem = ({ question, answer }) => {
           />
         </div>
         {!collapsed && (
-          <div className="text-black text-base md:text-xl md:w-3/4 2xl:w-2/3">
-            {answer}
-          </div>
+          <>
+            <div className="text-black text-base md:text-xl md:w-3/4 2xl:w-2/3">
+              {answer}
+            </div>
+            { subItems && (
+              <ul className="faq-subitems">
+                {
+                  subItems.map((item, idx) => {
+                    return (
+                      <li key={idx}>{item}</li>
+                    )
+                  })
+                }
+              </ul>
+            )
+            }
+          </>
         )}
       </div>
     </div>
@@ -93,10 +107,7 @@ export default function HomePage({}) {
           </div>
           <img src="/join-logo.svg" className="hidden lg:block w-1/3 py-5" />
           <p className="text-xl md:text-3xl text-black py-5">
-            Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
-            whales living on the Ethereum blockchain, each representing one of
-            20 crypto coins or tokens. Mint Price is 0.06 ETH with pre-sale
-            November 30th and public mint December 2nd.
+            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 0) pre-sale will start December 7th and public mint will be on December 9th.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
             <a
@@ -203,25 +214,83 @@ export default function HomePage({}) {
       </div>
 
       <div
-        className="lg:w-3/5 flex flex-col mx-auto py-20 px-4 lg:px-0"
+        className="lg:w-3/5 flex flex-col mx-auto pt-20 px-4 lg:px-0"
         id="utility"
       >
         <div className="capitalize text-primary text-6xl font-recoleta-bold py-8">
           utility
         </div>
-        {utilities.map((dt, idx) => (
+        {utilities.map((dt, idx) => !dt.modify ? (
           <div key={idx}>
             <div className="flex flex-col lg:flex-row">
               <img
                 src={dt.img}
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
               />
-              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative py-20">
-                <div className="absolute top-0 text-primary text-2xl md:text-4xl capitalize py-6">
+              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative py-10">
+                <div className="text-primary text-2xl md:text-4xl capitalize pb-4">
                   {dt.title}
                 </div>
                 <div className="text-black text-lg md:text-2xl">
-                  {dt.content}
+                  {dt.contents.map((item, idx) => (
+                    <div key={idx}>
+                      <div>{item}</div> <br/>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div key={idx}>
+            <div className="flex flex-col lg:flex-row">
+              <div className="md:w-2/3 lg:w-2/5 pl-0 object-contain mx-auto"></div>
+              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative pt-10 pb-0">
+                <div className="text-primary text-2xl md:text-4xl capitalize pb-4">
+                  {dt.title}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col lg:flex-row">
+              <img
+                src="/utility-02_01.png"
+                className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto pb-15"
+              />
+              <div className="flex flex-col justify-center lg:w-3/5 px-6 relative pb-10">
+                <div className="text-primary text-xl md:text-3xl capitalize pb-4">
+                  Moby Dick Quest
+                </div>
+                <div className="text-black text-lg md:text-2xl">
+                  <ul className="utility-subitems">
+                    <li>
+                      Burn 2 common of a single whale type (coin / token) for 1 gold of that type
+                    </li>
+                    <li>
+                      Burn 2 gold of same whale type for 1 diamond of that type
+                    </li>
+                    <li>
+                      Burn 2 diamond of same whale type for 1 Moby Dick of that type
+                    </li>
+                  </ul>
+                  <div className="py-2">
+                    <i className="text-xl">
+                      *Coin reward multipliers of 3x, 6x and 9x will be applied to these special whales.
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col lg:flex-row">
+              <img
+                src="/utility-02_02.png"
+                className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
+              />
+              <div className="flex flex-col justify-center lg:w-3/5 px-6 relative py-10">
+                <div className="text-primary text-xl md:text-3xl capitalize pb-4">
+                  Captain Ahab Quest
+                </div>
+                <div className="text-black text-lg md:text-2xl">
+                  The first 50 collectors to collect one of each whale type will be able to claim a Captain Ahab from the Crypto Whales website. There is rumoured to be a pretty cool utility feature coming for Ahab that allows him to passively find and collect stray whales. Only 50 Ahabs will be available.
                 </div>
               </div>
             </div>

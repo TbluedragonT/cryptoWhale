@@ -5,38 +5,48 @@ export const milestons = [
     final: false,
   },
   {
-    value: 10,
-    text: "10 Whales given to random community members",
+    value: 5,
+    text: "10 Whales given out randomly to holders of the first 500 whales",
     final: false,
   },
   {
-    value: 25,
+    value: 10,
+    text: "Staking of Whales for $BLUB goes live",
+    final: false,
+  },
+  {
+    value: 15,
+    text: "Captain Ahab becomes claimable",
+    final: false,
+  },
+  {
+    value: 20,
+    text: "Coin rewards program starts",
+    final: false,
+  },
+  {
+    value: 35,
     text: "Project added to rarity sniper and rarity tools",
     final: false,
   },
   {
-    value: 40,
-    text: "5 random whale holders each given 1 ETH",
-    final: false,
-  },
-  {
-    value: 55,
-    text: "25k USD donation to the EFF + 25k donation to Save the Whales",
-    final: false,
-  },
-  {
-    value: 70,
+    value: 50,
     text: "Community wallet funded with 50k USD",
     final: false,
   },
   {
-    value: 85,
-    text: "Burn mechanics and staking initiated (Ahab and Moby quest begins)",
+    value: 65,
+    text: "25k USD donation to the EFF + 25k donation to Save the Whales",
+    final: false,
+  },
+  {
+    value: 80,
+    text: "Burn mechanics initiated (Gold, Diamond and Moby Whales)",
     final: false,
   },
   {
     value: 100,
-    text: "Companions created for every whale holder",
+    text: "Companions created for whale holders",
     final: true,
   },
 ]
@@ -44,21 +54,33 @@ export const milestons = [
 export const utilities = [
   {
     img: "/utility-01.png",
-    title: "coin rewards",
-    content:
-      "Every week for the first year, whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). At the end of week we will spin up the winning whale type channel and use a custom bot to validate both whale type and number, then distribute ETH via the bot. If we don’t sell out the number of active weeks will correspond to the % of the collection that has sold.",
+    title: "Staking of Whales for $BLUB",
+    contents: [
+      "Each whale can be staked for $BLUB. You can use $BLUB to purchase future whales with $BLUB holders getting the first shot at both claiming and buying new whales. Two important things: $BLUB required to claim new whales will increase w/each new drop and each subsequent generation of whales will earn 15% less $BLUB than the previous whale generation. $BLUB will have a purpose beyond buying new whales, among other things it can be used for redeeming merch, as an entry to NFT raffles & events and as a whitelist pass for future collections. It will be up to the DAO to decide what additional utility $BLUB serves beyond this point but there are a lot of possibilities worth exploring."
+    ],
+    modify: false
   },
   {
-    img: "/utility-02.png",
-    title: "burn mechanics",
-    content:
-      "Moby Quest (Evolve) -Burn 3 common of a single whale type (coin) for 1 gold of that type -Burn 2 gold of same whale type for 1 diamond of that type -Burn 2 diamond of same whale type for 1 Moby Dick Collect the Whales (Gather the Tribes) -First 50 collectors to stake one of each whale type will get a Captain Ahab airdropped. Staking means that the assets get “locked” for a period of time, tentatively set for 30 days",
+    img: "/utility-01.png",
+    title: "coin rewards",
+    contents: [
+      "Every week for the first year, whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). At the end of week we will spin up the winning whale type channel and use a custom tipbot to validate both whale type and number held, then distribute ETH via the bot.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. If ETH runs dry, we tap into the $BLUB. To give an example, if we sell out the first mint phase of 2000 whales, coin rewards will be funded for a 12 week run of 1ETH each week. This also applies to subsequent phases. May the coffers ever flow!"
+    ],
+    modify: false
+  },
+  {
+    img: "",
+    title: "Burn and Claim Mechanics",
+    contents: [],
+    modify: true
   },
   {
     img: "/utility-03.png",
     title: "dao membership",
-    content:
-      "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on floor sweeps vs airdrops and/or marketing efforts. The community wallet will be funded with $50,000 of ETH from the creators and receive 60% of the secondary sales collected.",
+    contents: [
+      "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on floor sweeps vs airdrops and/or marketing efforts. The community wallet will be funded with $50,000 of ETH from the creators and receive 60% of the secondary sales collected."
+    ],
+    modify: false
   },
 ]
 
@@ -118,47 +140,69 @@ export const faqs = [
   {
     question: "What is the Crypto Whale Club?",
     answer:
-      "A collection of 10,000 unique Crypto Whale NFTs stored as ERC-721 tokens on the Ethereum blockchain",
+      "A collection of 8,888 unique Crypto Whale NFTs stored as ERC-721 tokens on the Ethereum blockchain",
   },
   {
     question: "Why are the whales connected to cryptocurrency?",
     answer: `Many of us got into crypto first and then into NFTs following that, 
-      so it's tying the two primary passions together. 
-      It also gives holders the opportunity to identify with their favorite 
-      coin / token in the form of a whale, which is slang for a large asset holder.`,
+      so it's tying the two primary passions together. It also gives holders the opportunity 
+      to identify with their favorite coin / token in the form of a whale, which is slang for a large asset holder.`,
   },
   {
     question: "How many attributes will there be?",
-    answer: `Whales are procedurally generated from 130+ hand drawn traits resulting 
-      in millions of potential unique combinations. 
-      Each Whale will represent one of 20 different crypto 
+    answer: `Whales are procedurally generated from 150+ hand drawn traits resulting in millions 
+      of potential unique combinations. Each Whale will represent one of 20 different crypto 
       coins / tokens and their color will correspond with its logo’s colors.`,
   },
   {
-    question: "What coins will be represented?",
-    answer: `The top 20 coins according to market cap will be represented, excluding 
-      stable coins. The snapshot will be taken closer to our drop date`,
+    question: "Which cryptocurrencies will be represented?",
+    answer: `A snapshot of the top 20 coins & tokens by market cap , excluding stable coins, 
+      was taken the 2nd week of November 2021:`,
+    subItems: [
+      "Bitcoin (BTC)",
+      "Ethereum (ETH)",
+      "Binance Coin (BNB)",
+      "Solana (SOL)",
+      "Cardano (ADA)",
+      "XRP (XRP)",
+      "Polkadot (DOT)",
+      "Dogecoin (DOGE)",
+      "Avalanche (AVAX)",
+      "Terra (LUNA)",
+      "Litecoin (LTC)",
+      "Uniswap (UNI)",
+      "Chainlink (LINK)",
+      "Polygon (MATIC)",
+      "Algorand (ALGO)",
+      "Axie Infinity (AXS)",
+      "Stellar (XLM)",
+      "VeChain (VET)",
+      "Internet Computer (ICP)",
+      "Cosmos (ATOM)"
+    ]
   },
   {
     question: "When will the collection be available to mint?",
-    answer: `Pre-sale will be Nov. 30th and the public sale will be Dec. 2nd. Exact times announced closer to launch.`,
+    answer: `Pre-sale will be December 7th and the public sale will be December 9th. 
+      There will be 2,000 genesis (Gen 0) Crypto Whales initially released for minting with 
+      subsequent generations of whales made available as the project and community grows.`,
   },
   {
     question: "What will the price be to mint a whale?",
     answer: `Whales will cost 0.06 ETH to Mint with NO bonding curve or FOMO pricing. 
-      Marketplace royalties are 5%.`,
+      Marketplace royalties are 5%. Whales will also be purchasable through 
+      $BLUB which you earn by staking your whales.`,
   },
   {
     question: "Where do the secondary royalties go?",
-    answer: `60% of all secondary sales collected by Crypto Whale Club will go to the 
-      community wallet, 20% will go to a non-profit that the community of whale holders 
-      votes on, and 20% will go to the project team.`,
+    answer: `60% of all secondary sales collected by Crypto Whale Club will go to the DAO governed 
+      community wallet, 20% will go to a non-profit that the community of whale holders votes on, 
+      and 20% will go to the project team.`,
   },
   {
-    question: "Will there be a pre-sale?",
-    answer: `Yes! Everyone w/the ambassador, referred or whitelist role will have pre-sale 
-      access. You can get the role by inviting 10+ people or by being given it from the team 
-      for positive contributions to the project (promoting the project w/out spamming, 
-      positive discord engagement, retweeting etc).`,
+    question: "Will there be a presale?",
+    answer: `Yes! Everyone w/the ambassador, referred or whitelist role will have presale access. 
+      You can get the role by inviting 5+ people or by being given it from the team for positive contributions 
+      to the project-promoting the project w/out spamming, positive discord engagement, retweeting etc.`,
   },
 ]

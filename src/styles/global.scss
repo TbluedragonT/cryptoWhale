@@ -18,3 +18,25 @@
 .font-recoleta-bold {
   font-family: "Recoleta Bold";
 }
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pb-15 {
+  padding-bottom: 4rem;
+}
+
+ul.faq-subitems {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+ul.utility-subitems {
+  list-style-type: "- ";
+}
