@@ -62,7 +62,7 @@ export default function HomePage({}) {
     const offset = Math.floor(
       date
         .subtract(
-          new Date(2021, 10, 30),
+          new Date(2021, 11, 7),
           new Date(now.getFullYear(), now.getMonth(), now.getDate())
         )
         .toDays()
@@ -78,7 +78,7 @@ export default function HomePage({}) {
       clearInterval(timerId)
     }
   }, [])
-
+  
   return (
     <div>
       <div className="relative">
@@ -244,9 +244,8 @@ export default function HomePage({}) {
         ) : (
           <div key={idx}>
             <div className="flex flex-col lg:flex-row">
-              <div className="md:w-2/3 lg:w-2/5 pl-0 object-contain mx-auto"></div>
-              <div className="flex flex-col justify-center lg:w-3/5 p-6 relative pt-10 pb-0">
-                <div className="text-primary text-2xl md:text-4xl capitalize pb-4">
+              <div className="flex flex-col justify-center relative pt-10 pb-0">
+                <div className="text-primary text-3xl md:text-5xl capitalize pb-4">
                   {dt.title}
                 </div>
               </div>
@@ -257,7 +256,7 @@ export default function HomePage({}) {
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto pb-15"
               />
               <div className="flex flex-col justify-center lg:w-3/5 px-6 relative pb-10">
-                <div className="text-primary text-xl md:text-3xl capitalize pb-4">
+                <div className="text-primary text-2xl md:text-4xl capitalize pb-4">
                   Moby Dick Quest
                 </div>
                 <div className="text-black text-lg md:text-2xl">
@@ -286,7 +285,7 @@ export default function HomePage({}) {
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
               />
               <div className="flex flex-col justify-center lg:w-3/5 px-6 relative py-10">
-                <div className="text-primary text-xl md:text-3xl capitalize pb-4">
+                <div className="text-primary text-2xl md:text-4xl capitalize pb-4">
                   Captain Ahab Quest
                 </div>
                 <div className="text-black text-lg md:text-2xl">
