@@ -61,7 +61,7 @@ export const utilities = [
     modify: false
   },
   {
-    img: "/utility-01.png",
+    img: "/utility-02.png",
     title: "coin rewards",
     contents: [
       "Every week for the first year, whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). At the end of week we will spin up the winning whale type channel and use a custom tipbot to validate both whale type and number held, then distribute ETH via the bot.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. If ETH runs dry, we tap into the $BLUB. To give an example, if we sell out the first mint phase of 2000 whales, coin rewards will be funded for a 12 week run of 1ETH each week. This also applies to subsequent phases. May the coffers ever flow!"
@@ -75,7 +75,7 @@ export const utilities = [
     modify: true
   },
   {
-    img: "/utility-03.png",
+    img: "/utility-04.png",
     title: "dao membership",
     contents: [
       "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on floor sweeps vs airdrops and/or marketing efforts. The community wallet will be funded with $50,000 of ETH from the creators and receive 60% of the secondary sales collected."
@@ -183,9 +183,9 @@ export const faqs = [
   },
   {
     question: "When will the collection be available to mint?",
-    answer: `Pre-sale will be December 7th and the public sale will be December 9th. 
-      There will be 2,000 genesis (Gen 0) Crypto Whales initially released for minting with 
-      subsequent generations of whales made available as the project and community grows.`,
+    answer: `Pre-sale will be December 9th and the public sale will be December 14th. 
+      There will be 2,000 genesis (Gen 0) Crypto Whales initially released for minting with subsequent 
+      generations of whales made available as the project and community grows.`,
   },
   {
     question: "What will the price be to mint a whale?",
