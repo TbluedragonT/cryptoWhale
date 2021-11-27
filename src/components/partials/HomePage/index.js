@@ -107,7 +107,7 @@ export default function HomePage({}) {
           </div>
           <img src="/join-logo.svg" className="hidden lg:block w-1/3 py-5" />
           <p className="text-xl md:text-3xl text-black py-5">
-            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 0) pre-sale will start December 7th and public mint will be on December 9th.
+            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 0) presale will start December 9th and public mint will be on December 14th.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
             <a
@@ -252,7 +252,7 @@ export default function HomePage({}) {
             </div>
             <div className="flex flex-col lg:flex-row">
               <img
-                src="/utility-02_01.png"
+                src="/utility-03_01.png"
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto pb-15"
               />
               <div className="flex flex-col justify-center lg:w-3/5 px-6 relative pb-10">
@@ -281,7 +281,7 @@ export default function HomePage({}) {
             </div>
             <div className="flex flex-col lg:flex-row">
               <img
-                src="/utility-02_02.png"
+                src="/utility-03_02.png"
                 className="md:w-2/3 lg:w-2/5 p-6 pl-0 object-contain mx-auto"
               />
               <div className="flex flex-col justify-center lg:w-3/5 px-6 relative py-10">
