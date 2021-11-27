@@ -62,7 +62,7 @@ export default function HomePage({}) {
     const offset = Math.floor(
       date
         .subtract(
-          new Date(2021, 11, 7),
+          new Date(2021, 11, 9),
           new Date(now.getFullYear(), now.getMonth(), now.getDate())
         )
         .toDays()
