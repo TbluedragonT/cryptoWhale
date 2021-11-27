@@ -51,6 +51,7 @@
     "react-image-gallery": "^1.1.1",
     "react-modal": "^3.14.3",
     "react-responsive": "^8.2.0",
+    "react-scroll": "^1.8.4",
     "react-vertical-timeline-component": "^3.3.3",
     "sass": "^1.35.2",
     "web3": "^1.4.0",
