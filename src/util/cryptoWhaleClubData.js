@@ -64,7 +64,7 @@ export const utilities = [
     img: "/utility-02.png",
     title: "coin rewards",
     contents: [
-      "Every week for the first year, whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). At the end of week we will spin up the winning whale type channel and use a custom tipbot to validate both whale type and number held, then distribute ETH via the bot.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. If ETH runs dry, we tap into the $BLUB. To give an example, if we sell out the first mint phase of 2000 whales, coin rewards will be funded for a 12 week run of 1ETH each week. This also applies to subsequent phases. May the coffers ever flow!"
+      "Each week whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). We will validate the number held of the winning whale type along with any potential multipliers to calculate allocation. Coin rewards can be claimed from the CwC website.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. To give an example, if we sell out the first mint phase of 2000 whales, coin rewards will be funded for a 12 week run of 1ETH each week. This also applies to subsequent phases."
     ],
     modify: false
   },
