@@ -140,7 +140,7 @@ export default function HomePage({}) {
             />
           </div>
           <p className="p-4 lg:w-1/2 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
-            Crypto Whales are forged from 130+ different attributes/traits with
+            Crypto Whales are forged from 150+ different attributes/traits with
             a maximum of 10,000 whales minted. They are programmatically
             generated and will be stored as ERC-721 tokens on the Ethereum
             blockchain. There are 20 different types of whales, each
@@ -198,8 +198,9 @@ export default function HomePage({}) {
               Post Sellout -
             </span>
             <span className="text-secondary text-lg md:text-2xl">
-              We hire a dedicated community manager to continue marketing and
-              pushing growth of the project.
+              Hire a dedicated community manager to organize marketing & partnership
+              efforts, engaging with & supporting the community and promoting the
+              growth of the project.
             </span>
           </div>
           <div className="py-2">
@@ -207,7 +208,7 @@ export default function HomePage({}) {
               Carbon Offset for the project:
             </span>
             <span className="text-secondary text-lg md:text-2xl">
-              Will be done regardless of how much of the collection sells.
+              Done regardless of how much of the collection sells.
             </span>
           </div>
         </div>
