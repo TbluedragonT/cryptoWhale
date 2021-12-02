@@ -70,13 +70,13 @@ export const utilities = [
   },
   {
     img: "",
-    title: "Burn and Claim Mechanics",
+    title: "Quests and DAO",
     contents: [],
     modify: true
   },
   {
     img: "/utility-04.png",
-    title: "dao membership",
+    title: "DAO membership",
     contents: [
       "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on floor sweeps vs airdrops and/or marketing efforts. The community wallet will be funded with $50,000 of ETH from the creators and receive 60% of the secondary sales collected."
     ],
