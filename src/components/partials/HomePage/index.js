@@ -141,11 +141,14 @@ export default function HomePage({}) {
           </div>
           <p className="p-4 lg:w-1/2 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
             Crypto Whales are forged from 150+ different attributes/traits with
-            a maximum of 10,000 whales minted. They are programmatically
-            generated and will be stored as ERC-721 tokens on the Ethereum
-            blockchain. There are 20 different types of whales, each
-            representing a different coin or token. Whales will be the logo
-            color of their respective coin / token.
+            a maximum of 8,888 whales minted. They are programmatically generated
+            and will be stored as ERC-721 tokens on the Ethereum blockchain. There
+            are 20 different types of whales, each representing a different coin or
+            token. Whales will be the logo color of their respective coin / token. 2,000
+            Gen 0 whales will be released for minting initially with subsequent
+            generations released as the project and community grows. Whales can be staked
+            for $BLUB, which can be used for future generations of whales, entering
+            raffles, merchandise and more.
           </p>
         </div>
       </div>
@@ -205,7 +208,7 @@ export default function HomePage({}) {
           </div>
           <div className="py-2">
             <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
-              Carbon Offset for the project:
+              Carbon Offset for the project - 
             </span>
             <span className="text-secondary text-lg md:text-2xl">
               Done regardless of how much of the collection sells.
