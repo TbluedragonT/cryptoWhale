@@ -1,0 +1,16 @@
+.mint-page {
+  background-image: url("/mint_page/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  .btn-mint {
+    background-image: url("/mint_page/bg_btn.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+.btn-disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
