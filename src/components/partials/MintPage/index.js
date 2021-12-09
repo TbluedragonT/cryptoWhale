@@ -17,7 +17,7 @@ const MintPage = () => {
   const [currentSupply, setCurrentSupply] = useState(-1)
   const [walletReady, setWalletReady] = useState(false)
   const [walletAddress, setWalletAddress] = useState('')
-  const [amount, setAmount] = useState(1)
+  const [amount, setAmount] = useState(3)
   const [web3, setWeb3] = useState(null)
   const [onBoard, setOnBoard] = useState(null)
   const [cwcContract, setCwcContract] = useState(null)
@@ -175,17 +175,17 @@ const MintPage = () => {
           const totalPrice = amount * unitPrice * 10e15;
           await cwcContract.methods.mint(amount).send({ from: walletAddress, value: totalPrice })
             .on('transactionHash', (receipt) => {
-              displayNotify("info", "Running code on network...please wait a moment.")
+              displayNotify("info", "Transaction in progress...please wait a moment.")
             })
             .on('receipt', (receipt) => {
               getSupplyAmount()
-              displayNotify("success", "Success! Thank you for joining the fight against The Corporations.")
+              displayNotify("success", "Success! Thank you for your purchase; Capt. Ahab will be pleased.")
             })
             .on('error', () => {
               displayNotify("error", "Transaction cancelled.")
             });
         } catch (error) {
-          displayNotify("error", "Unfortunately, The Corporation won and your transaction has failed. Please try again.")
+          displayNotify("error", "Unfortunately, the High Seas were too rough and your transaction has failed. Please try again.")
         }
       } else {
         displayNotify("warning", "Please select amount.")
