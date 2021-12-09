@@ -173,7 +173,7 @@ const MintPage = () => {
       if(amount > 0) {
         try {
           const totalPrice = amount * unitPrice * 10e15;
-          await cwcContract.methods.mint(amount).send({ from: walletAddress, value: totalPrice })
+          await cwcContract.methods.mintWithEth(amount).send({ from: walletAddress, value: totalPrice })
             .on('transactionHash', (receipt) => {
               displayNotify("info", "Transaction in progress...please wait a moment.")
             })
@@ -191,7 +191,7 @@ const MintPage = () => {
         displayNotify("warning", "Please select amount.")
       }
     } else {
-      displayNotify("error", "You do not have permission to mint during Presale, sorry!")
+      displayNotify("error", "You salty dog, trying to mint during presale without permission!")
     }
   }
   
@@ -217,7 +217,9 @@ const MintPage = () => {
       <div className="w-w-tiny h-h-tiny tiny:w-h-normal tiny:h-h-small lg:w-normal lg:h-h-normal mint-control flex flex-col text-white items-center justify-center relative lg:gap-6 xl:gap-2">
         <div className="h-1/2 flex flex-col w-full px-3 tiny:px-8 lg:px-24 xl:px-10">
           <div className="h-1/2 flex items-center justify-end font-lilita text-2xl tiny:text-3xl lg:text-4xl xl:text-6xl">
-            {currentSupply < 0 ? '?' : currentSupply}/2000
+{/*
+            { currentSupply < 0 ? '?' : currentSupply}/2000
+*/}
           </div>
           <div className="h-1/2 flex gap-4">
             <div className="w-4/12 border-4 rounded-lg flex py-3 items-center justify-center gap-1">
