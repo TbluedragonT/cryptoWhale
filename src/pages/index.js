@@ -8,7 +8,7 @@ import SEO from "@components/seo/index"
 // Render
 const CryptoWhaleClub = () => (
   // <PageComingSoon />
-  <Layout title="Crypto Whale Club" contentClassName="brandsContent">
+  <Layout title="Crypto Whale Club" contentClassName="brandsContent" page="home">
     <SEO title="Crypto Whale Club" />
     <HomePage />
   </Layout>

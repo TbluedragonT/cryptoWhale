@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
+require("dotenv").config();
 const path = require(`path`)
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     url: "https://cryptowhaleclub.io/",
     domain: "cryptowhaleclub.io",
     title: `Crypto Whale Club`,
-    description: `Crypto Whale Club is a collection of 10,000 unique NFT Atlantean
+    description: `Crypto Whale Club is a collection of 8,888 unique NFT Atlantean
     whales living on the Ethereum blockchain`,
   },
   plugins: [
