@@ -19,13 +19,12 @@ module.exports = {
       },
     },
     screens: {
-      tiny: "400px",
-      xs: "541px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      "tiny": "400px",
+      sm: '600px',
+      md: '820px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
     },
     extend: {
       backgroundImage: {
