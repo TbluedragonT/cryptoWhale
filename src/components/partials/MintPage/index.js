@@ -120,9 +120,10 @@ const MintPage = () => {
   }, [cwcContract])
 
   useEffect(() => {
-    if (walletAddress !== '' && walletReady) {
+    if (walletAddress && walletReady) {
+      const upperWalletAddress = walletAddress.toUpperCase();
       setConnected(true)
-      const _isAvailable = whiteListAddresses.some(v => v === walletAddress)
+      const _isAvailable = whiteListAddresses.some(v => v.toUpperCase() === upperWalletAddress)
       setIsAvailable(_isAvailable) 
 
       if(!_isAvailable)
