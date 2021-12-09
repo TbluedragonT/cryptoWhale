@@ -18,6 +18,14 @@ module.exports = {
         "2xl": "3rem",
       },
     },
+    screens: {
+      "tiny": "400px",
+      sm: '600px',
+      md: '820px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       backgroundImage: {
         // "hero": "url('/hero.png')",

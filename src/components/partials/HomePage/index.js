@@ -93,19 +93,19 @@ export default function HomePage({}) {
           />
         )}
         {(leftHours > 0 || leftMins > 0) && (
-          <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary">
+          <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
             { leftHours > 0 && (
               <>
-                <span className="text-yellow-300 text-5xl xl:text-7xl font-recoleta-bold px-2">
+                <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
                   {leftHours}
                 </span>
                 hours 
               </>
             )}
-            <span className="text-yellow-300 text-5xl xl:text-7xl font-recoleta-bold px-2">
+            <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftMins}
             </span>
-            minutes till presale
+            minutes <br className="tiny:hidden"/>till presale
           </div>
         )}
       </div>
