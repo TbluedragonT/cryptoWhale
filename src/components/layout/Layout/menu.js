@@ -3,6 +3,12 @@ export const twitterLink = "https://twitter.com/cryptowhaleclub"
 
 export const menus = [
   {
+    name: "Mint",
+    path: "/mint",
+    target: "",
+    type: "external",
+  },
+  {
     name: "Lore",
     path: "lore",
     target: "",
