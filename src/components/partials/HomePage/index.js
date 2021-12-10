@@ -106,10 +106,10 @@ export default function HomePage({}) {
             <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftMins}
             </span>
-            minutes <br className="tiny:hidden"/>till presale
+            minutes <br className="tiny:hidden"/>till public sale
           </div>
         )}
-        <a href={cryptowhaleclubLink} class="main-button">Presale Mint</a>
+        <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a>
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
