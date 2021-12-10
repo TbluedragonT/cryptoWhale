@@ -1,1 +1,1 @@
-# CryptoWhaleClub
+# Crypto Whale Club
