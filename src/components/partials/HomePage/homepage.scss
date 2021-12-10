@@ -8,7 +8,6 @@
   font-weight: bold !important;
   cursor: pointer;
   text-align: center;
-  //   background: #5ac56e;
   border: solid 8px #6be986;
   background-color: #0b4e1b; /* For browsers that do not support gradients */
   background-image: linear-gradient(#7bff98, #0b4e1b);
@@ -90,10 +89,5 @@
       );
       border-radius: 15px;
     }
-  }
-  @media (min-width: 1480px) {
-    .main-button {
-        top: 330px;
-      }  
   }
 }
