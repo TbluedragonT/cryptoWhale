@@ -226,20 +226,20 @@ export default function HomePage({ }) {
             <Roadmap milestons={milestons} />
           </div>
           <div className="py-2 roadmap-content">
-            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 tracking-tight">
               Post Sellout -
             </span>
-            <span className="text-secondary text-lg md:text-2xl">
+            <span className="text-secondary text-lg md:text-2xl px-2">
               Hire a dedicated community manager to organize marketing & partnership
               efforts, engaging with & supporting the community and promoting the
               growth of the project.
             </span>
           </div>
           <div className="py-2 roadmap-content">
-            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 tracking-tight">
               Carbon Offset for the project -
             </span>
-            <span className="text-secondary text-lg md:text-2xl">
+            <span className="text-secondary text-lg md:text-2xl px-2">
               Done regardless of how much of the collection sells.
             </span>
           </div>
