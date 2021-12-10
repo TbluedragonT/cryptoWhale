@@ -63,10 +63,16 @@
   .main-button {
     top: 140px;
   }
+  .roadmap-content {
+    width: 50rem;
+  }
 }
 @media (min-width: 1029px) {
   .main-button {
     top: 190px;
+  }
+  .roadmap-content {
+    width: 55rem;
   }
 }
 
@@ -89,5 +95,13 @@
       );
       border-radius: 15px;
     }
+  }
+  .roadmap-content {
+    width: 65rem;
+  }
+}
+@media (min-width: 1380px) {
+  .roadmap-content {
+    width: 68rem;
   }
 }
