@@ -1,6 +1,6 @@
 export const discordLink = "https://discord.gg/cryptowhaleclub"
 export const twitterLink = "https://twitter.com/cryptowhaleclub"
-export const cryptowhaleclubLink = "https://cryptowhaleclub.io/mint/"
+export const cryptowhaleclubLink = "/mint/"
 
 export const menus = [
   {
