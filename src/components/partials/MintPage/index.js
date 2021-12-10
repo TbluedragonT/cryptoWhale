@@ -127,7 +127,7 @@ const MintPage = () => {
       setIsAvailable(_isAvailable) 
 
       if(!_isAvailable)
-        displayNotify("error", "You do not have permission to mint during Presale, sorry!")
+        displayNotify("error", "You salty dog, trying to mint during presale without permission!")
     } else {
       setConnected(false)
     }

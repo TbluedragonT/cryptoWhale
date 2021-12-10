@@ -155,6 +155,7 @@ export default function Layout({
                             className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
                             key={dt.name}
                           >
+                          {dt.type == "internal" ? (
                             <ScrollLink
                               to={dt.path}
                               spy={true}
@@ -164,6 +165,15 @@ export default function Layout({
                             >
                               {dt.name}
                             </ScrollLink>
+                          ) : (
+                            <a
+                              className="no-underline px-5"
+                              href={dt.path}
+                              target={dt.target}
+                            >
+                              {dt.name}
+                            </a>
+                          )}
                           </li>
                         ))}
                         <li className="py-2 px-3 w-full">
