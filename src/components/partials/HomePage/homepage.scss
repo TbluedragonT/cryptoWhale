@@ -1,0 +1,93 @@
+.main-button {
+  position: absolute;
+  right: 18%;
+  width: 300px;
+  line-height: 75px;
+  height: 80px;
+  font-size: 2rem;
+  font-weight: bold !important;
+  cursor: pointer;
+  text-align: center;
+  border: solid 8px #6be986;
+  background-color: #0b4e1b; /* For browsers that do not support gradients */
+  background-image: linear-gradient(#7bff98, #0b4e1b);
+  border-radius: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 25px;
+    margin: 8px 0 0 -15px;
+    background: linear-gradient(
+      rgba(238, 238, 238, 0.5),
+      rgba(185, 255, 206, 0.5)
+    );
+    border-radius: 15px;
+    z-index: -1;
+  }
+}
+@media (max-width: 680px) {
+  .main-button {
+    right: 5%;
+    top: 50px;
+    width: 200px;
+    line-height: 55px;
+    height: 60px;
+    font-size: 1.4rem;
+    border: solid 5px #6be986;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 165px;
+      height: 15px;
+      margin: 10px 0 0 -2px;
+      background: linear-gradient(
+        rgba(238, 238, 238, 0.5),
+        rgba(185, 255, 206, 0.5)
+      );
+      border-radius: 15px;
+      z-index: -1;
+    }
+  }
+}
+@media (min-width: 681px) {
+  .main-button {
+    top: 70px;
+  }
+}
+@media (min-width: 829px) {
+  .main-button {
+    top: 140px;
+  }
+}
+@media (min-width: 1029px) {
+  .main-button {
+    top: 190px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main-button {
+    width: 350px;
+    line-height: 78px;
+    height: 85px;
+    font-size: 2rem;
+    font-weight: bold !important;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 25px;
+      margin: 12px 0 0 -35px;
+      background: linear-gradient(
+        rgba(238, 238, 238, 0.5),
+        rgba(185, 255, 206, 0.5)
+      );
+      border-radius: 15px;
+    }
+  }
+}
