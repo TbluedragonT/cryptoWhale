@@ -4,8 +4,9 @@ import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
 import React, { useEffect, useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
-import { discordLink, twitterLink } from "@components/layout/Layout/menu"
+import { discordLink, twitterLink, cryptowhaleclubLink } from "@components/layout/Layout/menu"
 import date from "date-and-time"
+import "./homepage.scss"
 
 const FaqItem = ({ question, answer, subItems }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -108,6 +109,7 @@ export default function HomePage({}) {
             minutes <br className="tiny:hidden"/>till presale
           </div>
         )}
+        <a href={cryptowhaleclubLink} class="main-button">Presale Mint</a>
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
