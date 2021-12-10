@@ -16,6 +16,8 @@
   text-transform: uppercase;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
+  display: none;
+
   &:before {
     content: "";
     position: absolute;
@@ -28,6 +30,22 @@
     );
     border-radius: 15px;
     z-index: -1;
+  }
+  &.mobile {
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: auto;
+    font-size: 12px;
+    line-height: initial;
+    position: relative;
+    display: block;
+
+    &:before {
+      width: 100px;
+      height: 6px;
+      margin: 3px 0 0 -7px;
+    }
   }
 }
 @media (max-width: 680px) {
@@ -67,12 +85,13 @@
     width: 50rem;
   }
 }
-@media (min-width: 1029px) {
+@media (min-width: 1024px) {
   .main-button {
     top: 190px;
+    display: block;
   }
   .roadmap-content {
-    width: 55rem;
+    width: 50rem;
   }
 }
 
