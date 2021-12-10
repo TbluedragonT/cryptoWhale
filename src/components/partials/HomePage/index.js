@@ -97,7 +97,7 @@ export default function HomePage({ }) {
           />
         )}
         {leftDays > 0 ? (
-          <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
+          <div className="trasform translate-y-10 md:translate-y-16 xl:translate-y-10 absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
             <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftDays}
             </span>
