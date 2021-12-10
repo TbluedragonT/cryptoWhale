@@ -64,9 +64,9 @@ export default function HomePage({ }) {
 
   const calc = () => {
     let now = new Date()
-    now = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
-    let endDate = new Date(Date.UTC(2021, 11, 14, 24, 0, 0))
-    endDate = endDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+    now = now.toLocaleString('en-US', { timeZone: 'UTC' })
+    let endDate = new Date(Date.UTC(2021, 11, 14, 17, 0, 0))
+    endDate = endDate.toLocaleString('en-US', { timeZone: 'UTC' })
     let dateDiff = new Date(endDate) - new Date(now)
     let minDiff = Math.floor(dateDiff / (1000 * 60))
     let restHours = Math.floor(minDiff / 60)
