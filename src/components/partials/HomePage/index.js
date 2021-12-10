@@ -30,7 +30,7 @@ const FaqItem = ({ question, answer, subItems }) => {
             <div className="text-black text-base md:text-xl md:w-3/4 2xl:w-2/3">
               {answer}
             </div>
-            { subItems && (
+            {subItems && (
               <ul className="faq-subitems">
                 {
                   subItems.map((item, idx) => {
@@ -49,7 +49,7 @@ const FaqItem = ({ question, answer, subItems }) => {
   )
 }
 
-export default function HomePage({}) {
+export default function HomePage({ }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -58,19 +58,22 @@ export default function HomePage({}) {
     })
   })
 
+  const [leftDays, setLeftDays] = useState(0)
   const [leftHours, setLeftHours] = useState(0)
   const [leftMins, setLeftMins] = useState(0)
-  
+
   const calc = () => {
     let now = new Date()
-    now = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
-    let endDate = new Date(Date.UTC(2021, 11, 9, 24, 0, 0))
-    endDate = endDate.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+    now = now.toLocaleString('en-US', { timeZone: 'UTC' })
+    let endDate = new Date(Date.UTC(2021, 11, 14, 17, 0, 0))
+    endDate = endDate.toLocaleString('en-US', { timeZone: 'UTC' })
     let dateDiff = new Date(endDate) - new Date(now)
     let minDiff = Math.floor(dateDiff / (1000 * 60))
     let restHours = Math.floor(minDiff / 60)
+    let restDays = Math.floor(restHours / 24)
+    restHours = restDays > 0 ? (restHours - restDays * 24) : restHours
     let restMins = minDiff % 60
-
+    setLeftDays(restDays)
     setLeftHours(restHours)
     setLeftMins(restMins)
   }
@@ -82,7 +85,7 @@ export default function HomePage({}) {
       clearInterval(timerId)
     }
   }, [])
-  
+
   return (
     <div>
       <div className="relative">
@@ -93,22 +96,35 @@ export default function HomePage({}) {
             className="w-3/16 absolute top-2/16 left-1/16"
           />
         )}
-        {(leftHours > 0 || leftMins > 0) && (
+        {leftDays > 0 ? (
+          <div className="trasform -translate-y-8 md:translate-y-20 xl:translate-y-10 absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
+            <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
+              {leftDays}
+            </span>
+            days
+            <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
+              {leftHours}
+            </span>
+            hours <br className="tiny:hidden" />till public sale
+          </div>
+        ) : (leftHours > 0 || leftMins > 0) && (
           <div className="absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
-            { leftHours > 0 && (
+            {leftHours > 0 && (
               <>
                 <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
                   {leftHours}
                 </span>
-                hours 
+                hours
               </>
             )}
             <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftMins}
             </span>
-            minutes <br className="tiny:hidden"/>till public sale
+            minutes <br className="tiny:hidden" />till public sale
           </div>
-        )}
+        )
+        }
+
         <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a>
       </div>
 
@@ -209,8 +225,8 @@ export default function HomePage({}) {
           <div className="py-4 flex flex-row justify-center xl:justify-start">
             <Roadmap milestons={milestons} />
           </div>
-          <div className="py-2">
-            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
+          <div className="py-2 roadmap-content">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 pr-2 tracking-tight">
               Post Sellout -
             </span>
             <span className="text-secondary text-lg md:text-2xl">
@@ -219,9 +235,9 @@ export default function HomePage({}) {
               growth of the project.
             </span>
           </div>
-          <div className="py-2">
-            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 px-2 tracking-tight">
-              Carbon Offset for the project - 
+          <div className="py-2 roadmap-content">
+            <span className="text-yellow-300 text-lg md:text-2xl capitalize py-6 pr-2 tracking-tight">
+              Carbon Offset for the project -
             </span>
             <span className="text-secondary text-lg md:text-2xl">
               Done regardless of how much of the collection sells.
@@ -251,7 +267,7 @@ export default function HomePage({}) {
                 <div className="text-black text-lg md:text-2xl">
                   {dt.contents.map((item, idx) => (
                     <div key={idx}>
-                      <div>{item}</div> <br/>
+                      <div>{item}</div> <br />
                     </div>
                   ))}
                 </div>
