@@ -6,7 +6,7 @@ import "@styles/global.scss"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { menus, footerLinks } from "./menu"
-import { discordLink, twitterLink, cryptowhaleclubLink } from "./menu"
+import { discordLink, twitterLink, openseaLink, cryptowhaleclubLink } from "./menu"
 
 export default function Layout({
   title = "CWC",
@@ -19,6 +19,22 @@ export default function Layout({
   page = "home",
 }) {
   const [scrolled, setScrolled] = useState(false)
+
+  const socialLinks = [
+    {
+      link: discordLink,
+      icon: '/icon/icon-discord.svg'
+    },
+    {
+      link: twitterLink,
+      icon: '/icon/icon-twitter.svg'
+    },
+    {
+      link: openseaLink,
+      icon: '/icon/icon-opensea.png'
+    }
+  ]
+
   useEffect(() => {
     window.addEventListener("scroll", _ => {
       setScrolled(window.scrollY > 60)
@@ -36,9 +52,8 @@ export default function Layout({
         <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
           <Disclosure
             as="nav"
-            className={`top-0 fixed z-50 w-full px-0 ${
-              scrolled ? "bg-primary" : "bg-none"
-            } ${headerClass} ${visibleClass ? "block" : "hidden"} `}
+            className={`top-0 fixed z-50 w-full px-0 ${scrolled ? "bg-primary" : "bg-none"
+              } ${headerClass} ${visibleClass ? "block" : "hidden"} `}
             style={headerStyle}
           >
             {({ open }) => (
@@ -46,9 +61,8 @@ export default function Layout({
                 <div>
                   <div className="container mx-auto lg:pt-2">
                     <div
-                      className={`relative flex ${
-                        scrolled ? "justify-between" : "justify-end"
-                      } items-center`}
+                      className={`relative flex ${scrolled ? "justify-between" : "justify-end"
+                        } items-center`}
                     >
                       {scrolled && (
                         <Link to={"/"}>
@@ -89,38 +103,27 @@ export default function Layout({
                                     )}
                                   </li>
                                 ))}
-                                <li className="py-2 pl-3">
-                                  <a
-                                    id="join_discord"
-                                    className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
-                                    href={discordLink}
-                                    target="_blank"
-                                  >
-                                    <img
-                                      src="/icon/icon-discord.svg"
-                                      className="w-10 h-10"
-                                    />
-                                    {/* <span className="text-secondary tracking-wider">
-                                    Join our Discord
-                                  </span> */}
-                                  </a>
-                                </li>
-                                <li className="py-2 pl-3">
-                                  <a
-                                    id="join_twitter"
-                                    className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
-                                    href={twitterLink}
-                                    target="_blank"
-                                  >
-                                    <img
-                                      src="/icon/icon-twitter.svg"
-                                      className="w-10 h-10"
-                                    />
-                                    {/* <span className="text-secondary tracking-wider">
-                                    Join our Twitter
-                                  </span> */}
-                                  </a>
-                                </li>
+                                {
+                                  socialLinks.map((item, index) => {
+                                    return (
+                                      <li 
+                                        key={index}
+                                        className="py-2 pl-3"
+                                      >
+                                        <a
+                                          className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
+                                          href={item.link}
+                                          target="_blank"
+                                        >
+                                          <img
+                                            src={item.icon}
+                                            className="w-10 h-10"
+                                          />
+                                        </a>
+                                      </li>
+                                    )
+                                  })
+                                }
                               </ul>
                             </div>
                           </div>
@@ -128,7 +131,7 @@ export default function Layout({
                       </div>
                       <div className="absolute inset-y-6 right-0 flex items-center lg:hidden">
                         {/* Mobile menu button*/}
-                        {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Presale Mint</a>)}
+                        {/* {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Presale Mint</a>)} */}
                         <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary">
                           <span className="sr-only">Open main menu</span>
                           {open ? (
@@ -156,57 +159,46 @@ export default function Layout({
                             className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
                             key={dt.name}
                           >
-                          {dt.type == "internal" ? (
-                            <ScrollLink
-                              to={dt.path}
-                              spy={true}
-                              smooth={true}
-                              offset={-70}
-                              duration={500}
-                            >
-                              {dt.name}
-                            </ScrollLink>
-                          ) : (
-                            <a
-                              className="no-underline px-5"
-                              href={dt.path}
-                              target={dt.target}
-                            >
-                              {dt.name}
-                            </a>
-                          )}
+                            {dt.type == "internal" ? (
+                              <ScrollLink
+                                to={dt.path}
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
+                              >
+                                {dt.name}
+                              </ScrollLink>
+                            ) : (
+                              <a
+                                className="no-underline px-5"
+                                href={dt.path}
+                                target={dt.target}
+                              >
+                                {dt.name}
+                              </a>
+                            )}
                           </li>
                         ))}
                         <li className="py-2 px-3 w-full">
                           <div className="flex flex-row justify-center gap-3">
-                            <a
-                              id="join_discord"
-                              className="flex justify-center items-center font-recoleta-bold py-3 px-3 my-2"
-                              href={discordLink}
-                              target="_blank"
-                            >
-                              <img
-                                src="/icon/icon-discord.svg"
-                                className="w-10 h-10"
-                              />
-                              {/* <span className="text-secondary tracking-wider">
-                                    Join our Discord
-                                  </span> */}
-                            </a>
-                            <a
-                              id="join_twitter"
-                              className="flex justify-center items-center hover:bg-primary py-3 px-3 my-2"
-                              href={discordLink}
-                              target="_blank"
-                            >
-                              <img
-                                src="/icon/icon-twitter.svg"
-                                className="w-10 h-10"
-                              />
-                              {/* <span className="text-secondary tracking-wider">
-                                    Join our Discord
-                                  </span> */}
-                            </a>
+                            {
+                              socialLinks.map((item, index) => {
+                                return (
+                                  <a
+                                    key={index}
+                                    className="flex justify-center items-center font-recoleta-bold py-3 px-3 my-2"
+                                    href={item.link}
+                                    target="_blank"
+                                  >
+                                    <img
+                                      src={item.icon}
+                                      className="w-10 h-10"
+                                    />
+                                  </a>
+                                )
+                              })
+                            }
                           </div>
                         </li>
                       </ul>
@@ -219,18 +211,16 @@ export default function Layout({
 
           <div className="relative flex flex-col">
             <main
-              className={`max-w-full mx-auto flex-grow flex flex-col ${contentClassName} ${
-                visibleClass ? "" : "pb-0"
-              }`}
+              className={`max-w-full mx-auto flex-grow flex flex-col ${contentClassName} ${visibleClass ? "" : "pb-0"
+                }`}
             >
               {children}
             </main>
           </div>
 
           <div
-            className={`bg-primary relative min-w-full ${
-              visibleClass && visibleFooter ? "block" : "hidden"
-            } `}
+            className={`bg-primary relative min-w-full ${visibleClass && visibleFooter ? "block" : "hidden"
+              } `}
           >
             <div className="flex flex-col lg:w-3/5 mx-auto py-20">
               <div className="flex flex-col lg:flex-row lg:justify-between relative items-center">

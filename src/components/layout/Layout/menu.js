@@ -1,14 +1,15 @@
 export const discordLink = "https://discord.gg/cryptowhaleclub"
 export const twitterLink = "https://twitter.com/cryptowhaleclub"
+export const openseaLink = "https://opensea.io/collection/crypto-whale-club"
 export const cryptowhaleclubLink = "/mint/"
 
 export const menus = [
-  {
-    name: "Mint",
-    path: "/mint",
-    target: "",
-    type: "external",
-  },
+  // {
+  //   name: "Mint",
+  //   path: "/mint",
+  //   target: "",
+  //   type: "external",
+  // },
   {
     name: "Lore",
     path: "lore",
@@ -57,6 +58,7 @@ export const footerLinks = [
     links: [
       { label: "Discord", link: discordLink, type: "external" },
       { label: "Twitter", link: twitterLink, type: "external" },
+      { label: "Opensea", link: openseaLink, type: "external" },
     ],
   },
 ]
