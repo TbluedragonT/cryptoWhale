@@ -19,12 +19,12 @@ module.exports = {
       },
     },
     screens: {
-      "tiny": "400px",
-      sm: '600px',
-      md: '820px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
+      tiny: "400px",
+      sm: "600px",
+      md: "820px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
     extend: {
       backgroundImage: {
@@ -38,6 +38,18 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#FFFFFF",
+        },
+        purple: {
+          DEFAULT: "#603EFF",
+          dark: "#4D5CFF",
+          light: "#869DFF",
+        },
+        green: {
+          light: "#20B275",
+          dark: "#006897",
+        },
+        blue: {
+          DEFAULT: "#017AFF",
         },
       },
       ringWidth: {
@@ -56,7 +68,7 @@ module.exports = {
         "3/16": "18.75%",
       },
       spacing: {
-        30:"30px",
+        30: "30px",
         normal: "700px",
         "h-normal": "400px",
         "h-small": "250px",

@@ -54,9 +54,11 @@
     "react-helmet": "^6.1.0",
     "react-image-gallery": "^1.1.1",
     "react-modal": "^3.14.3",
+    "react-redux": "^7.2.6",
     "react-responsive": "^8.2.0",
     "react-scroll": "^1.8.4",
     "react-vertical-timeline-component": "^3.3.3",
+    "redux": "^4.1.2",
     "sass": "^1.35.2",
     "web3": "^1.4.0",
     "webpack": "^5.49.0"
