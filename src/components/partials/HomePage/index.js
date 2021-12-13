@@ -125,7 +125,7 @@ export default function HomePage({ }) {
         )
         }
 
-        <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a>
+        {/* <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a> */}
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
