@@ -4,12 +4,13 @@ import { utilities, faqs, members, milestons } from "@util/cryptoWhaleClubData"
 import React, { useEffect, useState } from "react"
 import Roadmap from "@components/roadmap"
 import TeamCard from "@components/teamcard"
-import { discordLink, twitterLink, cryptowhaleclubLink } from "@components/layout/Layout/menu"
+import { discordLink, twitterLink, openseaLink, cryptowhaleclubLink } from "@components/layout/Layout/menu"
 import date from "date-and-time"
 import "./homepage.scss"
 
 const FaqItem = ({ question, answer, subItems }) => {
   const [collapsed, setCollapsed] = useState(true)
+
   return (
     <div className="flex flex-row">
       <div
@@ -50,6 +51,21 @@ const FaqItem = ({ question, answer, subItems }) => {
 }
 
 export default function HomePage({ }) {
+  const socialLinks = [
+    {
+      link: discordLink,
+      icon: '/icon/icon-discord.svg'
+    },
+    {
+      link: twitterLink,
+      icon: '/icon/icon-twitter.svg'
+    },
+    {
+      link: openseaLink,
+      icon: '/icon/icon-opensea.png'
+    }
+  ]
+
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -139,20 +155,23 @@ export default function HomePage({ }) {
             Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 0) presale will start December 9th and public mint will be on December 14th.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
-            <a
-              className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
-              href={discordLink}
-              target="_blank"
-            >
-              <img src="/icon/icon-discord.svg" className="w-10 h-10" />
-            </a>
-            <a
-              className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
-              href={twitterLink}
-              target="_blank"
-            >
-              <img src="/icon/icon-twitter.svg" className="w-10 h-10" />
-            </a>
+            {
+              socialLinks.map((item, index) => {
+                return (
+                    <a
+                      key={index}
+                      className="rounded-lg bg-primary-lightest hover:bg-primary my-5 px-4 py-4 cursor-pointer"
+                      href={item.link}
+                      target="_blank"
+                    >
+                      <img
+                        src={item.icon}
+                        className="w-10 h-10"
+                      />
+                    </a>
+                )
+              })
+            }
           </div>
         </div>
         <div className="hidden lg:block w-2/5 px-10">
