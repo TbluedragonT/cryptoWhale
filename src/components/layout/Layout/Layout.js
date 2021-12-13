@@ -108,7 +108,7 @@ export default function Layout({
                                     return (
                                       <li 
                                         key={index}
-                                        lassName="py-2 pl-3"
+                                        className="py-2 pl-3"
                                       >
                                         <a
                                           className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
