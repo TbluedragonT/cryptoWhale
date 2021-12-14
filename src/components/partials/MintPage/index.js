@@ -175,9 +175,6 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             </div>
           </div>
         </div>
-        <div className="text-center text-sm lg:text-xl xl:text-2xl pt-3 lg:pt-2 pb-4 lg:pb-0 xl:-mb-5">
-          You may mint 1-20 Whales per transaction. <br/>Whales cost 0.06 ETH each.
-        </div>
         {
           !connected ? (
             <button className="btn-mint font-alphakind flex h-1/2 items-center justify-center py-10 xl:py-40 text-2xl tiny:text-3xl lg:text-4xl xl:text-6xl w-full" onClick={connectHandler}>
@@ -189,6 +186,9 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             </button>
           )
         }
+        <div className="text-center text-sm lg:text-xl xl:text-2xl pt-3 lg:pt-2 pb-4 lg:pb-0 xl:-mb-5">
+          Mint Price of 0.06 ETH per whale. You may mint between 1 - 20 whales per transaction.
+        </div>
       </div>
       <Snackbar
         open={alertState.open}
