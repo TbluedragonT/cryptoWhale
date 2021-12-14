@@ -88,39 +88,30 @@ const Dashboard = () => {
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
-          <div className="hidden md:flex justify-center">
-            <button className="border-4 border-white text-white px-4 py-1 rounded-xl bg-gradient-to-r from-green-light to-green-dark">
-              CLAIM NOW
-            </button>
-          </div>
         </div>
         <div className="overflow-x-auto mt-10 px-4">
           <div className="dashboard-table">
             <div className="grid grid-cols-5 gap-2 mb-1">
               <Th>Your Whales</Th>
+              <Th>Status</Th>
               <Th>Earning Rate</Th>
               <Th>Currently accrued</Th>
               <Th>All-time accrued</Th>
-              <Th>Status</Th>
             </div>
             {dashboardData.map((data, idx) => (
               <div key={idx} className="text-blue grid grid-cols-5 gap-1">
                 <Td idx={idx}>{data.name}</Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.earning_rate : <StackButton />}
-                </Td>
-                <Td idx={idx}>
-                  {data.status == "staked" ? (
-                    data.currently_accrued
-                  ) : (
-                    <StackButton />
-                  )}
-                </Td>
-                <Td idx={idx}>
                   {data.status == "staked" ? data.status : <StackButton />}
                 </Td>
                 <Td idx={idx}>
-                  <Badge status={data.status} />
+                  {data.status == "staked" ? data.earning_rate : "-"}
+                </Td>
+                <Td idx={idx}>
+                  {data.status == "staked" ? data.currently_accrued : "-"}
+                </Td>
+                <Td idx={idx}>
+                  {data.status == "staked" ? data.alltime_accrued : "-"}
                 </Td>
               </div>
             ))}
