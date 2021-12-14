@@ -16,6 +16,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   const maxAmount = 20
   const [currentSupply, setCurrentSupply] = useState(-1)
   const [amount, setAmount] = useState(5)
+  const [totalPrice, setTotalPrice] = useState('0.30')
   const [cwcContract, setCwcContract] = useState(null)
   const [isAvailable, setIsAvailable] = useState(true)
   const [alertState, setAlertState] = useState({
@@ -84,8 +85,8 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     if(isAvailable) {
       if(amount > 0) {
         try {
-          const totalPrice = amount * unitPrice * 10e15;
-          await cwcContract.methods.mintWithEth(amount).send({ from: walletAddress, value: totalPrice })
+          const _totalPrice = amount * unitPrice * 10e15;
+          await cwcContract.methods.mintWithEth(amount).send({ from: walletAddress, value: _totalPrice })
             .on('transactionHash', (receipt) => {
               displayNotify("info", "Transaction in progress...please wait a moment.")
             })
@@ -111,6 +112,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     let _amount = increase ? amount + 1 : amount - 1
     _amount = _amount > maxAmount ? maxAmount : _amount < minAmount ? minAmount : _amount 
     setAmount(_amount)
+    setTotalPrice((_amount * 0.06).toFixed(2))
   }
 
   const displayNotify = (type, content) => {
@@ -125,6 +127,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     let _amount = e.target.value
     _amount = _amount > maxAmount ? maxAmount : _amount < minAmount ? minAmount : _amount 
     setAmount(_amount)
+    setTotalPrice(_amount * 0.06)
   }
 
   return (
@@ -166,7 +169,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               </button>
             </div>
             <div className="w-8/12 border-4 rounded-lg font-lilita flex gap-1 tiny:gap-2 lg:gap-4 items-center justify-center text-2xl tiny:text-3xl lg:text-4xl xl:text-6xl " >
-              <span>0.06</span>
+              <span>{totalPrice}</span>
               <img src="/mint_page/ico_et.png" alt="eth logo" className="w-6"/>
               <span>ETH</span>
             </div>
@@ -183,6 +186,9 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             </button>
           )
         }
+        <div className="text-center text-sm lg:text-xl xl:text-2xl pt-3 lg:pt-2 pb-4 lg:pb-0 xl:-mb-5">
+          Mint Price of 0.06 ETH per whale. You may mint between 1 - 20 whales per transaction.
+        </div>
       </div>
       <Snackbar
         open={alertState.open}
