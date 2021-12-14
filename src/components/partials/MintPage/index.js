@@ -8,6 +8,7 @@ import {
 import whiteListAddresses from "../../../config/whiteListAddress"
 import abi_cwc from "../../../config/abi/abi_cwc.json"
 import "./mintpage.scss"
+import { setConnected } from "../../../state/actions"
 
 const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   const unitPrice = 6
