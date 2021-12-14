@@ -21,3 +21,10 @@
   src: local("Alphakind"),
     url("/fonts/Alphakind.ttf");
 }
+
+@font-face {
+  font-family: "aAhaWow";
+  font-style: normal;
+  src: local("Alphakind"),
+    url("/fonts/aAhaWow.ttf");
+}
