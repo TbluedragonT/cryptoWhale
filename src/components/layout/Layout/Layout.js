@@ -2,13 +2,18 @@ import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import { Link as ScrollLink } from "react-scroll"
+import { connect } from "react-redux"
 import "@styles/global.scss"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
+import { Snackbar } from "@material-ui/core"
+import Alert from "@material-ui/lab/Alert"
+import { ChainID, getWeb3, getOnBoard } from "../../../util/wallet"
 import { menus, footerLinks } from "./menu"
 import { discordLink, twitterLink, openseaLink, cryptowhaleclubLink } from "./menu"
+import { setWeb3, setOnBoard, setWalletAddress, setConnected } from "../../../state/actions"
 
-export default function Layout({
+const Layout = ({
   title = "CWC",
   children,
   contentClassName = "",
@@ -17,7 +22,15 @@ export default function Layout({
   visibleClass = true,
   visibleFooter = true,
   page = "home",
-}) {
+  web3,
+  onBoard,
+  walletAddress,
+  connected,
+  setWeb3,
+  setOnBoard,
+  setConnected,
+  setWalletAddress
+}) => {
   const [scrolled, setScrolled] = useState(false)
 
   const socialLinks = [
@@ -35,18 +48,125 @@ export default function Layout({
     }
   ]
 
+  const [alertState, setAlertState] = useState({
+    open: false,
+    message: "",
+    severity: undefined,
+  })
+
+  useEffect(() => {
+    setWeb3(window.__web3 || null);
+    setOnBoard(window.__onboard || null);
+    setWalletAddress(window.__walletAddress || null);
+    setConnected(window.__connected || false);
+  }, []);
+
+  useEffect(() => {
+    window.__web3 = web3;
+  }, [web3]);
+  useEffect(() => {
+    window.__onboard = onBoard;
+  }, [onBoard]);
+  useEffect(() => {
+    window.__walletAddress = walletAddress;
+  }, [walletAddress]);
+  useEffect(() => {
+    window.__connected = connected;
+  }, [connected]);
+
+  useEffect(() => {
+    if (web3) {
+      addressAvailable();
+    }
+  }, [web3]);
+
+  const addressAvailable = () => {
+    if (walletAddress) {
+      return;
+    }
+
+    if (web3 && web3.currentProvider && web3.currentProvider.selectedAddress &&
+      (web3.currentProvider.selectedAddress.length > 0)) {
+      setWalletAddress(web3.currentProvider.selectedAddress);
+    } else {
+      setTimeout(addressAvailable, 100);
+    }
+  }
+
+  useEffect(() => {
+    async function walletInitialize() {
+      const _web3 = await getWeb3()
+      const _onBoard = await getOnBoard()
+      const _chainId = await _web3.eth.getChainId()
+      const _address = await _web3.eth.getAccounts()
+
+      setWeb3(_web3)
+      setOnBoard(_onBoard)
+      if (_address[0] && _chainId === ChainID)
+        setConnected(true)
+
+      setWalletAddress(_address[0])
+    }
+
+    if (typeof window !== "undefined") {
+      if (window.ethereum) {
+
+        window.ethereum.on('chainChanged', handleNetworkChange);
+        window.ethereum.on('disconnect', logout);
+        window.ethereum.on('accountsChanged', logout);
+      }
+    }
+
+    walletInitialize()
+  }, [])
+
+  const connectHandler = async () => {
+    if (onBoard !== null) {
+      if (!(await onBoard.walletSelect())) {
+        return;
+      }
+      setConnected(await onBoard.walletCheck())
+    }
+  }
+
+  const logout = () => {
+    if (onBoard != null) {
+      onBoard.walletReset();
+    }
+    setConnected(false);
+  }
+
+  const handleNetworkChange = (networkId) => {
+    logout();
+    if (networkId != '0x1') {
+      displayNotify("warning", "You should choose Ethereum main network!")
+    }
+  }
+
+  const displayNotify = (type, content) => {
+    setAlertState({
+      open: true,
+      message: content,
+      severity: type,
+    })
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", _ => {
       setScrolled(window.scrollY > 60)
     })
   })
 
+  const sliceAddress = val => {
+    return val.slice(0, 6) + "..." + val.slice(-4)
+  }
+
   return (
     <React.Fragment>
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      {page === "mint" ? (
+      {page === "mint" || page === "dashboard" ? (
         <div className="relative flex flex-col">{children}</div>
       ) : (
         <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
@@ -103,10 +223,28 @@ export default function Layout({
                                     )}
                                   </li>
                                 ))}
+                                <li className="py-2 pl-3">
+                                  {
+                                    connected ? (
+                                      <div
+                                        className="text-white border-2 rounded-md px-1 py-1 whitespace-nowrap"
+                                      >
+                                        {sliceAddress(walletAddress)}
+                                      </div>
+                                    ) : (
+                                      <button
+                                        className="text-white border-2 rounded-md px-1 py-1 whitespace-nowrap"
+                                        onClick={connectHandler}
+                                      >
+                                        Connect Wallet
+                                      </button>
+                                    )
+                                  }
+                                </li>
                                 {
                                   socialLinks.map((item, index) => {
                                     return (
-                                      <li 
+                                      <li
                                         key={index}
                                         className="py-2 pl-3"
                                       >
@@ -117,7 +255,7 @@ export default function Layout({
                                         >
                                           <img
                                             src={item.icon}
-                                            className="w-10 h-10"
+                                            className="w-10"
                                           />
                                         </a>
                                       </li>
@@ -131,7 +269,7 @@ export default function Layout({
                       </div>
                       <div className="absolute inset-y-6 right-0 flex items-center lg:hidden">
                         {/* Mobile menu button*/}
-                        {/* {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Presale Mint</a>)} */}
+                        {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
                         <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary">
                           <span className="sr-only">Open main menu</span>
                           {open ? (
@@ -180,6 +318,24 @@ export default function Layout({
                             )}
                           </li>
                         ))}
+                        <li className="py-2 px-3 text-center">
+                          {
+                            connected ? (
+                              <span
+                                className="text-white border-2 rounded-md px-1 py-1 whitespace-nowrap"
+                              >
+                                {sliceAddress(walletAddress)}
+                              </span>
+                            ) : (
+                              <button
+                                className="text-white border-2 rounded-md px-1 py-1 whitespace-nowrap"
+                                onClick={connectHandler}
+                              >
+                                Connect Wallet
+                              </button>
+                            )
+                          }
+                        </li>
                         <li className="py-2 px-3 w-full">
                           <div className="flex flex-row justify-center gap-3">
                             {
@@ -193,7 +349,7 @@ export default function Layout({
                                   >
                                     <img
                                       src={item.icon}
-                                      className="w-10 h-10"
+                                      className="w-10"
                                     />
                                   </a>
                                 )
@@ -272,19 +428,39 @@ export default function Layout({
                     <img src="/brew-logo.png" className="cursor-pointer" />
                   </a>
                 </div>
-                {/* <div className="flex flex-col md:flex-row md:space-x-8 mx-auto">
-                <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
-                  Terms of Service
-                </a>
-                <a className="text-secondary text-center text-sm md:text-base py-2 md:py-0" href="/" target="_blank">
-                  Privacy Policy
-                </a>
-              </div> */}
               </div>
             </div>
           </div>
+          <Snackbar
+            open={alertState.open}
+            autoHideDuration={6000}
+            onClose={() => setAlertState({ ...alertState, open: false })}
+          >
+            <Alert
+              onClose={() => setAlertState({ ...alertState, open: false })}
+              severity={alertState.severity}
+            >
+              {alertState.message}
+            </Alert>
+          </Snackbar>
         </div>
       )}
     </React.Fragment>
   )
 }
+
+const stateProps = (state) => ({
+  web3: state.web3,
+  onBoard: state.onBoard,
+  walletAddress: state.walletAddress,
+  connected: state.connected
+});
+
+const dispatchProps = (dispatch) => ({
+  setWeb3: (data) => dispatch(setWeb3(data)),
+  setOnBoard: (data) => dispatch(setOnBoard(data)),
+  setWalletAddress: (address) => dispatch(setWalletAddress(address)),
+  setConnected: (status) => dispatch(setConnected(status))
+})
+
+export default connect(stateProps, dispatchProps)(Layout);

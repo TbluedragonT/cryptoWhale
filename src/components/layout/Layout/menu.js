@@ -5,11 +5,17 @@ export const cryptowhaleclubLink = "/mint/"
 
 export const menus = [
   // {
-  //   name: "Mint",
-  //   path: "/mint",
+  //   name: "Dashboard",
+  //   path: "/dashboard",
   //   target: "",
   //   type: "external",
   // },
+  {
+    name: "Mint",
+    path: "/mint",
+    target: "",
+    type: "external",
+  },
   {
     name: "Lore",
     path: "lore",
