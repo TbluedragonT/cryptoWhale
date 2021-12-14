@@ -21,6 +21,8 @@
   &:before {
     content: "";
     position: absolute;
+    left: 26px;
+    top: 2px;
     width: 260px;
     height: 25px;
     margin: 8px 0 0 -15px;
@@ -34,7 +36,7 @@
   &.mobile {
     top: 0;
     right: 0;
-    width: 120px;
+    width: 100px;
     height: auto;
     font-size: 12px;
     line-height: initial;
@@ -42,9 +44,11 @@
     display: block;
 
     &:before {
-      width: 100px;
+      width: 70px;
       height: 6px;
       margin: 3px 0 0 -7px;
+      left: 14px;
+      top: 0;
     }
   }
 }

@@ -112,7 +112,7 @@ export default function HomePage({ }) {
             className="w-3/16 absolute top-2/16 left-1/16"
           />
         )}
-        {leftDays > 0 ? (
+        {/* {leftDays > 0 ? (
           <div className="trasform -translate-y-8 md:translate-y-20 xl:translate-y-10 absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
             <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftDays}
@@ -139,9 +139,9 @@ export default function HomePage({ }) {
             minutes <br className="sm:hidden" />till Public Sale
           </div>
         )
-        }
+        } */}
 
-        {/* <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a> */}
+        <a href={cryptowhaleclubLink} className="main-button">Mint</a>
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">

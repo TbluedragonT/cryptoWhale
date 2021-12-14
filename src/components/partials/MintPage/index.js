@@ -16,7 +16,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   const [currentSupply, setCurrentSupply] = useState(-1)
   const [amount, setAmount] = useState(5)
   const [cwcContract, setCwcContract] = useState(null)
-  const [isAvailable, setIsAvailable] = useState(false)
+  const [isAvailable, setIsAvailable] = useState(true)
   const [alertState, setAlertState] = useState({
     open: false,
     message: "",
@@ -48,16 +48,16 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       getSupplyAmount()
   }, [cwcContract])
 
-  useEffect(() => {
-    if (connected) {
-      const upperWalletAddress = walletAddress.toUpperCase();
-      const _isAvailable = whiteListAddresses.some(v => v.toUpperCase() === upperWalletAddress)
-      setIsAvailable(_isAvailable) 
+  // useEffect(() => {
+  //   if (connected) {
+  //     const upperWalletAddress = walletAddress.toUpperCase();
+  //     const _isAvailable = whiteListAddresses.some(v => v.toUpperCase() === upperWalletAddress)
+  //     setIsAvailable(_isAvailable) 
 
-      if(!_isAvailable)
-        displayNotify("error", "You salty dog, trying to mint during presale without permission!")
-    }
-  }, [connected])
+  //     if(!_isAvailable)
+  //       displayNotify("error", "You salty dog, trying to mint during presale without permission!")
+  //   }
+  // }, [connected])
 
   const connectHandler = async () => {
     if (onBoard !== null) {
