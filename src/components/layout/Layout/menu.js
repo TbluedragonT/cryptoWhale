@@ -11,8 +11,8 @@ export const menus = [
   //   type: "external",
   // },
   {
-    name: "Mint",
-    path: "/mint",
+    name: "Stake",
+    path: "/dashboard",
     target: "",
     type: "external",
   },
@@ -46,6 +46,21 @@ export const menus = [
     target: "",
     type: "internal",
   },
+]
+
+export const stakeMenus = [
+  {
+    name: "Home",
+    path: "/",
+    target: "",
+    type: "external",
+  },
+  {
+    name: "Mint",
+    path: "/mint",
+    target: "",
+    type: "external",
+  }
 ]
 
 export const footerLinks = [

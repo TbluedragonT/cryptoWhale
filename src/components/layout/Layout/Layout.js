@@ -9,7 +9,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { Snackbar } from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 import { ChainID, getWeb3, getOnBoard } from "../../../util/wallet"
-import { menus, footerLinks } from "./menu"
+import { menus, stakeMenus, footerLinks } from "./menu"
 import { discordLink, twitterLink, openseaLink, cryptowhaleclubLink } from "./menu"
 import { setWeb3, setOnBoard, setWalletAddress, setConnected } from "../../../state/actions"
 
@@ -32,7 +32,7 @@ const Layout = ({
   setWalletAddress
 }) => {
   const [scrolled, setScrolled] = useState(false)
-
+  const MainMenus = page === "dashboard" ? stakeMenus : menus;
   const socialLinks = [
     {
       link: discordLink,
@@ -167,7 +167,7 @@ const Layout = ({
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      {page === "mint" || page === "dashboard" ? (
+      {page === "mint" ? (
         <div className="relative flex flex-col">{children}</div>
       ) : (
         <div className="bg-secondary min-h-screen flex flex-col font-recoleta font-medium">
@@ -198,7 +198,7 @@ const Layout = ({
                           <div className="flex space-x-4">
                             <div>
                               <ul className="flex items-center">
-                                {menus.map(dt => (
+                                {MainMenus.map(dt => (
                                   <li
                                     className="cursor-pointer font-recoleta-bold text-xl xl:text-2xl text-secondary hover:bg-primary rounded-lg py-2 px-3"
                                     key={dt.name}
@@ -293,7 +293,7 @@ const Layout = ({
                   <div className="px-2 pt-2 pb-3 space-y-1">
                     <div>
                       <ul className="flex-col">
-                        {menus.map(dt => (
+                        {MainMenus.map(dt => (
                           <li
                             className="py-2 px-3 text-secondary text-lg text-center font-recoleta-bold"
                             key={dt.name}
@@ -368,7 +368,7 @@ const Layout = ({
 
           <div className="relative flex flex-col">
             <main
-              className={`max-w-full mx-auto flex-grow flex flex-col ${contentClassName} ${visibleClass ? "" : "pb-0"
+              className={`max-w-full  flex-grow flex flex-col ${contentClassName} ${visibleClass ? "" : "pb-0"
                 }`}
             >
               {children}
