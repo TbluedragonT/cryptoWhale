@@ -184,7 +184,7 @@ export const faqs = [
   {
     question: "When will the collection be available to mint?",
     answer: `Pre-sale will be December 9th and the public sale will be December 14th. 
-      There will be 2,000 genesis (Gen 0) Crypto Whales initially released for minting with subsequent 
+      There will be 2,000 genesis (Gen 1) Crypto Whales initially released for minting with subsequent 
       generations of whales made available as the project and community grows.`,
   },
   {
