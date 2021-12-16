@@ -146,7 +146,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             status = 'staked';
           }
 
-          const earning_rate = 4;
+          const earning_rate = 4.1667;
 
           let alltime_accrued = 0;
           let end_timestamp, i=0, j=0;
@@ -237,7 +237,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             <div className="grid grid-cols-5 gap-2 mb-1">
               <Th>Your Crypto Whales</Th>
               <Th>Status</Th>
-              <Th>Earning Rate (Hourly)</Th>
+              <Th>Earning Rate (Daily)</Th>
               <Th>Currently accrued</Th>
               <Th>Claimed</Th>
             </div>
@@ -248,7 +248,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                   {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
+                  {data.status == "staked" ? "100 $BLUB" : "-"}
                 </Td>
                 <Td idx={idx}>
                   {data.currently_accrued}
@@ -270,7 +270,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                   {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </div>
                 <div className="flex">
-                  <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (HOURLY)</div>: {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
+                  <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (DAILY)</div>: {data.status == "staked" ? "100 $BLUB" : "-"}
                 </div>
                 <div className="flex">
                   <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued}
