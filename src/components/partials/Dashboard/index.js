@@ -67,8 +67,8 @@ const Badge = props => {
 const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   const STAKE_DECIMALS = 4;
 
-  const [claimBalance, setClaimBalance] = useState(1)
-  const [walletBalance, setWalletBalance] = useState(1)
+  const [claimBalance, setClaimBalance] = useState(0)
+  const [walletBalance, setWalletBalance] = useState(0)
 
   const [ownedTokens, setOwnedTokens] = useState([])
   
@@ -122,7 +122,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      //walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
@@ -146,7 +146,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             status = 'staked';
           }
 
-          const earning_rate = 1.2245;
+          const earning_rate = 4;
 
           let alltime_accrued = 0;
           let end_timestamp, i=0, j=0;
@@ -169,7 +169,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               end_timestamp = Math.min(end_timestamp, stTimes[i+1]);
             }
 
-            alltime_accrued += (end_timestamp - start_timestamp)*earning_rate;
+            alltime_accrued += (end_timestamp - start_timestamp)*earning_rate / 3600;
             i++;
           }
 
@@ -178,22 +178,23 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           alltime_accrued = alltime_accrued.toFixed(STAKE_DECIMALS);
           const currently_accrued = (alltime_accrued - alltime_claimed).toFixed(STAKE_DECIMALS);
 
-          totalReadyToClaim += currently_accrued;
+          totalReadyToClaim += (alltime_accrued - alltime_claimed);
 
           tokens.push({
             tokenId,
-            name: `Whale #${tokenId}`,
+            name: `#${tokenId}`,
             status,
             earning_rate,
             alltime_accrued,
-            currently_accrued
+            currently_accrued,
+            alltime_claimed
           });
         }
       }
 
       setOwnedTokens(tokens);
       setWalletBalance(balanceInWallet);
-      setClaimBalance(totalReadyToClaim);
+      setClaimBalance(totalReadyToClaim.toFixed(STAKE_DECIMALS));
     } catch (error) {
       console.log(error)
     }
@@ -221,11 +222,6 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               <p className="text-xl sm:text-2xl md:text-3xl lg:tex6xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
-          <div className="flex justify-center md:hidden">
-            <button className="border-4 border-white text-white px-4 py-1 rounded-xl bg-gradient-to-r from-green-light to-green-dark">
-              CLAIM NOW
-            </button>
-          </div>
           <div className="px-4 md:pr-16 md:pl-4">
             <LGTitle>
               IN WALLET
@@ -239,11 +235,11 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         <div className="overflow-x-auto mt-10 px-4">
           <div className="dashboard-table">
             <div className="grid grid-cols-5 gap-2 mb-1">
-              <Th>Your Whales</Th>
+              <Th>Your Crypto Whales</Th>
               <Th>Status</Th>
-              <Th>Earning Rate</Th>
+              <Th>Earning Rate (Hourly)</Th>
               <Th>Currently accrued</Th>
-              <Th>All-time accrued</Th>
+              <Th>Claimed</Th>
             </div>
             {ownedTokens.map((data, idx) => (
               <div key={idx} className="text-blue grid grid-cols-5 gap-1">
@@ -252,13 +248,13 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                   {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.earning_rate : "-"}
+                  {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
                 </Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.currently_accrued : "-"}
+                  {data.currently_accrued}
                 </Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.alltime_accrued : "-"}
+                  {data.alltime_claimed}
                 </Td>
               </div>
             ))}
