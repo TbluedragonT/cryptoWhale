@@ -270,7 +270,7 @@ const Layout = ({
                       </div>
                       <div className="absolute inset-y-6 right-0 flex items-center lg:hidden">
                         {/* Mobile menu button*/}
-                        {/* {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Presale Mint</a>)} */}
+                        {!open && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
                         <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary">
                           <span className="sr-only">Open main menu</span>
                           {open ? (

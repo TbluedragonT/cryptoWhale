@@ -112,7 +112,7 @@ export default function HomePage({ }) {
             className="w-3/16 absolute top-2/16 left-1/16"
           />
         )}
-        {leftDays > 0 ? (
+        {/* {leftDays > 0 ? (
           <div className="trasform -translate-y-8 md:translate-y-20 xl:translate-y-10 absolute top-1/3 right-1/16 xl:right-2/16 py-2 px-3 text-xl md:text-2xl xl:text-3xl text-secondary text-right tiny:text-left w-2/3 tiny:w-max">
             <span className="text-yellow-300 text-3xl sm:text-5xl md:text-5xl xl:text-7xl font-recoleta-bold px-2">
               {leftDays}
@@ -139,9 +139,9 @@ export default function HomePage({ }) {
             minutes <br className="sm:hidden" />till Public Sale
           </div>
         )
-        }
+        } */}
 
-        {/* <a href={cryptowhaleclubLink} className="main-button">Presale Mint</a> */}
+        <a href={cryptowhaleclubLink} className="main-button">Mint</a>
       </div>
 
       <div className="lg:w-3/5 flex flex-row mx-auto py-20 items-center">
@@ -152,7 +152,7 @@ export default function HomePage({ }) {
           </div>
           <img src="/join-logo.svg" className="hidden lg:block w-1/3 py-5" />
           <p className="text-xl md:text-3xl text-black py-5">
-            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 0) presale will start December 9th and public mint will be on December 14th.
+            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 1) presale will start December 9th and public mint will be on December 14th.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
             {
@@ -193,7 +193,7 @@ export default function HomePage({ }) {
             and will be stored as ERC-721 tokens on the Ethereum blockchain. There
             are 20 different types of whales, each representing a different coin or
             token. Whales will be the logo color of their respective coin / token. 2,000
-            Gen 0 whales will be released for minting initially with subsequent
+            Gen 1 whales will be released for minting initially with subsequent
             generations released as the project and community grows. Whales can be staked
             for $BLUB, which can be used for future generations of whales, entering
             raffles, merchandise and more.
