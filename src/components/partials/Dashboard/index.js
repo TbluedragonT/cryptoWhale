@@ -263,7 +263,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           {ownedTokens.map((data, idx) => (
             <div className="flex flex-col rounded-lg text-left" key={idx}>
               <span className="rounded-t-lg border border-white text-white text-bold py-1 text-center">
-                {data.name}
+                Crypto Whale {data.name}
               </span>
               <div className="bg-white px-2 tiny:px-4">
                 <div className="text-center">
