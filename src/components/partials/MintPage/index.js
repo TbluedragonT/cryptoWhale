@@ -86,13 +86,13 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       if(amount > 0) {
         try {
           const _totalPrice = amount * unitPrice * 10e15;
-          await cwcContract.methods.mintWithEth(amount).send({ from: walletAddress, value: _totalPrice })
+          await cwcContract.methods.mintWithEth(amount).send({ from: walletAddress, value: _totalPrice, type: "0x2" })
             .on('transactionHash', (receipt) => {
               displayNotify("info", "Transaction in progress...please wait a moment.")
             })
             .on('receipt', (receipt) => {
               getSupplyAmount()
-              displayNotify("success", "Success! Thank you for your purchase; Capt. Ahab will be pleased.")
+              displayNotify("success", "Success! Thank you for your Crypto Whale purchase; Capt. Ahab will be pleased.")
             })
             .on('error', () => {
               displayNotify("error", "Transaction cancelled.")
