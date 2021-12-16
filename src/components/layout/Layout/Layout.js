@@ -250,7 +250,7 @@ const Layout = ({
                                         className="py-2 pl-3"
                                       >
                                         <a
-                                          className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-3 tracking-wide w-full rounded-lg my-2"
+                                          className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-1 xl:px-3 tracking-wide w-full rounded-lg my-2"
                                           href={item.link}
                                           target="_blank"
                                         >

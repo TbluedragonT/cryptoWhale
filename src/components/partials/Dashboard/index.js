@@ -122,7 +122,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
@@ -259,21 +259,25 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               </div>
             ))}
           </div>
-          <div className="sm:w-3/4 mx-auto md:hidden flex flex-col px-8 gap-6 text-blue ">
+          <div className="sm:w-3/4 mx-auto md:hidden flex flex-col px-0 tiny:px-8 gap-6 text-blue ">
           {ownedTokens.map((data, idx) => (
-            <div className="flex flex-col rounded-lg text-center" key={idx}>
-              <span className="rounded-t-lg border border-white text-white text-bold py-1">
+            <div className="flex flex-col rounded-lg text-left" key={idx}>
+              <span className="rounded-t-lg border border-white text-white text-bold py-1 text-center">
                 {data.name}
               </span>
-              <div className="bg-white">{data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}</div>
-              <div className="bg-white">
-                {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
-              </div>
-              <div className="bg-white">
-                {data.currently_accrued}
-              </div>
-              <div className="bg-white rounded-b-lg">
-                {data.alltime_claimed}
+              <div className="bg-white px-2 tiny:px-4">
+                <div className="text-center">
+                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                </div>
+                <div className="flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (HOURLY)</div>: {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
+                </div>
+                <div className="flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued}
+                </div>
+                <div className="bg-white rounded-b-lg flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed}
+                </div>
               </div>
             </div>
           ))}
