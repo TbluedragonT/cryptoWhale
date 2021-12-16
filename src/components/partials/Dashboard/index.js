@@ -122,7 +122,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
