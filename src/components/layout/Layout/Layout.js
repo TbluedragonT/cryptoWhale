@@ -126,6 +126,7 @@ const Layout = ({
         return;
       }
       setConnected(await onBoard.walletCheck())
+      console.log(await onBoard.walletCheck())
     }
   }
 
