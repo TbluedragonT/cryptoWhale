@@ -21,11 +21,11 @@ const LGTitle = (props) => {
 const Th = props => {
   const { children, className } = props
   return (
-    <th className={`h-full ${className} items-center justify-center`}>
+    <div className={`h-full ${className} items-center justify-center`}>
       <div className="border-2 border-white flex h-full items-center justify-center px-6 py-2 rounded-md text-center text-white uppercase">
         {children}
       </div>
-    </th>
+    </div>
   )
 }
 
@@ -44,7 +44,7 @@ const StakeButton = props => {
   const { children, className } = props
   return (
     <button
-      className={`${className} px-6 py-1 h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      className={`${className} px-6 py-1 my-1 text-sm h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
       onClick={props.onClick}
     >
       Stake
@@ -122,7 +122,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      //walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
@@ -207,7 +207,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   }, [connected])
 
   return (
-    <div className="dashboard min-h-screen font-aAhaWow">
+    <div className="dashboard min-h-screen font-aAhaWow w-full">
       <a href="/" className="absolute top-5 left-10 w-1/5 tiny:w-2/12 cursor-pointer">
         <img src="/mint_page/logo.png" alt="logo" />
       </a>
@@ -233,7 +233,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           </div>
         </div>
         <div className="overflow-x-auto mt-10 px-4">
-          <div className="dashboard-table">
+          <div className="dashboard-table hidden md:block">
             <div className="grid grid-cols-5 gap-2 mb-1">
               <Th>Your Crypto Whales</Th>
               <Th>Status</Th>
@@ -258,6 +258,29 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                 </Td>
               </div>
             ))}
+          </div>
+          <div className="sm:w-3/4 mx-auto md:hidden flex flex-col px-0 tiny:px-8 gap-6 text-blue ">
+          {ownedTokens.map((data, idx) => (
+            <div className="flex flex-col rounded-lg text-left" key={idx}>
+              <span className="rounded-t-lg border border-white text-white text-bold py-1 text-center">
+                Crypto Whale {data.name}
+              </span>
+              <div className="bg-white px-2 tiny:px-4">
+                <div className="text-center">
+                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                </div>
+                <div className="flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (HOURLY)</div>: {data.status == "staked" ? data.earning_rate + " $BLUB" : "-"}
+                </div>
+                <div className="flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued}
+                </div>
+                <div className="bg-white rounded-b-lg flex">
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed}
+                </div>
+              </div>
+            </div>
+          ))}
           </div>
         </div>
       </div>
