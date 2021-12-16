@@ -92,7 +92,7 @@ const MintPage = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             })
             .on('receipt', (receipt) => {
               getSupplyAmount()
-              displayNotify("success", "Success! Thank you for your purchase; Capt. Ahab will be pleased.")
+              displayNotify("success", "Success! Thank you for your Crypto Whale purchase; Capt. Ahab will be pleased.")
             })
             .on('error', () => {
               displayNotify("error", "Transaction cancelled.")
