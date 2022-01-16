@@ -5,10 +5,12 @@ import "./dashboard.scss"
 import {
   CONTRACT_ADDRESS_CWC,
   CONTRACT_ADDRESS_BLUB,
+  CONTRACT_ADDRESS_STAKING,
   BACKEND_URL
 } from "../../../util/addressHelper"
 import abi_cwc from "../../../config/abi/abi_cwc.json"
 import abi_blub from "../../../config/abi/abi_blub.json"
+import abi_staking from "../../../config/abi/abi_staking.json"
 import axios from "axios";
 
 const LGTitle = (props) => {
@@ -40,6 +42,19 @@ const Td = props => {
     </div>
   )
 }
+
+const ClaimButton = props => {
+  const { children, className } = props
+  return (
+    <button
+      className={`${className} px-6 py-1 my-1 text-sm h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      onClick={props.onClick}
+    >
+      Claim
+    </button>
+  )
+}
+
 const StakeButton = props => {
   const { children, className } = props
   return (
@@ -111,6 +126,35 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         }
         return token;
       }));
+    }
+  }
+
+  async function claimToken(tokenId) {
+    const response = (await axios.post(`${BACKEND_URL}/claim/${tokenId}`)).data;
+    if (response.status == "Success") {
+      const accrued = response.accrued;
+      const signature = response.signature;
+
+      try {
+        const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+        if (!contract) {
+          return;
+        }
+  
+        await contract.methods.claim(tokenId, accrued, signature)
+          .send({ from: walletAddress, type: "0x2" })
+          .on('transactionHash', (receipt) => {
+            alert("Transaction in progress...please wait a moment.")
+          })
+          .on('receipt', (receipt) => {
+            alert("Success! You will receive your BLUB amount soon.")
+          })
+          .on('error', () => {
+            alert("Transaction cancelled.")
+          });
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
@@ -245,7 +289,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               <div key={idx} className="text-blue grid grid-cols-5 gap-1">
                 <Td idx={idx}>{data.name}</Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                  {data.status == "staked" ? <ClaimButton onClick={() => claimToken(data.tokenId)}/> : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </Td>
                 <Td idx={idx}>
                   {data.status == "staked" ? "100 $BLUB" : "-"}
@@ -267,7 +311,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               </span>
               <div className="bg-white px-2 tiny:px-4">
                 <div className="text-center">
-                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                  {data.status == "staked" ? <ClaimButton onClick={() => claimToken(data.tokenId)}/> : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </div>
                 <div className="flex">
                   <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (DAILY)</div>: {data.status == "staked" ? "100 $BLUB" : "-"}
