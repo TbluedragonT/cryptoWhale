@@ -152,7 +152,7 @@ export default function HomePage({ }) {
           </div>
           <img src="/join-logo.svg" className="hidden lg:block w-1/3 py-5" />
           <p className="text-xl md:text-3xl text-black py-5">
-            Crypto Whale Club is a collection of 8,888 unique NFT Atlantean whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 1) presale will start December 9th and public mint will be on December 14th.
+            Crypto Whale Club is a collection of an initial 1,000 generation 1 Crypto Whales living on the Ethereum blockchain, each representing one of 20 crypto coins or tokens. Mint Price is 0.06 ETH and the genesis (Gen 1) presale will start Dec 9th, minting opens to the public Dec 14th.
           </p>
           <div className="flex flex-row justify-center md:justify-start gap-4">
             {
@@ -189,10 +189,10 @@ export default function HomePage({ }) {
           </div>
           <p className="p-4 lg:w-1/2 lg:px-0 text-secondary text-2xl lg:text-xl xl:text-2xl mx-auto">
             Crypto Whales are forged from 150+ different attributes/traits with
-            a maximum of 8,888 whales minted. They are programmatically generated
+            an initial release of 1,000 gen 1 whales. They are programmatically generated
             and will be stored as ERC-721 tokens on the Ethereum blockchain. There
             are 20 different types of whales, each representing a different coin or
-            token. Whales will be the logo color of their respective coin / token. 2,000
+            token. Whales will be the logo color of their respective coin / token. 1,000
             Gen 1 whales will be released for minting initially with subsequent
             generations released as the project and community grows. Whales can be staked
             for $BLUB, which can be used for future generations of whales, entering
