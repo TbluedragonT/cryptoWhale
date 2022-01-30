@@ -55,6 +55,18 @@ const ClaimButton = props => {
   )
 }
 
+const ClaimAllButton = props => {
+  const { children, className } = props
+  return (
+    <button
+      className={`${className} px-6 py-1 my-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      onClick={props.onClick}
+    >
+      Claim All
+    </button>
+  )
+}
+
 const StakeButton = props => {
   const { children, className } = props
   return (
@@ -87,6 +99,19 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
 
   const [ownedTokens, setOwnedTokens] = useState([])
   
+  const UPDATE_STAKING_UI_REFRESH_RATE = 10;
+
+  function updateStakingUi() {
+    setOwnedTokens((prevTokens) => prevTokens.map((token) => {return {...token, currently_accrued: token.status === "staked" ? token.currently_accrued + token.earning_rate/(UPDATE_STAKING_UI_REFRESH_RATE*3600) : token.currently_accrued}}));
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => updateStakingUi(), 1000/UPDATE_STAKING_UI_REFRESH_RATE);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   async function getPastEvents(contract, event, fromBlock, toBlock, filter = {}) {
     if (fromBlock <= toBlock) {
         try {
@@ -141,12 +166,45 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           return;
         }
   
-        await contract.methods.claim(tokenId, accrued, signature)
+        await contract.methods.claimSingle(tokenId, accrued, signature)
           .send({ from: walletAddress, type: "0x2" })
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
           })
           .on('receipt', (receipt) => {
+            collectOwnedTokens();
+            alert("Success! You will receive your BLUB amount soon.")
+          })
+          .on('error', () => {
+            alert("Transaction cancelled.")
+          });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  async function claimAll() {
+    const tokenIds = ownedTokens.filter((t) => t.status === 'staked').map((t) => t.tokenId);
+    const response = (await axios.post(`${BACKEND_URL}/claimall`, tokenIds)).data;
+
+    if (response.status == "Success") {
+      const accrued = response.accrued;
+      const signatures = response.signatures;
+
+      try {
+        const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+        if (!contract) {
+          return;
+        }
+  
+        await contract.methods.claimArray(tokenIds, accrued, signatures)
+          .send({ from: walletAddress, type: "0x2" })
+          .on('transactionHash', (receipt) => {
+            alert("Transaction in progress...please wait a moment.")
+          })
+          .on('receipt', (receipt) => {
+            collectOwnedTokens();
             alert("Success! You will receive your BLUB amount soon.")
           })
           .on('error', () => {
@@ -162,7 +220,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     try {
       const contract = new web3.eth.Contract(abi_cwc, CONTRACT_ADDRESS_CWC);
       const contractBlub = new web3.eth.Contract(abi_blub, CONTRACT_ADDRESS_BLUB);
-      if (!contract || !contractBlub) {
+      const contractStaking = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+      if (!contract || !contractBlub || !contractStaking) {
         return;
       }
 
@@ -217,10 +276,10 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             i++;
           }
 
-          let alltime_claimed = 0;
+          let alltime_claimed = (await contractStaking.methods.tokenIdToTotalClaimed(tokenId).call()) / 10**18;
 
-          alltime_accrued = alltime_accrued.toFixed(STAKE_DECIMALS);
-          const currently_accrued = (alltime_accrued - alltime_claimed).toFixed(STAKE_DECIMALS);
+          alltime_accrued = alltime_accrued;
+          const currently_accrued = (alltime_accrued - alltime_claimed);
 
           totalReadyToClaim += (alltime_accrued - alltime_claimed);
 
@@ -238,7 +297,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
 
       setOwnedTokens(tokens);
       setWalletBalance(balanceInWallet);
-      setClaimBalance(totalReadyToClaim.toFixed(STAKE_DECIMALS));
+      setClaimBalance(totalReadyToClaim);
     } catch (error) {
       console.log(error)
     }
@@ -262,7 +321,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               READY TO CLAIM
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{claimBalance}</p>
+              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:tex6xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -271,7 +330,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               IN WALLET
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{walletBalance}</p>
+              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -295,10 +354,10 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                   {data.status == "staked" ? "100 $BLUB" : "-"}
                 </Td>
                 <Td idx={idx}>
-                  {data.currently_accrued}
+                  {data.currently_accrued.toFixed(STAKE_DECIMALS)}
                 </Td>
                 <Td idx={idx}>
-                  {data.alltime_claimed}
+                  {data.alltime_claimed.toFixed(STAKE_DECIMALS)}
                 </Td>
               </div>
             ))}
@@ -317,14 +376,17 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
                   <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (DAILY)</div>: {data.status == "staked" ? "100 $BLUB" : "-"}
                 </div>
                 <div className="flex">
-                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued}
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued.toFixed(STAKE_DECIMALS)}
                 </div>
                 <div className="bg-white rounded-b-lg flex">
-                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed}
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed.toFixed(STAKE_DECIMALS)}
                 </div>
               </div>
             </div>
           ))}
+          </div>
+          <div className="flex flex-row justify-center mt-10">
+            <ClaimAllButton onClick={() => claimAll()}/>
           </div>
         </div>
       </div>
