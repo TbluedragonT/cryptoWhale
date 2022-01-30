@@ -64,7 +64,7 @@ export const utilities = [
     img: "/utility-02.png",
     title: "coin rewards",
     contents: [
-      "Each week whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). We will validate the number held of the winning whale type along with any potential multipliers to calculate allocation. Coin rewards can be claimed from the CwC website.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. To give an example, if we sell out the first mint phase of 2000 whales, coin rewards will be funded for a 12 week run of 1ETH each week. This also applies to subsequent phases."
+      "Each week whale holders of the top-performing coin type will be rewarded with 1 ETH (split amongst holders). We will validate the number held of the winning whale type along with any potential multipliers to calculate allocation. Coin rewards can be claimed from the CwC website.", "Crypto Whale Club is allocating 10% of all primary sales to a designated coin rewards wallet. As long as there is at least 1 ETH in the wallet, coin rewards will run for that upcoming week. To give an example, if we sell out the first mint phase of 1,000 whales, coin rewards will be funded for a 6 week run of 1ETH each week. This also applies to subsequent phases."
     ],
     modify: false
   },
@@ -78,7 +78,7 @@ export const utilities = [
     img: "/utility-04.png",
     title: "DAO membership",
     contents: [
-      "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on floor sweeps vs airdrops and/or marketing efforts. The community wallet will be funded with $50,000 of ETH from the creators and receive 60% of the secondary sales collected."
+      "When you collect a crypto whale you become a member of the Crypto Whale Club DAO. As such you will gain ownership in the DAO as well as voting rights proportionate to the number of whales you hold. Voting will determine how the community wallet is spent on items such as which community-built projects to fund and whether to spend funds on supporting community creators, marketing efforts & airdrops, development of a game, etc. The community wallet receives 60% of secondary sales proceeds collected and will additionally be funded by the project creators with a $50,000 contribution in ETH upon selling 50% of the total crypto whales supply."
     ],
     modify: false
   },
@@ -140,7 +140,7 @@ export const faqs = [
   {
     question: "What is the Crypto Whale Club?",
     answer:
-      "A collection of 8,888 unique Crypto Whale NFTs stored as ERC-721 tokens on the Ethereum blockchain",
+      "A collection of 1,000 initial Gen 1 Crypto Whale NFTs stored as ERC-721 tokens on the Ethereum blockchain",
   },
   {
     question: "Why are the whales connected to cryptocurrency?",
