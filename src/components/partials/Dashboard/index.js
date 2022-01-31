@@ -154,19 +154,52 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     }
   }
 
-  async function claimToken(tokenId) {
-    const response = (await axios.post(`${BACKEND_URL}/claim/${tokenId}`)).data;
-    if (response.status == "Success") {
-      const accrued = response.accrued;
-      const signature = response.signature;
+  // async function claimToken(tokenId) {
+  //   const response = (await axios.post(`${BACKEND_URL}/claim/${tokenId}`)).data;
+  //   if (response.status == "Success") {
+  //     const accrued = response.accrued;
+  //     const signature = response.signature;
 
+  //     try {
+  //       const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+  //       if (!contract) {
+  //         return;
+  //       }
+  
+  //       await contract.methods.claimSingle(tokenId, accrued, signature)
+  //         .send({ from: walletAddress, type: "0x2" })
+  //         .on('transactionHash', (receipt) => {
+  //           alert("Transaction in progress...please wait a moment.")
+  //         })
+  //         .on('receipt', (receipt) => {
+  //           collectOwnedTokens();
+  //           alert("Success! You will receive your BLUB amount soon.")
+  //         })
+  //         .on('error', () => {
+  //           alert("Transaction cancelled.")
+  //         });
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  // }
+
+  async function claimToken(tokenId) {
+    const tokenIds = [tokenId];
+    const postBody = {
+      tokenIds,
+      walletAddress
+    }
+    const response = (await axios.post(`${BACKEND_URL}/claimall-v3`, postBody)).data;
+
+    if (response.status == "Success") {
       try {
         const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
         if (!contract) {
           return;
         }
   
-        await contract.methods.claimSingle(tokenId, accrued, signature)
+        await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
           .send({ from: walletAddress, type: "0x2" })
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
@@ -185,11 +218,16 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
   }
 
   async function claimAll() {
-    const tokenIds = ownedTokens.filter((t) => t.status === 'staked').map((t) => t.tokenId);
-    const response = (await axios.post(`${BACKEND_URL}/claimall`, tokenIds)).data;
+    const tokenIds = ownedTokens.map((t) => t.tokenId);
+    const postBody = {
+      tokenIds,
+      walletAddress
+    }
+    const response = (await axios.post(`${BACKEND_URL}/claimall-v3`, postBody)).data;
 
     if (response.status == "Success") {
       const accrued = response.accrued;
+      const nonces = response.nonces;
       const signatures = response.signatures;
 
       try {
@@ -198,7 +236,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           return;
         }
   
-        await contract.methods.claimArray(tokenIds, accrued, signatures)
+        await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
           .send({ from: walletAddress, type: "0x2" })
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
@@ -234,12 +272,20 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       let totalReadyToClaim = 0;
 
       const tokens = [];
+
+      const potentialTokenIds = {};
+
       for (let event of events) {
         const tokenId = event.returnValues.tokenId;
+        potentialTokenIds[tokenId] = true;
+      }
+
+      for (let tokenId of Object.keys(potentialTokenIds)) {
         const currentOwner = await contract.methods.ownerOf(tokenId).call();
         if (currentOwner.toLowerCase() === walletAddress.toLowerCase()) {
           const tokenEvents = await getPastEvents(contract, 'Transfer', 1, latest.number, {tokenId});
-          const tokenStakes = (await axios.get(`${BACKEND_URL}/stake/${tokenId}`)).data;
+          const tokenInfo = (await axios.get(`${BACKEND_URL}/stake/${tokenId}`)).data;
+          const tokenStakes = tokenInfo.result;
 
           const trTimes = await Promise.all(tokenEvents.map(async (event) => (await web3.eth.getBlock(event.blockNumber)).timestamp));
           const stTimes = tokenStakes.map((stake) => parseInt((new Date(stake.staked_at).getTime() / 1000).toFixed(0)));
@@ -276,9 +322,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             i++;
           }
 
-          let alltime_claimed = (await contractStaking.methods.tokenIdToTotalClaimed(tokenId).call()) / 10**18;
-
-          alltime_accrued = alltime_accrued;
+          let alltime_claimed = tokenInfo.claimed_amount;
           const currently_accrued = (alltime_accrued - alltime_claimed);
 
           totalReadyToClaim += (alltime_accrued - alltime_claimed);

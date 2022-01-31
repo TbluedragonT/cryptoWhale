@@ -8,17 +8,25 @@
 			},
 			{
 				"internalType": "address",
-				"name": "cwcAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
 				"name": "deployerAddress",
 				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "nonce",
+				"type": "uint256"
+			}
+		],
+		"name": "Claimed",
+		"type": "event"
 	},
 	{
 		"anonymous": false,
@@ -41,6 +49,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "CLAIM_TIME_WINDOW",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "blubToken",
 		"outputs": [
 			{
@@ -55,31 +76,8 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256[]",
-				"name": "tokenIds",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "amounts",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "bytes[]",
-				"name": "signatures",
-				"type": "bytes[]"
-			}
-		],
-		"name": "claimArray",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
-				"name": "tokenId",
+				"name": "nonce",
 				"type": "uint256"
 			},
 			{
@@ -88,27 +86,19 @@
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
 				"internalType": "bytes",
 				"name": "signature",
 				"type": "bytes"
 			}
 		],
-		"name": "claimSingle",
+		"name": "claim",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "cwcToken",
-		"outputs": [
-			{
-				"internalType": "contract IERC721",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -119,6 +109,25 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "nonceIsUsed",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -153,11 +162,6 @@
 			},
 			{
 				"internalType": "address",
-				"name": "cwcAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
 				"name": "deployerAddress",
 				"type": "address"
 			}
@@ -165,25 +169,6 @@
 		"name": "setParams",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenIdToTotalClaimed",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
