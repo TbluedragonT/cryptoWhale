@@ -8,7 +8,7 @@ export default {
         4: '0x9988ea92C4A7713E2bdE4003443E51388c51e474', // Rinkeby TestNet
     },
     staking_contract: {
-        1: '', // Ethereum Mainnet
+        1: '0xAdF7fdf1d127f4145A7ab091899750DCFb9c7D08', // Ethereum Mainnet
         4: '0x3AFc4EA5E394e8e46A51f07d7842850E61E2A5c7', // Rinkeby TestNet
     }
 }
