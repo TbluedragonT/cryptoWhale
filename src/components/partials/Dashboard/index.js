@@ -5,10 +5,12 @@ import "./dashboard.scss"
 import {
   CONTRACT_ADDRESS_CWC,
   CONTRACT_ADDRESS_BLUB,
+  CONTRACT_ADDRESS_STAKING,
   BACKEND_URL
 } from "../../../util/addressHelper"
 import abi_cwc from "../../../config/abi/abi_cwc.json"
 import abi_blub from "../../../config/abi/abi_blub.json"
+import abi_staking from "../../../config/abi/abi_staking.json"
 import axios from "axios";
 
 const LGTitle = (props) => {
@@ -40,6 +42,31 @@ const Td = props => {
     </div>
   )
 }
+
+const ClaimButton = props => {
+  const { children, className } = props
+  return (
+    <button
+      className={`${className} px-6 py-1 my-1 text-sm h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      onClick={props.onClick}
+    >
+      Claim
+    </button>
+  )
+}
+
+const ClaimAllButton = props => {
+  const { children, className } = props
+  return (
+    <button
+      className={`${className} px-6 py-1 my-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      onClick={props.onClick}
+    >
+      Claim All
+    </button>
+  )
+}
+
 const StakeButton = props => {
   const { children, className } = props
   return (
@@ -72,6 +99,19 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
 
   const [ownedTokens, setOwnedTokens] = useState([])
   
+  const UPDATE_STAKING_UI_REFRESH_RATE = 10;
+
+  function updateStakingUi() {
+    setOwnedTokens((prevTokens) => prevTokens.map((token) => {return {...token, currently_accrued: token.status === "staked" ? token.currently_accrued + token.earning_rate/(UPDATE_STAKING_UI_REFRESH_RATE*3600) : token.currently_accrued}}));
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => updateStakingUi(), 1000/UPDATE_STAKING_UI_REFRESH_RATE);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   async function getPastEvents(contract, event, fromBlock, toBlock, filter = {}) {
     if (fromBlock <= toBlock) {
         try {
@@ -114,11 +154,112 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     }
   }
 
+  // async function claimToken(tokenId) {
+  //   const response = (await axios.post(`${BACKEND_URL}/claim/${tokenId}`)).data;
+  //   if (response.status == "Success") {
+  //     const accrued = response.accrued;
+  //     const signature = response.signature;
+
+  //     try {
+  //       const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+  //       if (!contract) {
+  //         return;
+  //       }
+  
+  //       await contract.methods.claimSingle(tokenId, accrued, signature)
+  //         .send({ from: walletAddress, type: "0x2" })
+  //         .on('transactionHash', (receipt) => {
+  //           alert("Transaction in progress...please wait a moment.")
+  //         })
+  //         .on('receipt', (receipt) => {
+  //           collectOwnedTokens();
+  //           alert("Success! You will receive your BLUB amount soon.")
+  //         })
+  //         .on('error', () => {
+  //           alert("Transaction cancelled.")
+  //         });
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  // }
+
+  async function claimToken(tokenId) {
+    const tokenIds = [tokenId];
+    const postBody = {
+      tokenIds,
+      walletAddress
+    }
+    const response = (await axios.post(`${BACKEND_URL}/claimall-v3`, postBody)).data;
+
+    if (response.status == "Success") {
+      try {
+        const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+        if (!contract) {
+          return;
+        }
+  
+        await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
+          .send({ from: walletAddress, type: "0x2" })
+          .on('transactionHash', (receipt) => {
+            alert("Transaction in progress...please wait a moment.")
+          })
+          .on('receipt', (receipt) => {
+            collectOwnedTokens();
+            alert("Success! You will receive your BLUB amount soon.")
+          })
+          .on('error', () => {
+            alert("Transaction cancelled.")
+          });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  async function claimAll() {
+    const tokenIds = ownedTokens.map((t) => t.tokenId);
+    const postBody = {
+      tokenIds,
+      walletAddress
+    }
+    const response = (await axios.post(`${BACKEND_URL}/claimall-v3`, postBody)).data;
+
+    if (response.status == "Success") {
+      const accrued = response.accrued;
+      const nonces = response.nonces;
+      const signatures = response.signatures;
+
+      try {
+        const contract = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+        if (!contract) {
+          return;
+        }
+  
+        await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
+          .send({ from: walletAddress, type: "0x2" })
+          .on('transactionHash', (receipt) => {
+            alert("Transaction in progress...please wait a moment.")
+          })
+          .on('receipt', (receipt) => {
+            collectOwnedTokens();
+            alert("Success! You will receive your BLUB amount soon.")
+          })
+          .on('error', () => {
+            alert("Transaction cancelled.")
+          });
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   async function collectOwnedTokens() {
     try {
       const contract = new web3.eth.Contract(abi_cwc, CONTRACT_ADDRESS_CWC);
       const contractBlub = new web3.eth.Contract(abi_blub, CONTRACT_ADDRESS_BLUB);
-      if (!contract || !contractBlub) {
+      const contractStaking = new web3.eth.Contract(abi_staking, CONTRACT_ADDRESS_STAKING);
+      if (!contract || !contractBlub || !contractStaking) {
         return;
       }
 
@@ -131,15 +272,23 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       let totalReadyToClaim = 0;
 
       const tokens = [];
+
+      const potentialTokenIds = {};
+
       for (let event of events) {
         const tokenId = event.returnValues.tokenId;
+        potentialTokenIds[tokenId] = true;
+      }
+
+      for (let tokenId of Object.keys(potentialTokenIds)) {
         const currentOwner = await contract.methods.ownerOf(tokenId).call();
         if (currentOwner.toLowerCase() === walletAddress.toLowerCase()) {
           const tokenEvents = await getPastEvents(contract, 'Transfer', 1, latest.number, {tokenId});
-          const tokenStakes = (await axios.get(`${BACKEND_URL}/stake/${tokenId}`)).data;
+          const tokenInfo = (await axios.get(`${BACKEND_URL}/stake/${tokenId}`)).data;
+          const tokenStakes = tokenInfo.result;
 
           const trTimes = await Promise.all(tokenEvents.map(async (event) => (await web3.eth.getBlock(event.blockNumber)).timestamp));
-          const stTimes = tokenStakes.map((stake) => parseInt((new Date(stake.staked_at).getTime() / 1000).toFixed(0)));
+          const stTimes = tokenStakes.map((stake) => parseInt((new Date(new Date(stake.staked_at) - new Date(stake.staked_at).getTimezoneOffset() * 60000).getTime() / 1000).toFixed(0)));
 
           let status = 'none';
           if (stTimes.length > 0 && stTimes[stTimes.length-1] > trTimes[trTimes.length-1]) {
@@ -173,10 +322,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             i++;
           }
 
-          let alltime_claimed = 0;
-
-          alltime_accrued = alltime_accrued.toFixed(STAKE_DECIMALS);
-          const currently_accrued = (alltime_accrued - alltime_claimed).toFixed(STAKE_DECIMALS);
+          let alltime_claimed = tokenInfo.claimed_amount;
+          const currently_accrued = (alltime_accrued - alltime_claimed);
 
           totalReadyToClaim += (alltime_accrued - alltime_claimed);
 
@@ -194,7 +341,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
 
       setOwnedTokens(tokens);
       setWalletBalance(balanceInWallet);
-      setClaimBalance(totalReadyToClaim.toFixed(STAKE_DECIMALS));
+      setClaimBalance(totalReadyToClaim);
     } catch (error) {
       console.log(error)
     }
@@ -218,7 +365,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               READY TO CLAIM
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{claimBalance}</p>
+              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:tex6xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -227,7 +374,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               IN WALLET
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{walletBalance}</p>
+              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -245,16 +392,16 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               <div key={idx} className="text-blue grid grid-cols-5 gap-1">
                 <Td idx={idx}>{data.name}</Td>
                 <Td idx={idx}>
-                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                  {data.status == "staked" ? <ClaimButton onClick={() => claimToken(data.tokenId)}/> : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </Td>
                 <Td idx={idx}>
                   {data.status == "staked" ? "100 $BLUB" : "-"}
                 </Td>
                 <Td idx={idx}>
-                  {data.currently_accrued}
+                  {data.currently_accrued.toFixed(STAKE_DECIMALS)}
                 </Td>
                 <Td idx={idx}>
-                  {data.alltime_claimed}
+                  {data.alltime_claimed.toFixed(STAKE_DECIMALS)}
                 </Td>
               </div>
             ))}
@@ -267,20 +414,23 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               </span>
               <div className="bg-white px-2 tiny:px-4">
                 <div className="text-center">
-                  {data.status == "staked" ? data.status : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
+                  {data.status == "staked" ? <ClaimButton onClick={() => claimToken(data.tokenId)}/> : <StakeButton onClick={() => stakeToken(data.tokenId)}/>}
                 </div>
                 <div className="flex">
                   <div className="w-2/3 tiny:w-3/5 text-sm">EARNING RATE (DAILY)</div>: {data.status == "staked" ? "100 $BLUB" : "-"}
                 </div>
                 <div className="flex">
-                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued}
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CURRENTLY ACCRUED</div>: {data.currently_accrued.toFixed(STAKE_DECIMALS)}
                 </div>
                 <div className="bg-white rounded-b-lg flex">
-                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed}
+                  <div className="w-2/3 tiny:w-3/5 text-sm">CLAIMED</div>: {data.alltime_claimed.toFixed(STAKE_DECIMALS)}
                 </div>
               </div>
             </div>
           ))}
+          </div>
+          <div className="flex flex-row justify-center mt-10">
+            <ClaimAllButton onClick={() => claimAll()}/>
           </div>
         </div>
       </div>
