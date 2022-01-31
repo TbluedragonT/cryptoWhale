@@ -288,7 +288,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           const tokenStakes = tokenInfo.result;
 
           const trTimes = await Promise.all(tokenEvents.map(async (event) => (await web3.eth.getBlock(event.blockNumber)).timestamp));
-          const stTimes = tokenStakes.map((stake) => parseInt((new Date(stake.staked_at).getTime() / 1000).toFixed(0)));
+          const stTimes = tokenStakes.map((stake) => parseInt((new Date(new Date(stake.staked_at) - new Date(stake.staked_at).getTimezoneOffset() * 60000).getTime() / 1000).toFixed(0)));
 
           let status = 'none';
           if (stTimes.length > 0 && stTimes[stTimes.length-1] > trTimes[trTimes.length-1]) {
