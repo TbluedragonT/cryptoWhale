@@ -241,20 +241,20 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
         <img src="/mint_page/logo.png" alt="logo" />
       </a>
       <div className="w-w-tiny h-h-tiny tiny:w-h-normal tiny:h-h-small lg:w-normal lg:h-h-normal mint-control flex flex-col text-white items-center justify-center relative lg:gap-6 xl:gap-2">
-        <div className="h-1/2 flex flex-col w-full px-3 tiny:px-8 lg:px-24 xl:px-10">
+        <div className="flex flex-col w-full px-3 tiny:px-8 lg:px-24 xl:px-10">
           <div className="mt-5 mb-8 z-50">
-            <div className="gap-6 flex justify-center">
+            <div className="gap-7 xl:flex justify-center">
               <div className="flex gap-2 items-center cursor-pointer" onClick={() => setIsBlub(false)}>
-                <div className="border-app-black border-2 rounded-full w-max h-max flex items-center justify-center" style={{ width: "20px", height: "20px" }}>
-                  {!isBlub && <div className="rounded-full bg-white" style={{ width: "10px", height: "10px" }}></div>}
+                <div className="border-app-black border-2 rounded-full w-4 tiny:w-5 h-4 tiny:h-5 flex items-center justify-center">
+                  {!isBlub && <div className="rounded-full bg-white w-2 tiny:w-3 h-2 tiny:h-3"></div>}
                 </div>
-                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint w/Eth</p>
+                <p className="tiny:text-3xl lg:text-3xl font-bold">Mint w/ ETH</p>
               </div>
-              <div className="flex gap-2 items-center cursor-pointer">
-                <div className="border-app-black border-2 rounded-full w-max h-max flex items-center justify-center" style={{ width: "20px", height: "20px" }}>
-                  {isBlub && <div className="rounded-full bg-white" style={{ width: "10px", height: "10px" }}></div>}
+              <div className="flex gap-2 items-center cursor-pointer btn-disabled mt-1 xl:mt-0" onClick={() => setIsBlub(false)}>
+                <div className="border-app-black border-2 rounded-full w-4 tiny:w-5 h-4 tiny:h-5 flex items-center justify-center">
+                  {isBlub && <div className="rounded-full bg-white w-2 tiny:w-3 h-2 tiny:h-3"></div>}
                 </div>
-                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint w/ Blub (SOON!)</p>
+                <p className="tiny:text-3xl lg:text-3xl font-bold">Mint w/ BLUB - Soon!</p>
               </div>
             </div>
           </div>
@@ -308,7 +308,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
             ) :
               isApproved ? (
                 <button className={`btn-mint font-alphakind flex h-1/2 items-center justify-center py-10 xl:py-40 text-2xl tiny:text-3xl lg:text-4xl xl:text-6xl w-full ${isDisabled ? "btn-disabled" : ""}`} onClick={mintHandler}>
-                  {isBlub ? "MINT W/ETH" : "MINT W/BLUB"}
+                  {!isBlub ? "MINT W/ETH" : "MINT W/BLUB"}
                 </button>
               ) : (
                 <button className={`btn-mint font-alphakind flex h-1/2 items-center justify-center py-10 xl:py-40 text-2xl tiny:text-2xl lg:text-3xl xl:text-5xl w-full uppercase`} onClick={approveHandler}>
