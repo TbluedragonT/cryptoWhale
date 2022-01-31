@@ -248,13 +248,13 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
                 <div className="border-app-black border-2 rounded-full w-max h-max flex items-center justify-center" style={{ width: "20px", height: "20px" }}>
                   {!isBlub && <div className="rounded-full bg-white" style={{ width: "10px", height: "10px" }}></div>}
                 </div>
-                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint With Eth</p>
+                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint w/Eth</p>
               </div>
-              <div className="flex gap-2 items-center cursor-pointer" onClick={() => setIsBlub(true)}>
+              <div className="flex gap-2 items-center cursor-pointer">
                 <div className="border-app-black border-2 rounded-full w-max h-max flex items-center justify-center" style={{ width: "20px", height: "20px" }}>
                   {isBlub && <div className="rounded-full bg-white" style={{ width: "10px", height: "10px" }}></div>}
                 </div>
-                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint With Blub</p>
+                <p className="text-xl tiny:text-2xl lg:text-3xl">Mint w/ Blub (SOON!)</p>
               </div>
             </div>
           </div>
