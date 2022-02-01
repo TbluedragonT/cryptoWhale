@@ -92,7 +92,7 @@ const Badge = props => {
 }
 
 const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
-  const STAKE_DECIMALS = 4;
+  const STAKE_DECIMALS = 1;
 
   const [claimBalance, setClaimBalance] = useState(0)
   const [walletBalance, setWalletBalance] = useState(0)
