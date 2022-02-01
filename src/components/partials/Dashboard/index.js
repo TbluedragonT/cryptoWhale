@@ -92,7 +92,7 @@ const Badge = props => {
 }
 
 const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
-  const STAKE_DECIMALS = 1;
+  const STAKE_DECIMALS = 2;
 
   const [claimBalance, setClaimBalance] = useState(0)
   const [walletBalance, setWalletBalance] = useState(0)
@@ -365,7 +365,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               READY TO CLAIM
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
+              <p className="text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:tex6xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -374,7 +374,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               IN WALLET
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
+              <p className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
