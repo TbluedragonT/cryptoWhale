@@ -12,6 +12,8 @@ import abi_cwc from "../../../config/abi/abi_cwc.json"
 import abi_blub from "../../../config/abi/abi_blub.json"
 import abi_staking from "../../../config/abi/abi_staking.json"
 import axios from "axios";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const LGTitle = (props) => {
   const { children, className } = props
@@ -198,9 +200,14 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         if (!contract) {
           return;
         }
+
+        const sendParams = { from: walletAddress, type: "0x2"}
+        if (process.env.GATSBY_APP_CHAIN_ID == 1) {
+          sendParams.maxPriorityFeePerGas = 3000000000;
+        }
   
         await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
-          .send({ from: walletAddress, type: "0x2" })
+          .send(sendParams)
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
           })
@@ -235,9 +242,14 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         if (!contract) {
           return;
         }
+
+        const sendParams = { from: walletAddress, type: "0x2"}
+        if (process.env.GATSBY_APP_CHAIN_ID == 1) {
+          sendParams.maxPriorityFeePerGas = 3000000000;
+        }
   
         await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
-          .send({ from: walletAddress, type: "0x2" })
+          .send(sendParams)
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
           })
@@ -347,6 +359,30 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     }
   }
 
+  async function addTokenToMetamask() {
+    const tokenAddress = CONTRACT_ADDRESS_BLUB;
+    const tokenSymbol = 'BLUB';
+    const tokenDecimals = 18;
+    const tokenImage = 'https://i.pinimg.com/originals/87/b3/ed/87b3ed7df54e851b95aaa9fff7d5e8a0.jpg';
+
+    try {
+      await ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if (connected) {
       collectOwnedTokens();
@@ -431,6 +467,11 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           </div>
           <div className="flex flex-row justify-center mt-10">
             <ClaimAllButton onClick={() => claimAll()}/>
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+              className="ml-5 text-5xl cursor-pointer"
+              onClick={() => addTokenToMetamask()}
+            />
           </div>
         </div>
       </div>
