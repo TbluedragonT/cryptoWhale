@@ -291,7 +291,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
               {!isBlub && (
                 <img src="/mint_page/ico_et.png" alt="eth logo" className="w-6" />
               )}
-              <span>{isBlub ? "$BLUB" : "ETH"}</span>
+              <span>{isBlub ? "BLUB" : "ETH"}</span>
             </div>
           </div>
         </div>
@@ -318,11 +318,11 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
         }
         {isDisabled ? (
           <div className="text-yellow-300 text-center text-sm lg:text-xl xl:text-2xl lg:-mt-4 pb-4 lg:pb-0 xl:-mb-5">
-            Sorry, there is a limit of 3 Mints with $BLUB per wallet. You may mint additional ones with ETH in the near future.
+            Sorry, there is a limit of 3 Mints with BLUB per wallet. You may mint additional ones with ETH in the near future.
           </div>
         ) : (
           <div className="text-center text-sm lg:text-xl xl:text-2xl pt-3 lg:pt-2 pb-4 lg:pb-0 xl:-mb-5">
-            Mint Price of {isBlub ? unitPrice + " BLUB" : unitPrice + " ETH"} per whale. You may mint between 1 - {maxAmount} whales per transaction.
+            Mint Price of {isBlub ? unitPrice + " BLUB" : unitPrice + " ETH"} per whale. You may mint between 1 - 40 whales per transaction.
           </div>
         )}
       </div>

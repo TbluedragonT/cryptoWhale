@@ -61,7 +61,7 @@ const ClaimAllButton = props => {
   const { children, className } = props
   return (
     <button
-      className={`${className} px-6 py-1 my-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      className={`${className} px-6 py-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max h-12`}
       onClick={props.onClick}
     >
       Claim All
@@ -363,7 +363,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     const tokenAddress = CONTRACT_ADDRESS_BLUB;
     const tokenSymbol = 'BLUB';
     const tokenDecimals = 18;
-    const tokenImage = 'https://i.pinimg.com/originals/87/b3/ed/87b3ed7df54e851b95aaa9fff7d5e8a0.jpg';
+    const tokenImage = window.location.origin + '/dashboard/token_symbol.png';
 
     try {
       await ethereum.request({
@@ -465,13 +465,17 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             </div>
           ))}
           </div>
-          <div className="flex flex-row justify-center mt-10">
-            <ClaimAllButton onClick={() => claimAll()}/>
-            <FontAwesomeIcon
-              icon={faPlusCircle}
-              className="ml-5 text-5xl cursor-pointer"
-              onClick={() => addTokenToMetamask()}
-            />
+          <div className="grid md:grid-cols-2 grid-cols-1 mt-10">
+            <div className="text-center md:text-right">
+              <ClaimAllButton onClick={() => claimAll()}/>
+            </div>
+            <div className="flex justify-center md:justify-self-start mt-2 md:mt-0 ml-0 md:ml-5 ">
+              <img 
+                src="/mint_page/btn_add_blub.png"
+                className="text-5xl cursor-pointer h-12"
+                onClick={() => addTokenToMetamask()}
+              />
+            </div>
           </div>
         </div>
       </div>
