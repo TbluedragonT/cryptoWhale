@@ -61,7 +61,7 @@ const ClaimAllButton = props => {
   const { children, className } = props
   return (
     <button
-      className={`${className} px-6 py-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max h-12`}
+      className={`${className} px-6 py-1 text-3xl uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max h-12`}
       onClick={props.onClick}
     >
       Claim All
