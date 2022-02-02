@@ -12,6 +12,8 @@ import abi_cwc from "../../../config/abi/abi_cwc.json"
 import abi_blub from "../../../config/abi/abi_blub.json"
 import abi_staking from "../../../config/abi/abi_staking.json"
 import axios from "axios";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const LGTitle = (props) => {
   const { children, className } = props
@@ -59,7 +61,7 @@ const ClaimAllButton = props => {
   const { children, className } = props
   return (
     <button
-      className={`${className} px-6 py-1 my-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max`}
+      className={`${className} px-6 py-1 text-3xl h-auto uppercase bg-gradient-to-r from-purple-dark to-purple-light rounded-full text-white w-max h-12`}
       onClick={props.onClick}
     >
       Claim All
@@ -92,7 +94,7 @@ const Badge = props => {
 }
 
 const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
-  const STAKE_DECIMALS = 4;
+  const STAKE_DECIMALS = 2;
 
   const [claimBalance, setClaimBalance] = useState(0)
   const [walletBalance, setWalletBalance] = useState(0)
@@ -198,9 +200,14 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         if (!contract) {
           return;
         }
+
+        const sendParams = { from: walletAddress, type: "0x2"}
+        if (process.env.GATSBY_APP_CHAIN_ID == 1) {
+          sendParams.maxPriorityFeePerGas = 3000000000;
+        }
   
         await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
-          .send({ from: walletAddress, type: "0x2" })
+          .send(sendParams)
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
           })
@@ -235,9 +242,14 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         if (!contract) {
           return;
         }
+
+        const sendParams = { from: walletAddress, type: "0x2"}
+        if (process.env.GATSBY_APP_CHAIN_ID == 1) {
+          sendParams.maxPriorityFeePerGas = 3000000000;
+        }
   
         await contract.methods.claim(response.nonce, response.amount, response.timestamp, response.signature)
-          .send({ from: walletAddress, type: "0x2" })
+          .send(sendParams)
           .on('transactionHash', (receipt) => {
             alert("Transaction in progress...please wait a moment.")
           })
@@ -347,6 +359,30 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
     }
   }
 
+  async function addTokenToMetamask() {
+    const tokenAddress = CONTRACT_ADDRESS_BLUB;
+    const tokenSymbol = 'BLUB';
+    const tokenDecimals = 18;
+    const tokenImage = window.location.origin + '/dashboard/token_symbol.png';
+
+    try {
+      await ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if (connected) {
       collectOwnedTokens();
@@ -365,7 +401,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               READY TO CLAIM
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
+              <p className="text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold ">{ownedTokens.reduce((s, t) => t.currently_accrued + s, 0).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:tex6xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -374,7 +410,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
               IN WALLET
             </LGTitle>
             <div className="bg-white rounded-b-lg flex flex-col text-center text-purple py-4 gap-4">
-              <p className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
+              <p className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold ">{(walletBalance / 10**18).toFixed(STAKE_DECIMALS)}</p>
               <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl ">$BLUB</p>
             </div>
           </div>
@@ -429,8 +465,17 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             </div>
           ))}
           </div>
-          <div className="flex flex-row justify-center mt-10">
-            <ClaimAllButton onClick={() => claimAll()}/>
+          <div className="grid md:grid-cols-2 grid-cols-1 mt-10">
+            <div className="text-center md:text-right">
+              <ClaimAllButton onClick={() => claimAll()}/>
+            </div>
+            <div className="flex justify-center md:justify-self-start mt-2 md:mt-0 ml-0 md:ml-5 ">
+              <img 
+                src="/mint_page/btn_add_blub.png"
+                className="text-5xl cursor-pointer h-12"
+                onClick={() => addTokenToMetamask()}
+              />
+            </div>
           </div>
         </div>
       </div>

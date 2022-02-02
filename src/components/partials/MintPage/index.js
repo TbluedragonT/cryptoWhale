@@ -15,8 +15,8 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
   const minAmount = 1
   const [isBlub, setIsBlub] = useState(false)
   const [unitPrice, setUnitPrice] = useState(0.06)
-  const [maxAmount, setMaxAmount] = useState(20)
-  const [maxBlubAmount, setMaxBlubAmount] = useState(1000)
+  const [maxAmount, setMaxAmount] = useState(40)
+  const [maxBlubAmount, setMaxBlubAmount] = useState(40)
   const [currentSupply, setCurrentSupply] = useState(-1)
   const [amount, setAmount] = useState(isBlub ? 1 : 5)
   const [totalPrice, setTotalPrice] = useState(unitPrice * amount)
@@ -94,7 +94,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
     setUnitPrice(isBlub ? 4500 : 0.06)
     setAmount(isBlub ? 1 : 5)
     setTotalPrice(isBlub ? 4500 : 0.3)
-    setMaxAmount(isBlub ? maxBlubAmount : 20)
+    setMaxAmount(isBlub ? maxBlubAmount : 40)
   }, [isBlub, maxBlubAmount])
 
   const connectHandler = async () => {
@@ -250,11 +250,11 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
                 </div>
                 <p className="tiny:text-3xl lg:text-3xl font-bold">Mint w/ ETH</p>
               </div>
-              <div className="flex gap-2 items-center cursor-pointer btn-disabled mt-1 xl:mt-0" onClick={() => setIsBlub(false)}>
+              <div className="flex gap-2 items-center cursor-pointer mt-1 xl:mt-0" onClick={() => setIsBlub(true)}>
                 <div className="border-app-black border-2 rounded-full w-4 tiny:w-5 h-4 tiny:h-5 flex items-center justify-center">
                   {isBlub && <div className="rounded-full bg-white w-2 tiny:w-3 h-2 tiny:h-3"></div>}
                 </div>
-                <p className="tiny:text-3xl lg:text-3xl font-bold">Mint w/ BLUB - Soon!</p>
+                <p className="tiny:text-3xl lg:text-3xl font-bold">Mint w/ BLUB</p>
               </div>
             </div>
           </div>
@@ -291,7 +291,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
               {!isBlub && (
                 <img src="/mint_page/ico_et.png" alt="eth logo" className="w-6" />
               )}
-              <span>{isBlub ? "$BLUB" : "ETH"}</span>
+              <span>{isBlub ? "BLUB" : "ETH"}</span>
             </div>
           </div>
         </div>
@@ -318,11 +318,11 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
         }
         {isDisabled ? (
           <div className="text-yellow-300 text-center text-sm lg:text-xl xl:text-2xl lg:-mt-4 pb-4 lg:pb-0 xl:-mb-5">
-            Sorry, there is a limit of 3 Mints with $BLUB per wallet. You may mint additional ones with ETH in the near future.
+            Sorry, there is a limit of 3 Mints with BLUB per wallet. You may mint additional ones with ETH in the near future.
           </div>
         ) : (
           <div className="text-center text-sm lg:text-xl xl:text-2xl pt-3 lg:pt-2 pb-4 lg:pb-0 xl:-mb-5">
-            Mint Price of {isBlub ? unitPrice + " BLUB" : unitPrice + " ETH"} per whale. You may mint between 1 - {maxAmount} whales per transaction.
+            Mint Price of {isBlub ? unitPrice + " BLUB" : unitPrice + " ETH"} per whale. You may mint between 1 - 40 whales per transaction.
           </div>
         )}
       </div>
