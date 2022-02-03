@@ -275,7 +275,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      // walletAddress = '0x18D622ab28A182FF636c2f098E943af72457256A'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
@@ -292,6 +292,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         potentialTokenIds[tokenId] = true;
       }
 
+      let eventsIssue = false;
+
       for (let tokenId of Object.keys(potentialTokenIds)) {
         const currentOwner = await contract.methods.ownerOf(tokenId).call();
         if (currentOwner.toLowerCase() === walletAddress.toLowerCase()) {
@@ -303,8 +305,12 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           const stTimes = tokenStakes.map((stake) => parseInt((new Date(new Date(stake.staked_at) - new Date(stake.staked_at).getTimezoneOffset() * 60000).getTime() / 1000).toFixed(0)));
 
           let status = 'none';
-          if (stTimes.length > 0 && stTimes[stTimes.length-1] > trTimes[trTimes.length-1]) {
+          if (stTimes.length > 0 && (stTimes[stTimes.length-1] > trTimes[trTimes.length-1] || trTimes.length === 0)) {
             status = 'staked';
+          }
+
+          if (trTimes.length === 0) {
+            eventsIssue = true;
           }
 
           const earning_rate = 4.1667;
@@ -323,7 +329,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             if (j==trTimes.length) {
               end_timestamp = Math.floor(Date.now() / 1000);
             } else {
-              end_timestamp = trTimes[j];
+              end_timestamp = parseInt(trTimes[j]);
             }
 
             if (i < stTimes.length - 1) {
@@ -333,6 +339,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             alltime_accrued += (end_timestamp - start_timestamp)*earning_rate / 3600;
             i++;
           }
+
+          alltime_accrued = alltime_accrued || 0;
 
           let alltime_claimed = tokenInfo.claimed_amount;
           const currently_accrued = (alltime_accrued - alltime_claimed);
@@ -354,6 +362,10 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       setOwnedTokens(tokens);
       setWalletBalance(balanceInWallet);
       setClaimBalance(totalReadyToClaim);
+
+      if (eventsIssue) {
+        alert("Issue encountered while parsing blockchain events - the numbers may not be accurate");
+      }
     } catch (error) {
       console.log(error)
     }
