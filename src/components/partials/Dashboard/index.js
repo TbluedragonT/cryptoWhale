@@ -275,7 +275,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         return;
       }
 
-      // walletAddress = '0xb9f59344a4cfcc062da21b7df1c2d9934e4bc71a'; // TODO remove
+      // walletAddress = '0x18D622ab28A182FF636c2f098E943af72457256A'; // TODO remove
 
       const latest = await web3.eth.getBlock("latest");
       const events = await getPastEvents(contract, 'Transfer', 1, latest.number, {to: walletAddress});
@@ -323,7 +323,7 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             if (j==trTimes.length) {
               end_timestamp = Math.floor(Date.now() / 1000);
             } else {
-              end_timestamp = trTimes[j];
+              end_timestamp = parseInt(trTimes[j]);
             }
 
             if (i < stTimes.length - 1) {
