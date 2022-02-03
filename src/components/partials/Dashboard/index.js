@@ -292,6 +292,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
         potentialTokenIds[tokenId] = true;
       }
 
+      let eventsIssue = false;
+
       for (let tokenId of Object.keys(potentialTokenIds)) {
         const currentOwner = await contract.methods.ownerOf(tokenId).call();
         if (currentOwner.toLowerCase() === walletAddress.toLowerCase()) {
@@ -303,8 +305,12 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
           const stTimes = tokenStakes.map((stake) => parseInt((new Date(new Date(stake.staked_at) - new Date(stake.staked_at).getTimezoneOffset() * 60000).getTime() / 1000).toFixed(0)));
 
           let status = 'none';
-          if (stTimes.length > 0 && stTimes[stTimes.length-1] > trTimes[trTimes.length-1]) {
+          if (stTimes.length > 0 && (stTimes[stTimes.length-1] > trTimes[trTimes.length-1] || trTimes.length === 0)) {
             status = 'staked';
+          }
+
+          if (trTimes.length === 0) {
+            eventsIssue = true;
           }
 
           const earning_rate = 4.1667;
@@ -356,6 +362,10 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
       setOwnedTokens(tokens);
       setWalletBalance(balanceInWallet);
       setClaimBalance(totalReadyToClaim);
+
+      if (eventsIssue) {
+        alert("Issue encountered while parsing blockchain events - the numbers may not be accurate");
+      }
     } catch (error) {
       console.log(error)
     }
