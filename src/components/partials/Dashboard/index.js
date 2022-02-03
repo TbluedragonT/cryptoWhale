@@ -334,6 +334,8 @@ const Dashboard = ({web3, onBoard, walletAddress, connected, setConnected}) => {
             i++;
           }
 
+          alltime_accrued = alltime_accrued || 0;
+
           let alltime_claimed = tokenInfo.claimed_amount;
           const currently_accrued = (alltime_accrued - alltime_claimed);
 
