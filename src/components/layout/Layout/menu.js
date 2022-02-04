@@ -63,6 +63,21 @@ export const stakeMenus = [
   }
 ]
 
+export const mintMenus = [
+  {
+    name: "Home",
+    path: "/",
+    target: "",
+    type: "external",
+  },
+  {
+    name: "Stake",
+    path: "/dashboard",
+    target: "",
+    type: "external",
+  }
+]
+
 export const footerLinks = [
   {
     heading: "crypto whale club",

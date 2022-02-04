@@ -236,7 +236,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
   }
 
   return (
-    <div className="mint-page relative flex items-center justify-center w-screen h-screen">
+    <div className="mint-page relative flex items-center justify-center h-screen">
       <a href="/" className="absolute top-5 left-10 w-1/5 tiny:w-2/12 cursor-pointer">
         <img src="/mint_page/logo.png" alt="logo" />
       </a>
