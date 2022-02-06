@@ -242,6 +242,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
       </a>
       <div className="w-w-tiny h-h-tiny tiny:w-h-normal tiny:h-h-small lg:w-normal lg:h-h-normal mint-control flex flex-col text-white items-center justify-center relative lg:gap-6 xl:gap-2">
         <div className="flex flex-col w-full px-3 tiny:px-8 lg:px-24 xl:px-10">
+{/*
           <div className="mt-5 mb-8 z-50">
             <div className="gap-7 xl:flex justify-center">
               <div className="flex gap-2 items-center cursor-pointer" onClick={() => setIsBlub(false)}>
@@ -258,6 +259,7 @@ const MintPage = ({ web3, onBoard, walletAddress, connected, setConnected }) => 
               </div>
             </div>
           </div>
+*/}
           <div className="flex gap-4">
             <div className="w-4/12 border-4 rounded-lg flex py-3 items-center justify-center gap-1">
               <button
