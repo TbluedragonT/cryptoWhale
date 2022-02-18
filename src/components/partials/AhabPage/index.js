@@ -24,7 +24,7 @@ const StakeItem = (props) => {
 
 const AhabPage = ({ web3, walletAddress, connected }) => {
   const [cwcContract, setCwcContract] = useState(null)
-  const [ahabEligible, setAhabEligible] = useState(false)
+  const [ahabEligible, setAhabEligible] = useState(undefined)
   const [whaleTypes, setWhaleTypes] = useState(defaultWhaleType)
   const [alertState, setAlertState] = useState({
     open: false,
@@ -39,31 +39,6 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       checkAhab()
     }
   }, [connected])
-
-  useEffect(() => {
-    const initialHandler = async () => {
-      const latest = await web3.eth.getBlock("latest");
-      const events = await getPastEvents(cwcContract, 'Transfer', 1, latest.number, { to: walletAddress });
-      for (let event of events) {
-        const tokenId = event.returnValues.tokenId;
-        const isUsed = await checkUsedToken(tokenId)
-        if (!isUsed) {
-          const whale_type = whalesInfo[tokenId]['Whale Type'].toLocaleLowerCase().replace(/ /g, "_");
-          setWhaleTypes(prevState => ({
-            ...prevState,
-            [whale_type]: {
-              ...prevState[whale_type],
-              isStaked: true
-            }
-          }))
-        }
-      }
-    }
-
-    if (connected && cwcContract != null) {
-      initialHandler()
-    }
-  }, [connected, cwcContract])
 
   const getPastEvents = async (contract, event, fromBlock, toBlock, filter = {}) => {
     if (fromBlock <= toBlock) {
@@ -86,16 +61,19 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
     return [];
   }
 
-  const checkUsedToken = async (id) => {
-    // const result = (await axios.get(`${BACKEND_URL}/check-used/${id}`)).data;
-    // return result.code == 200 && result.value
-    return false
-  }
-
   const checkAhab = async () => {
     const ahab_results = (await axios.get(`${BACKEND_URL}/ahab-check/${walletAddress}`)).data;
     const ahab_eligible = ahab_results.code == 200 && ahab_results.value;
+
+    const newWhaleTypes = {...defaultWhaleType};
+    if (ahab_results.code == 200) {
+      for (let whaleType of ahab_results.types) {
+        const whaleKey = whaleType.toLocaleLowerCase().replace(/ /g, "_")
+        newWhaleTypes[whaleKey].isStaked = true;
+      }
+    }
     setAhabEligible(ahab_eligible);
+    setWhaleTypes(newWhaleTypes);
   }
 
   const claimAhab = async () => {
@@ -135,7 +113,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
         </div>
         <div className=" text-center flex flex-col items-center justify-center ">
           <p className="text-xl sm:text-3xl md:text-4xl">
-            {ahabEligible ? "Congratulation you are qualified!" : "Sorry, You are not qualified."}
+            {ahabEligible !== undefined && (ahabEligible ? "Congratulation you are qualified!" : "Sorry, You are not qualified.")}
           </p>
           <video 
             muted 
