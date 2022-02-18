@@ -89,7 +89,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
   const checkUsedToken = async (id) => {
     // const result = (await axios.get(`${BACKEND_URL}/check-used/${id}`)).data;
     // return result.code == 200 && result.value
-    return true
+    return false
   }
 
   const checkAhab = async () => {
