@@ -14,7 +14,7 @@ const StakeItem = (props) => {
 
   return (
     <div className="relative">
-      <img src={item.icon} alt="coin icon" />
+      <img src={item.icon} className={!item.isStaked && "disabled"} alt="coin icon" />
       {item.isStaked && (
         <img src="/ahab_page/tick.png" alt="tick icon" className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 sm:w-6 md:w-8 lg:w-6  2xl:w-8 translate-y-1/2" />
       )}
@@ -47,7 +47,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       for (let event of events) {
         const tokenId = event.returnValues.tokenId;
         const isUsed = await checkUsedToken(tokenId)
-        if(!isUsed) {
+        if (!isUsed) {
           const whale_type = whalesInfo[tokenId]['Whale Type'].toLocaleLowerCase().replace(/ /g, "_");
           setWhaleTypes(prevState => ({
             ...prevState,
@@ -124,8 +124,8 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       <a href="/" className="absolute top-5 left-10 w-1/5 tiny:w-2/12 cursor-pointer">
         <img src="/logo.png" alt="logo" />
       </a>
-      <div className={`container mt-4 tiny:mt-8 sm:mt-12 lg:mt-24 ${!ahabEligible && "disabled"} `}>
-        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 px-2 gap-4  md:gap-8  xl:gap-10 py-12 ">
+      <div className={`container mt-4 tiny:mt-8 sm:mt-12 lg:mt-24`}>
+        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 px-2 gap-4 md:gap-8 xl:gap-10 py-12 ">
           {Object.keys(whaleTypes).map((key, idx) => {
             return (
               <StakeItem item={whaleTypes[key]} key={idx} />
@@ -137,10 +137,18 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
           <p className="text-xl sm:text-3xl md:text-4xl">
             {ahabEligible ? "Congratulation you are qualified!" : "Sorry, You are not qualified."}
           </p>
-          <img src="/ahab_page/captain.png" alt="captain image" />
+          <video 
+            muted 
+            autoPlay 
+            loop
+            style={{ width: "auto", height: "300px" }}
+            className="w-full mx-auto my-8 rounded-lg ahab-video">
+            <source src="/ahab_page/ahab.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           <button className="relative" onClick={claimAhab}>
             <img src="/ahab_page/btn_claim.svg" alt="claim image" />
-            <p className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl sm:text-5xl lg:text-5xl whitespace-nowrap">
+            <p className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl sm:text-5xl lg:text-5xl whitespace-nowrap ${!ahabEligible && "disabled not-allowed"}`}>
               CLAIM AHAB
             </p>
           </button>
