@@ -13,7 +13,7 @@ export default function Roadmap({ milestons }) {
               </div>
               <div
                 className={`bg-secondary h-3 ${
-                  idx === 4 ? "w-12 lg:w-16 xl:w-24" : "w-24 lg:w-16 xl:w-36"
+                  idx === 4 ? "w-12 lg:w-16 xl:w-24" : "w-24 lg:w-16 xl:w-32 2xl:w-36"
                 }`}
               ></div>
             </div>
@@ -41,7 +41,7 @@ export default function Roadmap({ milestons }) {
               </div>
               <div
                 className={`bg-secondary h-3 ${
-                  idx === 0 ? "w-12 lg:w-16 xl:w-24" : "w-24 lg:w-16 xl:w-36"
+                  idx === 0 ? "w-12 lg:w-16 xl:w-24" : "w-24 lg:w-16 xl:w-32 2xl:w-36"
                 }`}
               ></div>
             </div>

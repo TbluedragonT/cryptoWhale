@@ -206,3 +206,86 @@ export const faqs = [
       to the project-promoting the project w/out spamming, positive discord engagement, retweeting etc.`,
   },
 ]
+
+export const defaultWhaleType = {
+  bitcoin: {
+    icon: "/ahab_page/bitcoin.png",
+    isStaked: false
+  },
+  ethereum: {
+    icon: "/ahab_page/ethereum.png",
+    isStaked: false
+  },
+  binance_coin: {
+    icon: "/ahab_page/binance_coin.png",
+    isStaked: false
+  },
+  cardano: {
+    icon: "/ahab_page/cardano.png",
+    isStaked: false
+  },
+  dogecoin: {
+    icon: "/ahab_page/dogecoin.png",
+    isStaked: false
+  },
+  solana: {
+    icon: "/ahab_page/solana.png",
+    isStaked: false
+  },
+  terra: {
+    icon: "/ahab_page/terra.png",
+    isStaked: false
+  },
+  polkadot: {
+    icon: "/ahab_page/polkadot.png",
+    isStaked: false
+  },
+  uniswap: {
+    icon: "/ahab_page/uniswap.png",
+    isStaked: false
+  },
+  avalanche: {
+    icon: "/ahab_page/avalanche.png",
+    isStaked: false
+  },
+  chainlink: {
+    icon: "/ahab_page/chainlink.png",
+    isStaked: false
+  },
+  xrp: {
+    icon: "/ahab_page/xrp.png",
+    isStaked: false
+  },
+  axie_infinity: {
+    icon: "/ahab_page/axie_infinity.png",
+    isStaked: false
+  },
+  litecoin: {
+    icon: "/ahab_page/litecoin.png",
+    isStaked: false
+  },
+  polygon: {
+    icon: "/ahab_page/polygon.png",
+    isStaked: false
+  },
+  algorand: {
+    icon: "/ahab_page/algorand.png",
+    isStaked: false
+  },
+  stellar: {
+    icon: "/ahab_page/stellar.png",
+    isStaked: false
+  },
+  vechain: {
+    icon: "/ahab_page/vechain.png",
+    isStaked: false
+  },
+  cosmos: {
+    icon: "/ahab_page/cosmos.png",
+    isStaked: false
+  },
+  internet_computer: {
+    icon: "/ahab_page/internet_computer.png",
+    isStaked: false
+  }
+}

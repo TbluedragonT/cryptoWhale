@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="934" viewBox="0 0 390 934">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="390" height="934" transform="translate(88.2)" fill="#09d0e7" style="mix-blend-mode: hard-light;isolation: isolate"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="crop" width="751.66" height="946.232" fill="none"/>
+    </clipPath>
+    <radialGradient id="radial-gradient" cx="0.504" cy="0.206" r="0.767" gradientUnits="objectBoundingBox">
+      <stop offset="0.27" stop-color="#00cfe6"/>
+      <stop offset="0.412" stop-color="#00c6e0"/>
+      <stop offset="0.635" stop-color="#00b0d0"/>
+      <stop offset="0.908" stop-color="#008bb6"/>
+      <stop offset="0.995" stop-color="#007fad"/>
+    </radialGradient>
+  </defs>
+  <g id="BG" transform="translate(-88.2)" clip-path="url(#clip-path)">
+    <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-86.455 -6.116)" clip-path="url(#clip-path-2)">
+      <g id="BACKGROUND">
+        <rect id="Rectangle_1-2" data-name="Rectangle 1" width="751.66" height="946.232" fill="url(#radial-gradient)"/>
+      </g>
+      <g id="OBJECTS" transform="translate(0 0)">
+        <g id="Group_4" data-name="Group 4">
+          <g id="Group_3" data-name="Group 3" clip-path="url(#clip-path-2)">
+            <path id="Path_1" data-name="Path 1" d="M-187.015,724.748c16.156-12.714,35.827-24.833,50.047-5.56,6.033,8.177,10.234,21.277,17.11,26.58,10.475,8.081,22.489-5.117,33.575-.848,12.49,4.811,19.841,29.632,31.258,40.336,15.3,14.343,34.338.643,50.453,11.334C8.4,805.2,18.3,828.89,32,831.093c9.455,1.52,18.438-7.767,27.872-9.686,15.114-3.073,29.609,13.126,40.422,33.3s19.17,44.66,30.035,64.737c29.994,55.425,74.373,70.095,115.853,82.129,7.421,2.152,15.922,3.758,21.575-5.573,5.745-9.483,6.211-26.78,11.771-36.648,6.293-11.169,16.322-8.6,24.449-14.125,18.274-12.416,21.418-58.981,34.949-85.289,22.265-43.288,61.457-17.365,91.8-36.305,21.59-13.476,36.951-48.667,55.041-74.682,31.305-45.018,73.126-62.9,111.647-47.751v518.63H-201.534Z" transform="translate(169.372 -230.408)" fill="#0085b0"/>
+            <g id="Group_2" data-name="Group 2" transform="translate(-565.833 -36.629)">
+              <g id="Group_1" data-name="Group 1" opacity="0.2">
+                <path id="Path_2" data-name="Path 2" d="M2895.444-54.759h9.49l773.61,989.8h-65.154Z" transform="translate(-1867.537 54.759)" fill="#b9fffd"/>
+                <path id="Path_3" data-name="Path 3" d="M2736.1-54.759h9.49l624.455,989.8h-65.154Z" transform="translate(-1733.62 54.759)" fill="#b9fffd"/>
+                <path id="Path_4" data-name="Path 4" d="M2576.75-54.759h9.49l475.3,989.8h-65.154Z" transform="translate(-1599.702 54.759)" fill="#b9fffd"/>
+                <path id="Path_5" data-name="Path 5" d="M2417.4-54.759h9.49l326.143,989.8h-65.153Z" transform="translate(-1465.784 54.759)" fill="#b9fffd"/>
+                <path id="Path_6" data-name="Path 6" d="M2258.055-54.759h9.49l176.988,989.8h-65.154Z" transform="translate(-1331.867 54.759)" fill="#b9fffd"/>
+                <path id="Path_7" data-name="Path 7" d="M1952.14-54.759h9.49l27.832,989.8h-65.154Z" transform="translate(-1051.381 54.759)" fill="#b9fffd"/>
+                <path id="Path_8" data-name="Path 8" d="M1007.309-54.759h9.49l-121.324,989.8H830.321Z" transform="translate(-131.98 54.759)" fill="#b9fffd"/>
+                <path id="Path_9" data-name="Path 9" d="M62.478-54.759h9.49l-270.479,989.8h-65.154Z" transform="translate(787.421 54.759)" fill="#b9fffd"/>
+                <path id="Path_10" data-name="Path 10" d="M-882.353-54.759h9.49l-419.635,989.8h-65.154Z" transform="translate(1706.822 54.759)" fill="#b9fffd"/>
+                <path id="Path_11" data-name="Path 11" d="M-1827.183-54.759h9.49l-568.791,989.8h-65.154Z" transform="translate(2626.223 54.759)" fill="#b9fffd"/>
+                <path id="Path_12" data-name="Path 12" d="M-2772.014-54.759h9.49l-717.946,989.8h-65.154Z" transform="translate(3545.625 54.759)" fill="#b9fffd"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
