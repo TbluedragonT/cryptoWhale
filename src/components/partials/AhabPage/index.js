@@ -14,7 +14,7 @@ const StakeItem = (props) => {
 
   return (
     <div className="relative">
-      <img src={item.icon} alt="coin icon" />
+      <img src={item.icon} className={!item.isStaked && "disabled"} alt="coin icon" />
       {item.isStaked && (
         <img src="/ahab_page/tick.png" alt="tick icon" className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 sm:w-6 md:w-8 lg:w-6  2xl:w-8 translate-y-1/2" />
       )}
@@ -24,7 +24,7 @@ const StakeItem = (props) => {
 
 const AhabPage = ({ web3, walletAddress, connected }) => {
   const [cwcContract, setCwcContract] = useState(null)
-  const [ahabEligible, setAhabEligible] = useState(false)
+  const [ahabEligible, setAhabEligible] = useState(undefined)
   const [whaleTypes, setWhaleTypes] = useState(defaultWhaleType)
   const [alertState, setAlertState] = useState({
     open: false,
@@ -39,31 +39,6 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       checkAhab()
     }
   }, [connected])
-
-  useEffect(() => {
-    const initialHandler = async () => {
-      const latest = await web3.eth.getBlock("latest");
-      const events = await getPastEvents(cwcContract, 'Transfer', 1, latest.number, { to: walletAddress });
-      for (let event of events) {
-        const tokenId = event.returnValues.tokenId;
-        const isUsed = await checkUsedToken(tokenId)
-        if(!isUsed) {
-          const whale_type = whalesInfo[tokenId]['Whale Type'].toLocaleLowerCase().replace(/ /g, "_");
-          setWhaleTypes(prevState => ({
-            ...prevState,
-            [whale_type]: {
-              ...prevState[whale_type],
-              isStaked: true
-            }
-          }))
-        }
-      }
-    }
-
-    if (connected && cwcContract != null) {
-      initialHandler()
-    }
-  }, [connected, cwcContract])
 
   const getPastEvents = async (contract, event, fromBlock, toBlock, filter = {}) => {
     if (fromBlock <= toBlock) {
@@ -86,16 +61,19 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
     return [];
   }
 
-  const checkUsedToken = async (id) => {
-    // const result = (await axios.get(`${BACKEND_URL}/check-used/${id}`)).data;
-    // return result.code == 200 && result.value
-    return false
-  }
-
   const checkAhab = async () => {
     const ahab_results = (await axios.get(`${BACKEND_URL}/ahab-check/${walletAddress}`)).data;
     const ahab_eligible = ahab_results.code == 200 && ahab_results.value;
+
+    const newWhaleTypes = {...defaultWhaleType};
+    if (ahab_results.code == 200) {
+      for (let whaleType of ahab_results.types) {
+        const whaleKey = whaleType.toLocaleLowerCase().replace(/ /g, "_")
+        newWhaleTypes[whaleKey].isStaked = true;
+      }
+    }
     setAhabEligible(ahab_eligible);
+    setWhaleTypes(newWhaleTypes);
   }
 
   const claimAhab = async () => {
@@ -124,8 +102,8 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       <a href="/" className="absolute top-5 left-10 w-1/5 tiny:w-2/12 cursor-pointer">
         <img src="/logo.png" alt="logo" />
       </a>
-      <div className={`container mt-4 tiny:mt-8 sm:mt-12 lg:mt-24 ${!ahabEligible && "disabled"} `}>
-        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 px-2 gap-4  md:gap-8  xl:gap-10 py-12 ">
+      <div className={`container mt-4 tiny:mt-8 sm:mt-12 lg:mt-24`}>
+        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 px-2 gap-4 md:gap-8 xl:gap-10 py-12 ">
           {Object.keys(whaleTypes).map((key, idx) => {
             return (
               <StakeItem item={whaleTypes[key]} key={idx} />
@@ -135,18 +113,29 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
         </div>
         <div className=" text-center flex flex-col items-center justify-center ">
           <p className="text-xl sm:text-3xl md:text-4xl">
-            {ahabEligible ? "Congratulation you are qualified!" : "Sorry, You are not qualified."}
+            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Ahab welcomes your whales to his Pod. Please claim below." : "Sorry, you do not have the 20 unique types required to claim Captain Ahab.")}
           </p>
-          <img src="/ahab_page/captain.png" alt="captain image" />
+          <video 
+            muted 
+            autoPlay 
+            loop
+            style={{ width: "auto", height: "300px" }}
+            className="w-full mx-auto my-8 rounded-lg ahab-video">
+            <source src="/ahab_page/ahab.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           <button className="relative" onClick={claimAhab}>
             <img src="/ahab_page/btn_claim.svg" alt="claim image" />
-            <p className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl sm:text-5xl lg:text-5xl whitespace-nowrap">
+            <p className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl sm:text-5xl lg:text-5xl whitespace-nowrap ${!ahabEligible && "disabled not-allowed"}`}>
               CLAIM AHAB
             </p>
           </button>
         </div>
         <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown prioftware like Aldus PageMaker including versions of Lorem
+          There was a time when Ahab was known as a hunter of whales. He has since turned the page on that chapter of his life after the Atlantean Whales befriended Ahab and taught him the error of his ways. He now helps the Atlanteans by sailing the seas in search of lost whales. He gently collects them and helps them to return to their Crypto Whale Pod homes.
+        </p>
+        <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
+          The first 50 collectors to collect one of each 20 whale types are able to claim a Captain Ahab from the Crypto Whales website. The Captain will count as every whale type for the purposes of the Coin Rewards program.
         </p>
       </div>
       <Snackbar
