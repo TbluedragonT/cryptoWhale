@@ -24,7 +24,7 @@ const StakeItem = (props) => {
 
 const AhabPage = ({ web3, walletAddress, connected }) => {
   const [cwcContract, setCwcContract] = useState(null)
-  const [ahabEligible, setAhabEligible] = useState(false)
+  const [ahabEligible, setAhabEligible] = useState(undefined)
   const [whaleTypes, setWhaleTypes] = useState(defaultWhaleType)
   const [alertState, setAlertState] = useState({
     open: false,
@@ -39,31 +39,6 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       checkAhab()
     }
   }, [connected])
-
-  useEffect(() => {
-    const initialHandler = async () => {
-      const latest = await web3.eth.getBlock("latest");
-      const events = await getPastEvents(cwcContract, 'Transfer', 1, latest.number, { to: walletAddress });
-      for (let event of events) {
-        const tokenId = event.returnValues.tokenId;
-        const isUsed = await checkUsedToken(tokenId)
-        if (!isUsed) {
-          const whale_type = whalesInfo[tokenId]['Whale Type'].toLocaleLowerCase().replace(/ /g, "_");
-          setWhaleTypes(prevState => ({
-            ...prevState,
-            [whale_type]: {
-              ...prevState[whale_type],
-              isStaked: true
-            }
-          }))
-        }
-      }
-    }
-
-    if (connected && cwcContract != null) {
-      initialHandler()
-    }
-  }, [connected, cwcContract])
 
   const getPastEvents = async (contract, event, fromBlock, toBlock, filter = {}) => {
     if (fromBlock <= toBlock) {
@@ -86,16 +61,19 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
     return [];
   }
 
-  const checkUsedToken = async (id) => {
-    // const result = (await axios.get(`${BACKEND_URL}/check-used/${id}`)).data;
-    // return result.code == 200 && result.value
-    return false
-  }
-
   const checkAhab = async () => {
     const ahab_results = (await axios.get(`${BACKEND_URL}/ahab-check/${walletAddress}`)).data;
     const ahab_eligible = ahab_results.code == 200 && ahab_results.value;
+
+    const newWhaleTypes = {...defaultWhaleType};
+    if (ahab_results.code == 200) {
+      for (let whaleType of ahab_results.types) {
+        const whaleKey = whaleType.toLocaleLowerCase().replace(/ /g, "_")
+        newWhaleTypes[whaleKey].isStaked = true;
+      }
+    }
     setAhabEligible(ahab_eligible);
+    setWhaleTypes(newWhaleTypes);
   }
 
   const claimAhab = async () => {
@@ -135,7 +113,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
         </div>
         <div className=" text-center flex flex-col items-center justify-center ">
           <p className="text-xl sm:text-3xl md:text-4xl">
-            {ahabEligible ? "Congratulation you are qualified!" : "Sorry, You are not qualified."}
+            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Ahab welcomes your whales to his Pod. Please claim below." : "Sorry, you do not have the 20 unique types required to claim Captain Ahab.")}
           </p>
           <video 
             muted 
@@ -154,7 +132,10 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
           </button>
         </div>
         <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown prioftware like Aldus PageMaker including versions of Lorem
+          There was a time when Ahab was known as a hunter of whales. He has since turned the page on that chapter of his life after the Atlantean Whales befriended Ahab and taught him the error of his ways. He now helps the Atlanteans by sailing the seas in search of lost whales. He gently collects them and helps them to return to their Crypto Whale Pod homes.
+        </p>
+        <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
+          The first 50 collectors to collect one of each 20 whale types are able to claim a Captain Ahab from the Crypto Whales website. The Captain will count as every whale type for the purposes of the Coin Rewards program.
         </p>
       </div>
       <Snackbar
