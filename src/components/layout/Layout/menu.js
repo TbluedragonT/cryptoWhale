@@ -66,6 +66,33 @@ export const stakeMenus = [
     path: "/mint",
     target: "",
     type: "external",
+  },
+  {
+    name: "Ahab",
+    path: "/ahab",
+    target: "",
+    type: "external",
+  }
+]
+
+export const ahabMenus = [
+  {
+    name: "Home",
+    path: "/",
+    target: "",
+    type: "external",
+  },
+  {
+    name: "Mint",
+    path: "/mint",
+    target: "",
+    type: "external",
+  },
+  {
+    name: "Stake",
+    path: "/dashboard",
+    target: "",
+    type: "external",
   }
 ]
 
@@ -79,6 +106,12 @@ export const mintMenus = [
   {
     name: "Stake",
     path: "/dashboard",
+    target: "",
+    type: "external",
+  },
+  {
+    name: "Ahab",
+    path: "/ahab",
     target: "",
     type: "external",
   }

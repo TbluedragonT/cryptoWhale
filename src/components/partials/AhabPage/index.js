@@ -113,7 +113,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
         </div>
         <div className=" text-center flex flex-col items-center justify-center ">
           <p className="text-xl sm:text-3xl md:text-4xl">
-            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Please Claim Ahab using the button below." : "Sorry, you require more Whales to Claim Ahab!")}
+            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Please Claim Ahab using the button below." : "You need to collect one of each whale type to claim, time to hit the Opensea!")}
           </p>
           <video 
             controls
@@ -133,7 +133,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
           </button>
         </div>
         <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
-          There was a time when Ahab was known as a hunter of whales. He has since turned the page on that chapter of his life after the Atlantean Whales befriended Ahab and taught him the error of his ways. He now helps the Atlanteans by sailing the seas in search of lost whales. He gently collects them and helps them to return to their Crypto Whale Pod homes.
+          There was a time when Ahab was known as a hunter of whales. He turned the page on that chapter of his life after the Atlantean Whales befriended Ahab and taught him the error of his ways. He now assists the Atlanteans by sailing the seas in search of lost whales. He gently collects them and helps them to return to their Crypto Whale Pod homes.
         </p>
         <p className="mt-8 text-sm sm:text-2xl md:text-3xl text-center">
           The first 50 collectors to collect one of each 20 whale types are able to claim a Captain Ahab from the Crypto Whales website. The Captain will count as every whale type for the purposes of the Coin Rewards program.
