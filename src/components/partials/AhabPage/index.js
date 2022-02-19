@@ -113,7 +113,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
         </div>
         <div className=" text-center flex flex-col items-center justify-center ">
           <p className="text-xl sm:text-3xl md:text-4xl">
-            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Ahab welcomes your whales to his Pod. Please claim below." : "Sorry, you do not have the 20 unique types required to claim Captain Ahab.")}
+            {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Please Claim Ahab using the button below." : "Sorry, you require more Whales to Claim Ahab!")}
           </p>
           <video 
             muted 
