@@ -116,7 +116,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
             {ahabEligible !== undefined && (ahabEligible ? "Congratulations! Please Claim Ahab using the button below." : "Sorry, you require more Whales to Claim Ahab!")}
           </p>
           <video 
-            muted 
+            controls
             autoPlay 
             loop
             style={{ width: "auto", height: "300px" }}
