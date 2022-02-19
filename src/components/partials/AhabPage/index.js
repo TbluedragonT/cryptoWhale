@@ -117,7 +117,8 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
           </p>
           <video 
             controls
-            autoPlay 
+            autoPlay
+            muted
             loop
             style={{ width: "auto", height: "300px" }}
             className="w-full mx-auto my-8 rounded-lg ahab-video">
