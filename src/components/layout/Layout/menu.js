@@ -17,6 +17,12 @@ export const menus = [
     type: "external",
   },
   {
+    name: "Ahab",
+    path: "/ahab",
+    target: "",
+    type: "external",
+  },
+  {
     name: "Lore",
     path: "lore",
     target: "",

@@ -1,0 +1,21 @@
+.ahab-container{
+  background-image: url(/ahab_page/bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media (max-width: 681px) {
+    background-image: url(/ahab_page/bg_phone.svg);
+  }
+  
+  .disabled {
+    opacity: 0.5;
+  }
+
+  .not-allowed {
+    cursor: not-allowed
+  }
+
+  .ahab-video {
+    box-shadow: 0px 0px 5px 8px yellow;
+  }
+}

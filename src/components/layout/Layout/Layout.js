@@ -32,7 +32,7 @@ const Layout = ({
   setWalletAddress
 }) => {
   const [scrolled, setScrolled] = useState(false)
-  const MainMenus = page === "dashboard" ? stakeMenus : page === "mint" ? mintMenus : menus;
+  const MainMenus = page === "dashboard" ? stakeMenus : page === "mint" || page === "ahab" ? mintMenus : menus;
   const socialLinks = [
     {
       link: discordLink,
@@ -126,7 +126,6 @@ const Layout = ({
         return;
       }
       setConnected(await onBoard.walletCheck())
-      console.log(await onBoard.walletCheck())
     }
   }
 
@@ -187,6 +186,7 @@ const Layout = ({
                         <img
                           src="/hero-logo.svg"
                           className="h-12 lg:h-24 py-2"
+                          alt="logo icon"
                         />
                       </Link>
                     )}{" "}
@@ -212,7 +212,7 @@ const Layout = ({
                                     </ScrollLink>
                                   ) : (
                                     <a
-                                      className="no-underline px-5"
+                                      className="no-underline"
                                       href={dt.path}
                                       target={dt.target}
                                     >
@@ -247,13 +247,15 @@ const Layout = ({
                                       className="py-2 pl-3"
                                     >
                                       <a
-                                        className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-1 xl:px-3 tracking-wide w-full rounded-lg my-2"
+                                        className="flex justify-center gap-2 items-center hover:bg-primary font-recoleta-bold text-xl xl:text-2xl py-3 px-1 xl:px-2 tracking-wide w-full rounded-lg my-2"
                                         href={item.link}
                                         target="_blank"
+                                        rel="noreferrer"
                                       >
                                         <img
                                           src={item.icon}
                                           className="w-10"
+                                          alt="social icon"
                                         />
                                       </a>
                                     </li>
@@ -267,7 +269,7 @@ const Layout = ({
                     </div>
                     <div className="absolute inset-y-6 right-0 flex items-center lg:hidden">
                       {/* Mobile menu button*/}
-                      {!open && page !== "mint" && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
+                      {!open && page !== "mint" && page !== "ahab" && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary">
                         <span className="sr-only">Open main menu</span>
                         {open ? (
@@ -344,10 +346,12 @@ const Layout = ({
                                   className="flex justify-center items-center font-recoleta-bold py-3 px-3 my-2"
                                   href={item.link}
                                   target="_blank"
+                                  rel="noreferrer"
                                 >
                                   <img
                                     src={item.icon}
                                     className="w-10"
+                                    alt="social icon"
                                   />
                                 </a>
                               )
@@ -374,12 +378,12 @@ const Layout = ({
 
         <div
           className={`bg-primary relative min-w-full ${visibleClass && visibleFooter ? "block" : "hidden"
-            } ${page === "mint" && "hidden"} `}
+            } ${(page === "mint" || page === "ahab") && "hidden"} `}
         >
           <div className="flex flex-col lg:w-3/5 mx-auto py-20">
             <div className="flex flex-col lg:flex-row lg:justify-between relative items-center">
               <div className="w-1/3 lg:w-1/4 flex flex-col py-10 lg:py-0 items-center">
-                <img src="/footer-logo.svg" className="w-4/5" />
+                <img src="/footer-logo.svg" className="w-4/5" alt="logo icon"/>
               </div>
               <div className="w-2/3 flex flex-col lg:flex-row lg:justify-around">
                 {footerLinks.map(dt => (
@@ -405,7 +409,7 @@ const Layout = ({
                               {sb.label}
                             </ScrollLink>
                           ) : (
-                            <a href={sb.link} target="_blank">
+                            <a href={sb.link} target="_blank" rel="noreferrer">
                               {sb.label}
                             </a>
                           )}
@@ -422,11 +426,40 @@ const Layout = ({
               </div>
               <div className="w-2/3 lg:w-1/3 flex flex-col justify-center items-center lg:justify-end lg:items-end py-8 lg:py-0 mx-auto lg:mx-0">
                 <p className="text-secondary">Powered by</p>
-                <a href={"http://masterbrews.cards/"} target="_blank">
-                  <img src="/brew-logo.png" className="cursor-pointer" />
+                <a href={"http://masterbrews.cards/"} target="_blank" rel="noreferrer">
+                  <img src="/brew-logo.png" className="cursor-pointer" alt="logo icon"/>
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+        <div className={`${page !== "ahab" && "hidden"} bg-primary flex items-center justify-center py-4 flex-col`}>
+          <div className="flex flex-row justify-center gap-3 lg:hidden">
+            {
+              socialLinks.map((item, index) => {
+                return (
+                  <a
+                    key={index}
+                    className="flex justify-center items-center font-recoleta-bold px-3 my-2"
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={item.icon}
+                      className="w-10"
+                      alt="social icon"
+                    />
+                  </a>
+                )
+              })
+            }
+          </div>
+          <div className="flex items-center gap-4 px-4">
+            <p className="text-secondary whitespace-nowrap">Powered by</p>
+            <a href={"http://masterbrews.cards/"} target="_blank" rel="noreferrer">
+              <img src="/brew-logo.png" className="cursor-pointer w-full sm:w-60" alt="logo icon"/>
+            </a>
           </div>
         </div>
         <Snackbar

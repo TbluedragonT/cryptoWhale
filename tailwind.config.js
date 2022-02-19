@@ -51,6 +51,9 @@ module.exports = {
         blue: {
           DEFAULT: "#017AFF",
         },
+        cyan: {
+          DEFAULT: "#0085B0"
+        }
       },
       ringWidth: {
         16: "16px",
