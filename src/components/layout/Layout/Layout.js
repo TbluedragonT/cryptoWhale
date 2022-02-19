@@ -9,7 +9,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { Snackbar } from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 import { ChainID, getWeb3, getOnBoard } from "../../../util/wallet"
-import { menus, stakeMenus, mintMenus, footerLinks } from "./menu"
+import { menus, stakeMenus, mintMenus, ahabMenus, footerLinks } from "./menu"
 import { discordLink, twitterLink, openseaLink, cryptowhaleclubLink } from "./menu"
 import { setWeb3, setOnBoard, setWalletAddress, setConnected } from "../../../state/actions"
 
@@ -32,7 +32,12 @@ const Layout = ({
   setWalletAddress
 }) => {
   const [scrolled, setScrolled] = useState(false)
-  const MainMenus = page === "dashboard" ? stakeMenus : page === "mint" || page === "ahab" ? mintMenus : menus;
+
+  let MainMenus = menus
+  if (page === "dashboard") { MainMenus = stakeMenus }
+  else if (page === "mint") { MainMenus = mintMenus }
+  else if (page === "ahab") { MainMenus = ahabMenus }
+
   const socialLinks = [
     {
       link: discordLink,
@@ -269,7 +274,7 @@ const Layout = ({
                     </div>
                     <div className="absolute inset-y-6 right-0 flex items-center lg:hidden">
                       {/* Mobile menu button*/}
-                      {!open && page !== "mint" && page !== "ahab" && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
+                      {!open && page !== "mint" && (<a href={cryptowhaleclubLink} className="main-button mobile">Mint</a>)}
                       <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary">
                         <span className="sr-only">Open main menu</span>
                         {open ? (
@@ -378,7 +383,7 @@ const Layout = ({
 
         <div
           className={`bg-primary relative min-w-full ${visibleClass && visibleFooter ? "block" : "hidden"
-            } ${(page === "mint" || page === "ahab") && "hidden"} `}
+            } ${page === "mint" && "hidden"} `}
         >
           <div className="flex flex-col lg:w-3/5 mx-auto py-20">
             <div className="flex flex-col lg:flex-row lg:justify-between relative items-center">
@@ -433,7 +438,7 @@ const Layout = ({
             </div>
           </div>
         </div>
-        <div className={`${page !== "ahab" && "hidden"} bg-primary flex items-center justify-center py-4 flex-col`}>
+        <div className={`${"hidden"} bg-primary flex items-center justify-center py-4 flex-col`}>
           <div className="flex flex-row justify-center gap-3 lg:hidden">
             {
               socialLinks.map((item, index) => {
