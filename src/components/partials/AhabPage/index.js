@@ -81,7 +81,7 @@ const AhabPage = ({ web3, walletAddress, connected }) => {
       setAhabEligible(false);
       const ahab_results = (await axios.get(`${BACKEND_URL}/ahab/${walletAddress}`)).data;
       if (ahab_results.code == 200) {
-        displayNotify("success", "Success! We will send out your Ahab within a few days.")
+        displayNotify("success", "Claim successful, please allow 12-24hrs for Ahab to sail into into your wallet!")
       } else {
         displayNotify("error", "Something went wrong!")
       }
