@@ -12,7 +12,7 @@ module.exports = {
     url: "https://cryptowhaleclub.io/",
     domain: "cryptowhaleclub.io",
     title: `Crypto Whale Club`,
-    description: `Crypto Whale Club is a collection of 8,888 unique NFT Atlantean
+    description: `Crypto Whale Club is a collection of unique NFT Atlantean
     whales living on the Ethereum blockchain`,
   },
   plugins: [
