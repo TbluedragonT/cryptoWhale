@@ -25,7 +25,7 @@
 }
 
 @mixin belowWidth($point) {
-  // No media query for `xs` since this is the default
+  // No media query for `xs` since this is the default.
 
   @if $point == sm {
     @media (max-width: 640px) {
